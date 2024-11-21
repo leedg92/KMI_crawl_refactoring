@@ -169,27 +169,6 @@ def create_ecos_url(table_code, item_code_list, period='M'):
         '/'.join(item_code_list)
     ])
 
-#. 최신 데이터 비교(현재 미사용)
-def check_latest_data(new_df, table_name):
-    check_columns = ['CATEGORY', 'STAT_CODE', 'ITEM_CODE1', 'ITEM_CODE2', 
-                    'ITEM_CODE3', 'ITEM_CODE4', 'TIME']
-    
-    def_conn = maria_kmi_dw_db_connection()
-    def_origin_df = pd.read_sql(f"""
-        SELECT DISTINCT {', '.join(check_columns)} 
-        FROM {table_name}
-        ORDER BY TIME DESC
-        LIMIT 1
-    """, con=def_conn)
-    def_conn.close()
-
-    if len(def_origin_df) > 0:
-        existing_data = def_origin_df.iloc[0].to_dict()
-        new_data = new_df[new_df['TIME'] == new_df['TIME'].max()].iloc[0][check_columns].to_dict()
-        return all(existing_data[col] == new_data[col] for col in check_columns)
-    
-    return False
-
 #. ECOS 데이터 수집 공통 함수
 def collect_ecos_data(category, period):
     print('--' * 10, f'(start) ecos_{category.lower()}', '--' * 10)
@@ -228,11 +207,6 @@ def collect_ecos_data(category, period):
             'Y': 'year'
         }
         table_name = f'fct_ecos_statics_{period_map[period]}'
-
-        # 최신데이터 비교 로직 제거(모두 upsert 처리)
-        # if check_latest_data(df, table_name):
-        #     print("No Update Data")
-        #     return None
         
         return df
     
