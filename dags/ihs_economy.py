@@ -48,7 +48,7 @@ task_end = DummyOperator(task_id='end', dag=init_dag)
 ######################
 ## Function 정의
 ######################
-def insert_to_dataframe(result_dataframe, table_name):
+def upsert_to_dataframe(result_dataframe, table_name):
     url = sqlalchemy.engine.URL.create(
         drivername = 'mysql',
         username = MDB_USERNAME,
@@ -60,7 +60,21 @@ def insert_to_dataframe(result_dataframe, table_name):
 
     engine = create_engine(url)
     conn = engine.connect()
-    result_dataframe.to_sql(name = table_name, con=engine, if_exists='append', index=False)
+    
+    for _, row in result_dataframe.iterrows():
+        
+        columns = list(row.index)
+        values = tuple(row)
+                
+        insert_sql = f"""
+        INSERT INTO {table_name} ({', '.join(columns)})
+        VALUES ({', '.join(['%s'] * len(columns))})
+        ON DUPLICATE KEY UPDATE
+        {', '.join([f"`{col}`=VALUES(`{col}`)" for col in columns])}
+        """        
+        conn.execute(insert_sql, values)
+    
+    conn.commit()
     conn.close()
 
 
@@ -137,26 +151,28 @@ def try_api(api_key):
 
 ##. ihs_economy_year (테이블 명 : fct_ihs_economy)
 def func1():
-    print('--' * 10, '(start) ihs_economy_year', '--' * 10)
+    print('--' * 10, '(start) ihs_economy_annual', '--' * 10)
     
     ## tool quiries 에 따라 변경 가능성 있음
-    api_key_year = 'https://api.connect.ihsmarkit.com/shared/v1/databrowser/savedqueries/331390/Annual?pageSize=100&pageIndex=0'
+    ## saved tool name: SLX_Global Economy_Annual
+    api_key_year = 'https://api.connect.ihsmarkit.com/shared/v1/databrowser/savedqueries/331416/Annual?pageSize=100&pageIndex=0'
     def_table_name = 'fct_ihs_economy'
     
     df = try_api(api_key_year)
     df.drop(columns=['Title', 'Date'], inplace=True)
     
     ## DB insert
-    insert_to_dataframe(df, def_table_name)
+    upsert_to_dataframe(df, def_table_name)
     
-    print('--' * 10, '(end) ihs_economy_year', '--' * 10)
+    print('--' * 10, '(end) ihs_economy_annual', '--' * 10)
 
 ##. ihs_economy_month (테이블 명 : ihs_economy_month)
 def func2():
-    print('--' * 10, '(start) ihs_economy_month', '--' * 10)
+    print('--' * 10, '(start) ihs_economy_monthly', '--' * 10)
     
     ## tool quiries 에 따라 변경 가능성 있음
-    api_key_month = 'https://api.connect.ihsmarkit.com/shared/v1/databrowser/savedqueries/331391/Annual?pageSize=100&pageIndex=0'
+    ## saved tool name: SLX_Global Economy_Monthly
+    api_key_month = 'https://api.connect.ihsmarkit.com/shared/v1/databrowser/savedqueries/331421/Annual?pageSize=100&pageIndex=0'
     def_table_name = 'fct_ihs_economy_month'
     
     df = try_api(api_key_month)
@@ -165,9 +181,9 @@ def func2():
     df.drop(columns=['Title', 'Date'], inplace=True)  
     
     ## DB insert
-    insert_to_dataframe(df, def_table_name)
+    upsert_to_dataframe(df, def_table_name)
     
-    print('--' * 10, '(end) ihs_economy_month', '--' * 10)
+    print('--' * 10, '(end) ihs_economy_monthly', '--' * 10)
     
 
     
