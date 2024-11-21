@@ -1,0 +1,35 @@
+##. Airflow
+OWNER_NAME = 'ISCHOI'
+
+##. DB
+##. dev DB
+#MDB_USERNAME = 'ischoi'
+#MDB_PASSWORD = 'dlrtn2@'
+#MDB_HOST = '172.30.1.71'
+#MDB_PORT = 3306
+#MDB_DATABASE = 'kmi_dw_db'
+
+##. kmi DB
+#MDB_USERNAME = 'saltlux'
+#MDB_PASSWORD = 'saltlux1qw2#ER$'
+#MDB_HOST = '192.168.2.125'
+#MDB_PORT = 33306
+#MDB_DATABASE = 'ihs'
+
+##, ulsan DB
+MDB_HOST = '211.193.141.217'
+MDB_PORT = 33671
+MDB_USERNAME = 'dgyoo'
+MDB_PASSWORD = 'ehdrms2@'
+MDB_DATABASE = 'kmi_dw_db'
+
+
+##. KOSIS
+KOSIS_API_KEY = "ZDUyOTMwN2MxMjkxMmM4ZTVlNGZmZjE1Yzc5ZjUyMmY="
+
+##. WORLDBANK
+
+
+##. ECOS
+ECOS_API_KEY = "8KD0RJO6MEUW4E540QG8"
+
