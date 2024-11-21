@@ -134,19 +134,40 @@ def get_year_month():
 
 #. 기간 유형에 따른 시작/종료 날짜 반환
 def get_date_range(period_type='M'):
-    from_date = str(int(get_year_month()) - 100)
-    to_date = get_year_month()
+    now = pendulum.now()
     
     if period_type == 'M':
-        return from_date, to_date
-    elif period_type == 'Y': 
-        return from_date[:-2], to_date[:-2]
+        # 12개월 전부터 현재까지
+        from_date = now.subtract(months=11).format('YYYYMM')  # 11개월을 빼면 총 12개월
+        to_date = now.format('YYYYMM')
+        
+    elif period_type == 'Y':
+        # 작년부터 올해까지
+        from_date = str(now.year - 1)
+        to_date = str(now.year)
+        
     elif period_type == 'Q':
-        quarter_from = from_date[:-2] + 'Q' + str((int(from_date[-2:]) - 1) // 3 + 1)
-        quarter_to = to_date[:-2] + 'Q' + str((int(to_date[-2:]) - 1) // 3 + 1)
-        return quarter_from, quarter_to
+        # 현재 분기 계산
+        current_quarter = (now.month - 1) // 3 + 1
+        current_year = now.year
+        
+        # 4분기 전의 연도와 분기 계산
+        if current_quarter <= 4:
+            from_year = current_year - 1
+            from_quarter = current_quarter
+        else:
+            from_year = current_year
+            from_quarter = current_quarter - 4
+            
+        from_date = f"{from_year}Q{from_quarter}"
+        to_date = f"{current_year}Q{current_quarter}"
+    
     else:
-        return from_date, to_date
+        # 기본값은 월간 데이터와 동일하게 처리
+        from_date = now.subtract(months=11).format('YYYYMM')
+        to_date = now.format('YYYYMM')
+    
+    return from_date, to_date
 
 #. ECOS API URL 생성
 def create_ecos_url(table_code, item_code_list, period='M'):
