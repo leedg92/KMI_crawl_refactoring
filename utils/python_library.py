@@ -111,12 +111,12 @@ def set_selenium_options():
     return opts
 
 
-def set_webdriver_browser(options):
+def set_webdriver_browser(options, downloadPath):
 
     service = Service(executable_path='/usr/local/bin/chromedriver')    
     browser = webdriver.Chrome(service=service, options=options)
     print(f"[INFO] ({datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')}) => Initializing WebDriver...")
-    params = {'behavior': 'allow'}
+    params = {'behavior': 'allow', 'downloadPath': downloadPath}
     browser.execute_cdp_cmd('Page.setDownloadBehavior', params)
     browser.set_page_load_timeout(600)
 
