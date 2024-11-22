@@ -1,130 +1,130 @@
 COLLECT_PLACE_NM|COLLECT_PLACE_CD|DEPTH1_NM|DEPTH1_CD|DEPTH2_NM|DEPTH2_CD|DEPTH3_NM|DEPTH3_CD|DEPTH4_NM|DEPTH4_CD|DEPTH5_NM|DEPTH5_CD|DEPTH6_NM|DEPTH6_CD|DEPTH7_NM|DEPTH7_CD|COLLECT_RANGE|USE_YN|TABLE_NAME|COLUMNS_INFO
-ECOS(ÇÑ±¹ÀºÇà)|ECOS|±Ý¸® Åë°è|INTEREST_RATE|1.3.1. ÇÑ±¹ÀºÇà ±âÁØ±Ý¸® ¹× ¿©¼ö½Å±Ý¸®|722Y001|ÇÑ±¹ÀºÇà±âÁØ±Ý¸®(¿¬%)|101000|||||||||M|Y||
-ECOS(ÇÑ±¹ÀºÇà)|ECOS|±Ý¸® Åë°è|INTEREST_RATE|1.3.1. ÇÑ±¹ÀºÇà ±âÁØ±Ý¸® ¹× ¿©¼ö½Å±Ý¸®|722Y001|ÇÑ±¹ÀºÇà±âÁØ±Ý¸®(¿¬%)|101000|||||||||Y|Y||
-ECOS(ÇÑ±¹ÀºÇà)|ECOS|±Ý¸® Åë°è|INTEREST_RATE|1.3.2.2. ½ÃÀå±Ý¸®(¿ù,ºÐ±â,³â)|721Y001|¹«´ãº¸ÄÝ±Ý¸®(1ÀÏ)|1010000|||||||||M|Y||
-ECOS(ÇÑ±¹ÀºÇà)|ECOS|±Ý¸® Åë°è|INTEREST_RATE|1.3.2.2. ½ÃÀå±Ý¸®(¿ù,ºÐ±â,³â)|721Y001|´ãº¸ÄÝ±Ý¸®(1ÀÏ)|1030000|||||||||M|Y||
-ECOS(ÇÑ±¹ÀºÇà)|ECOS|±Ý¸® Åë°è|INTEREST_RATE|1.3.2.2. ½ÃÀå±Ý¸®(¿ù,ºÐ±â,³â)|721Y001|±¹°íÃ¤(1³â)|5030000|||||||||M|Y||
-ECOS(ÇÑ±¹ÀºÇà)|ECOS|±Ý¸® Åë°è|INTEREST_RATE|1.3.2.2. ½ÃÀå±Ý¸®(¿ù,ºÐ±â,³â)|721Y001|±¹°íÃ¤(3³â)|5020000|||||||||M|Y||
-ECOS(ÇÑ±¹ÀºÇà)|ECOS|±Ý¸® Åë°è|INTEREST_RATE|1.3.2.2. ½ÃÀå±Ý¸®(¿ù,ºÐ±â,³â)|721Y001|±¹°íÃ¤(5³â)|5040000|||||||||M|Y||
-ECOS(ÇÑ±¹ÀºÇà)|ECOS|Áõ±Ç Åë°è|STOCK|1.5.1.2. ÁÖ½Ä½ÃÀå(¿ù,³â)|901Y014|KOSPI_Á¾°¡|1070000|||||||||Y|Y||
-ECOS(ÇÑ±¹ÀºÇà)|ECOS|Áõ±Ç Åë°è|STOCK|1.5.1.2. ÁÖ½Ä½ÃÀå(¿ù,³â)|901Y014|KOSPI_Á¾°¡|1070000|||||||||M|Y||
-ECOS(ÇÑ±¹ÀºÇà)|ECOS|Áõ±Ç Åë°è|STOCK|1.5.1.2. ÁÖ½Ä½ÃÀå(¿ù,³â)|901Y014|KOSPI_Æò±Õ|1080000|||||||||Y|Y||
-ECOS(ÇÑ±¹ÀºÇà)|ECOS|Áõ±Ç Åë°è|STOCK|1.5.1.2. ÁÖ½Ä½ÃÀå(¿ù,³â)|901Y014|KOSPI_Æò±Õ|1080000|||||||||M|Y||
-ECOS(ÇÑ±¹ÀºÇà)|ECOS|Áõ±Ç Åë°è|STOCK|1.5.1.2. ÁÖ½Ä½ÃÀå(¿ù,³â)|901Y014|KOSPI_°Å·¡·®|1050000|||||||||M|Y||
-ECOS(ÇÑ±¹ÀºÇà)|ECOS|Áõ±Ç Åë°è|STOCK|1.5.1.2. ÁÖ½Ä½ÃÀå(¿ù,³â)|901Y014|KOSPI_°Å·¡´ë±Ý|1060000|||||||||M|Y||
-ECOS(ÇÑ±¹ÀºÇà)|ECOS|Áõ±Ç Åë°è|STOCK|1.5.1.2. ÁÖ½Ä½ÃÀå(¿ù,³â)|901Y014|KOSDAQ_°Å·¡·®|2050000|||||||||M|Y||
-ECOS(ÇÑ±¹ÀºÇà)|ECOS|Áõ±Ç Åë°è|STOCK|1.5.1.2. ÁÖ½Ä½ÃÀå(¿ù,³â)|901Y014|KOSDAQ_°Å·¡´ë±Ý|2060000|||||||||M|Y||
-ECOS(ÇÑ±¹ÀºÇà)|ECOS|Áõ±Ç Åë°è|STOCK|1.5.1.2. ÁÖ½Ä½ÃÀå(¿ù,³â)|901Y014|KOSDAQ_Á¾°¡|2090000|||||||||M|Y||
-ECOS(ÇÑ±¹ÀºÇà)|ECOS|Áõ±Ç Åë°è|STOCK|1.5.1.2. ÁÖ½Ä½ÃÀå(¿ù,³â)|901Y014|KOSDAQ_Æò±Õ|2100000|||||||||M|Y||
-ECOS(ÇÑ±¹ÀºÇà)|ECOS|¼ºÀå·ü Åë°è|GROWTH_RATE|2.7.1.1. ÁÖ¿äÁöÇ¥(¿¬°£ÁöÇ¥)|200Y001|±¹³»ÃÑ»ý»ê(½ÇÁú¼ºÀå·ü%)|20101|||||||||Y|Y||
-ECOS(ÇÑ±¹ÀºÇà)|ECOS|¼ºÀå·ü Åë°è|GROWTH_RATE|2.7.1.1. ÁÖ¿äÁöÇ¥(¿¬°£ÁöÇ¥)|200Y001|ÀçÈ­¿Í¼­ºñ½ºÀÇ¼öÃâ(%)|30105|||||||||Y|Y||
-ECOS(ÇÑ±¹ÀºÇà)|ECOS|¼ºÀå·ü Åë°è|GROWTH_RATE|2.7.1.1. ÁÖ¿äÁöÇ¥(¿¬°£ÁöÇ¥)|200Y001|ÀçÈ­¿Í¼­ºñ½ºÀÇ¼öÀÔ(%)|30106|||||||||Y|Y||
-ECOS(ÇÑ±¹ÀºÇà)|ECOS|¼Òµæ Åë°è|INCOME|2.7.2.1.3. °æÁ¦È°µ¿º° GDP ¹× GNI(¿ø°è¿­, ¸í¸ñ, ºÐ±â ¹× ¿¬°£)|200Y005|±¹³»ÃÑ»ý»ê(½ÃÀå°¡°ÝGDP)|1400|||||||||Y|Y||
-ECOS(ÇÑ±¹ÀºÇà)|ECOS|¼Òµæ Åë°è|INCOME|2.7.1.1. ÁÖ¿äÁöÇ¥(¿¬°£ÁöÇ¥)|200Y001|1ÀÎ´ç±¹¹ÎÃÑ¼Òµæ(¸í¸ñ)|1010601|||||||||Y|Y||
-ECOS(ÇÑ±¹ÀºÇà)|ECOS|»ý»ê Åë°è|PRODUCTION|8.3.1. »ê¾÷º° »ý»ê/ÃâÇÏ/Àç°í Áö¼ö|901Y032|ÃÑÁö¼ö|I11A|»ý»êÁö¼ö(¿ø)|1|||||||Y|Y||
-ECOS(ÇÑ±¹ÀºÇà)|ECOS|»ý»ê Åë°è|PRODUCTION|8.3.1. »ê¾÷º° »ý»ê/ÃâÇÏ/Àç°í Áö¼ö|901Y032|ÃÑÁö¼ö|I11A|ÃâÇÏÁö¼ö(¿ø)|3|||||||Y|Y||
-ECOS(ÇÑ±¹ÀºÇà)|ECOS|»ý»ê Åë°è|PRODUCTION|8.3.1. »ê¾÷º° »ý»ê/ÃâÇÏ/Àç°í Áö¼ö|901Y032|ÃÑÁö¼ö|I11A|Àç°íÁö¼ö(¿ø)|5|||||||Y|Y||
-ECOS(ÇÑ±¹ÀºÇà)|ECOS|»ý»ê Åë°è|PRODUCTION|8.3.1. »ê¾÷º° »ý»ê/ÃâÇÏ/Àç°í Áö¼ö|901Y032|Á¦Á¶¾÷|I11AC|»ý»êÁö¼ö(¿ø)|1|||||||M|Y||
-ECOS(ÇÑ±¹ÀºÇà)|ECOS|»ý»ê Åë°è|PRODUCTION|8.3.1. »ê¾÷º° »ý»ê/ÃâÇÏ/Àç°í Áö¼ö|901Y032|Á¦Á¶¾÷|I11AC|»ý»êÁö¼ö(°èÀý)|2|||||||M|Y||
-ECOS(ÇÑ±¹ÀºÇà)|ECOS|»ý»ê Åë°è|PRODUCTION|8.3.1. »ê¾÷º° »ý»ê/ÃâÇÏ/Àç°í Áö¼ö|901Y032|Á¦Á¶¾÷|I11AC|ÃâÇÏÁö¼ö(¿ø)|3|||||||M|Y||
-ECOS(ÇÑ±¹ÀºÇà)|ECOS|»ý»ê Åë°è|PRODUCTION|8.3.1. »ê¾÷º° »ý»ê/ÃâÇÏ/Àç°í Áö¼ö|901Y032|Á¦Á¶¾÷|I11AC|ÃâÇÏÁö¼ö(°èÀý)|4|||||||M|Y||
-ECOS(ÇÑ±¹ÀºÇà)|ECOS|»ý»ê Åë°è|PRODUCTION|8.3.1. »ê¾÷º° »ý»ê/ÃâÇÏ/Àç°í Áö¼ö|901Y032|Á¦Á¶¾÷|I11AC|Àç°íÁö¼ö(¿ø)|5|||||||M|Y||
-ECOS(ÇÑ±¹ÀºÇà)|ECOS|»ý»ê Åë°è|PRODUCTION|8.3.1. »ê¾÷º° »ý»ê/ÃâÇÏ/Àç°í Áö¼ö|901Y032|Á¦Á¶¾÷|I11AC|Àç°íÁö¼ö(°èÀý)|6|||||||M|Y||
-ECOS(ÇÑ±¹ÀºÇà)|ECOS|»ý»ê Åë°è|PRODUCTION|8.1.4. Àü»ê¾÷»ý»êÁö¼ö(³ó¸²¾î¾÷Á¦¿Ü)|901Y033|Àü»ê¾÷»ý»êÁö¼ö(³ó¸²¾î¾÷ Á¦¿Ü)|A00|¿ø°è¿­|1|||||||M|Y||
-ECOS(ÇÑ±¹ÀºÇà)|ECOS|»ý»ê Åë°è|PRODUCTION|8.1.4. Àü»ê¾÷»ý»êÁö¼ö(³ó¸²¾î¾÷Á¦¿Ü)|901Y033|Àü»ê¾÷»ý»êÁö¼ö(³ó¸²¾î¾÷ Á¦¿Ü)|A00|°èÀýÁ¶Á¤|2|||||||M|Y||
-ECOS(ÇÑ±¹ÀºÇà)|ECOS|»ý»ê Åë°è|PRODUCTION|8.3.6. Á¦Á¶¾÷ »ý»ê´É·Â ¹× °¡µ¿·ü Áö¼ö|901Y035|Á¦Á¶¾÷|I32A|°¡µ¿·üÁö¼ö(¿ø)|I11B|||||||M|Y||
-ECOS(ÇÑ±¹ÀºÇà)|ECOS|»ý»ê Åë°è|PRODUCTION|8.3.6. Á¦Á¶¾÷ »ý»ê´É·Â ¹× °¡µ¿·ü Áö¼ö|901Y035|Á¦Á¶¾÷|I32A|°¡µ¿·üÁö¼ö(¿ø)|I11B|||||||Y|Y||
-ECOS(ÇÑ±¹ÀºÇà)|ECOS|»ý»ê Åë°è|PRODUCTION|8.3.6. Á¦Á¶¾÷ »ý»ê´É·Â ¹× °¡µ¿·ü Áö¼ö|901Y035|Á¦Á¶¾÷|I32A|»ý»ê´É·ÂÁö¼ö|I11A|||||||M|Y||
-ECOS(ÇÑ±¹ÀºÇà)|ECOS|»ý»ê Åë°è|PRODUCTION|8.3.6. Á¦Á¶¾÷ »ý»ê´É·Â ¹× °¡µ¿·ü Áö¼ö|901Y035|Á¦Á¶¾÷|I32A|°¡µ¿·üÁö¼ö(°èÀýÁ¶Á¤)|I11C|||||||M|Y||
-ECOS(ÇÑ±¹ÀºÇà)|ECOS|°æ±â Åë°è|ECONOMY|8.5.2. Àçº° ¹× »óÇ°±ºº° ÆÇ¸Å¾×Áö¼ö|901Y100|½Â¿ëÂ÷|G11|½Â¿ëÂ÷_°æ»óÁö¼ö|T1|||||||Y|Y||
-ECOS(ÇÑ±¹ÀºÇà)|ECOS|°æ±â Åë°è|ECONOMY|8.5.2. Àçº° ¹× »óÇ°±ºº° ÆÇ¸Å¾×Áö¼ö|901Y100|½Â¿ëÂ÷|G11|½Â¿ëÂ÷_ºÒº¯Áö¼ö|T2|||||||Y|Y||
-ECOS(ÇÑ±¹ÀºÇà)|ECOS|°æ±â Åë°è|ECONOMY|8.1.3. ¼³ºñÅõÀÚÁö¼ö|901Y066|¿øÁö¼ö|I15A|||||||||Y|Y||
-ECOS(ÇÑ±¹ÀºÇà)|ECOS|°æ±â Åë°è|ECONOMY|8.3.3. ¼³ºñ¿ë ±â°è·ù »ý»êÁö¼ö|901Y036|±â°è¼³ºñ·ù|10|³»¼öÃâÇÏÁö¼ö(¿øÁö¼ö)|T13|||||||M|Y||
-ECOS(ÇÑ±¹ÀºÇà)|ECOS|°æ±â Åë°è|ECONOMY|8.3.3. ¼³ºñ¿ë ±â°è·ù »ý»êÁö¼ö|901Y036|±â°è¼³ºñ·ù|10|³»¼öÃâÇÏÁö¼ö(¿øÁö¼ö)|T13|||||||Y|Y||
-ECOS(ÇÑ±¹ÀºÇà)|ECOS|°æ±â Åë°è|ECONOMY|8.3.3. ¼³ºñ¿ë ±â°è·ù »ý»êÁö¼ö|901Y036|±â°è¼³ºñ·ù|10|³»¼öÃâÇÏÁö¼ö(°èÀýÁ¶Á¤)|T23|||||||M|Y||
-ECOS(ÇÑ±¹ÀºÇà)|ECOS|°æ±â Åë°è|ECONOMY|8.3.8. ±â°è¼öÁÖ¾×|901Y018|±¹³»¼ö¿ä|I351AA|||||||||Y|Y||
-ECOS(ÇÑ±¹ÀºÇà)|ECOS|°æ±â Åë°è|ECONOMY|8.3.8. ±â°è¼öÁÖ¾×|901Y018|±¹³»¼ö¿ä(¼±¹ÚÁ¦¿Ü)|I35AAA|||||||||M|Y||
-ECOS(ÇÑ±¹ÀºÇà)|ECOS|°æ±â Åë°è|ECONOMY|8.5.2. Àçº° ¹× »óÇ°±ºº° ÆÇ¸Å¾×Áö¼ö|901Y100|½Â¿ëÂ÷|G11|°æ»óÁö¼ö|T1|||||||M|Y||
-ECOS(ÇÑ±¹ÀºÇà)|ECOS|°æ±â Åë°è|ECONOMY|8.5.2. Àçº° ¹× »óÇ°±ºº° ÆÇ¸Å¾×Áö¼ö|901Y100|½Â¿ëÂ÷|G11|ºÒº¯Áö¼ö|T2|||||||M|Y||
-ECOS(ÇÑ±¹ÀºÇà)|ECOS|°æ±â Åë°è|ECONOMY|8.5.2. Àçº° ¹× »óÇ°±ºº° ÆÇ¸Å¾×Áö¼ö|901Y100|½Â¿ëÂ÷|G11|°èÁ¤Á¶Á¤Áö¼ö|T3|||||||M|Y||
-ECOS(ÇÑ±¹ÀºÇà)|ECOS|°æ±â Åë°è|ECONOMY|8.1.3. ¼³ºñÅõÀÚÁö¼ö|901Y066|¿øÁö¼ö|I15A|||||||||M|Y||
-ECOS(ÇÑ±¹ÀºÇà)|ECOS|°æ±â Åë°è|ECONOMY|8.1.3. ¼³ºñÅõÀÚÁö¼ö|901Y066|°èÀýÁ¶Á¤Áö¼ö|I15B|||||||||M|Y||
-ECOS(ÇÑ±¹ÀºÇà)|ECOS|°æ±â Åë°è|ECONOMY|8.4.1. ±¹³»°Ç¼³¼öÁÖ¾×|901Y020|ÃÑ¼öÁÖ¾×|I42A|||||||||M|Y||
-ECOS(ÇÑ±¹ÀºÇà)|ECOS|°æ±â Åë°è|ECONOMY|8.4.1. ±¹³»°Ç¼³¼öÁÖ¾×|901Y020|°ø°øºÎ¹®|I42AAA|Áß¾ÓÁ¤ºÎ|I42AAAA|||||||M|Y||
-ECOS(ÇÑ±¹ÀºÇà)|ECOS|°æ±â Åë°è|ECONOMY|8.4.1. ±¹³»°Ç¼³¼öÁÖ¾×|901Y020|°ø°øºÎ¹®|I42AAA|Áö¹æÀÚÄ¡´ÜÃ¼|I42AAAB|||||||M|Y||
-ECOS(ÇÑ±¹ÀºÇà)|ECOS|°æ±â Åë°è|ECONOMY|8.4.1. ±¹³»°Ç¼³¼öÁÖ¾×|901Y020|°ø°øºÎ¹®|I42AAA|°ø±â¾÷|I42AAAC|||||||M|Y||
-ECOS(ÇÑ±¹ÀºÇà)|ECOS|°æ±â Åë°è|ECONOMY|8.4.1. ±¹³»°Ç¼³¼öÁÖ¾×|901Y020|°ø°øºÎ¹®|I42AAA|±âÅ¸°ø°ø´ÜÃ¼|I42AAAD|||||||M|Y||
-ECOS(ÇÑ±¹ÀºÇà)|ECOS|°æ±â Åë°è|ECONOMY|8.4.1. ±¹³»°Ç¼³¼öÁÖ¾×|901Y020|¹Î°£ºÎ¹®|I42AAB|Á¦Á¶¾÷|I42AABA|||||||M|Y||
-ECOS(ÇÑ±¹ÀºÇà)|ECOS|°æ±â Åë°è|ECONOMY|8.4.1. ±¹³»°Ç¼³¼öÁÖ¾×|901Y020|¹Î°£ºÎ¹®|I42AAB|ºñÁ¦Á¶¾÷|I42AABB|||||||M|Y||
-ECOS(ÇÑ±¹ÀºÇà)|ECOS|°æ±â Åë°è|ECONOMY|8.4.1. ±¹³»°Ç¼³¼öÁÖ¾×|901Y020|±¹³»¿Ü±¹±â°ü|I42AAC|||||||||M|Y||
-ECOS(ÇÑ±¹ÀºÇà)|ECOS|°æ±â Åë°è|ECONOMY|8.4.1. ±¹³»°Ç¼³¼öÁÖ¾×|901Y020|¹ÎÀÚ|I42AAD|||||||||M|Y||
-ECOS(ÇÑ±¹ÀºÇà)|ECOS|°æ±â Åë°è|ECONOMY|8.4.1. ±¹³»°Ç¼³¼öÁÖ¾×|901Y020|°ÇÃà|I42ABA|ÁÖÅÃ|I42ABAA|||||||M|Y||
-ECOS(ÇÑ±¹ÀºÇà)|ECOS|°æ±â Åë°è|ECONOMY|8.4.1. ±¹³»°Ç¼³¼öÁÖ¾×|901Y020|°ÇÃà|I42ABA|»ç¹«½Ç ¹× Á¡Æ÷|I42ABAB|||||||M|Y||
-ECOS(ÇÑ±¹ÀºÇà)|ECOS|°æ±â Åë°è|ECONOMY|8.4.1. ±¹³»°Ç¼³¼öÁÖ¾×|901Y020|°ÇÃà|I42ABA|°øÀå ¹× Ã¢°í|I42ABAC|||||||M|Y||
-ECOS(ÇÑ±¹ÀºÇà)|ECOS|°æ±â Åë°è|ECONOMY|8.4.1. ±¹³»°Ç¼³¼öÁÖ¾×|901Y020|°ÇÃà|I42ABA|°ü°ø¼­|I42ABAD|||||||M|Y||
-ECOS(ÇÑ±¹ÀºÇà)|ECOS|°æ±â Åë°è|ECONOMY|8.4.1. ±¹³»°Ç¼³¼öÁÖ¾×|901Y020|°ÇÃà|I42ABA|±âÅ¸|I42ABAE|||||||M|Y||
-ECOS(ÇÑ±¹ÀºÇà)|ECOS|°æ±â Åë°è|ECONOMY|8.4.1. ±¹³»°Ç¼³¼öÁÖ¾×|901Y020|Åä¸ñ|I42ABB|Ä¡»ê ¹× Ä¡¼ö|I42ABBA|||||||M|Y||
-ECOS(ÇÑ±¹ÀºÇà)|ECOS|°æ±â Åë°è|ECONOMY|8.4.1. ±¹³»°Ç¼³¼öÁÖ¾×|901Y020|Åä¸ñ|I42ABB|³ó¸² ¹× ¼ö»ê|I42ABBB|||||||M|Y||
-ECOS(ÇÑ±¹ÀºÇà)|ECOS|°æ±â Åë°è|ECONOMY|8.4.1. ±¹³»°Ç¼³¼öÁÖ¾×|901Y020|Åä¸ñ|I42ABB|µµ·Î ¹× ±³·®|I42ABBC|||||||M|Y||
-ECOS(ÇÑ±¹ÀºÇà)|ECOS|°æ±â Åë°è|ECONOMY|8.4.1. ±¹³»°Ç¼³¼öÁÖ¾×|901Y020|Åä¸ñ|I42ABB|Ç×¸¸ ¹× °øÇ×|I42ABBD|||||||M|Y||
-ECOS(ÇÑ±¹ÀºÇà)|ECOS|°æ±â Åë°è|ECONOMY|8.4.1. ±¹³»°Ç¼³¼öÁÖ¾×|901Y020|Åä¸ñ|I42ABB|Ã¶µµ ¹× ±Ëµµ|I42ABBE|||||||M|Y||
-ECOS(ÇÑ±¹ÀºÇà)|ECOS|°æ±â Åë°è|ECONOMY|8.4.1. ±¹³»°Ç¼³¼öÁÖ¾×|901Y020|Åä¸ñ|I42ABB|»óÇÏ¼öµµ|I42ABBF|||||||M|Y||
-ECOS(ÇÑ±¹ÀºÇà)|ECOS|°æ±â Åë°è|ECONOMY|8.4.1. ±¹³»°Ç¼³¼öÁÖ¾×|901Y020|Åä¸ñ|I42ABB|¹ßÀü ¹× ¼ÛÀü|I42ABBG|||||||M|Y||
-ECOS(ÇÑ±¹ÀºÇà)|ECOS|°æ±â Åë°è|ECONOMY|8.4.1. ±¹³»°Ç¼³¼öÁÖ¾×|901Y020|Åä¸ñ|I42ABB|ÅäÁöÁ¶¼º|I42ABBH|||||||M|Y||
-ECOS(ÇÑ±¹ÀºÇà)|ECOS|°æ±â Åë°è|ECONOMY|8.4.1. ±¹³»°Ç¼³¼öÁÖ¾×|901Y020|Åä¸ñ|I42ABB|Á¶°æ°ø»ç|I42ABBL|||||||M|Y||
-ECOS(ÇÑ±¹ÀºÇà)|ECOS|°æ±â Åë°è|ECONOMY|8.4.1. ±¹³»°Ç¼³¼öÁÖ¾×|901Y020|Åä¸ñ|I42ABB|´ï|I42ABBI|||||||M|Y||
-ECOS(ÇÑ±¹ÀºÇà)|ECOS|°æ±â Åë°è|ECONOMY|8.4.1. ±¹³»°Ç¼³¼öÁÖ¾×|901Y020|Åä¸ñ|I42ABB|±â°è¼³Ä¡|I42ABBJ|||||||M|Y||
-ECOS(ÇÑ±¹ÀºÇà)|ECOS|°æ±â Åë°è|ECONOMY|8.4.1. ±¹³»°Ç¼³¼öÁÖ¾×|901Y020|Åä¸ñ|I42ABB|±âÅ¸|I42ABBK|||||||M|Y||
-ECOS(ÇÑ±¹ÀºÇà)|ECOS|°í¿ë/ÀÎ±¸ Åë°è|EMPLOY_POPULATION|8.6.2. °æÁ¦È°µ¿ÀÎ±¸|901Y027|½Ç¾÷·ü|I61BC|¿ø°è¿­|I28A|||||||M|Y||
-ECOS(ÇÑ±¹ÀºÇà)|ECOS|°í¿ë/ÀÎ±¸ Åë°è|EMPLOY_POPULATION|8.6.2. °æÁ¦È°µ¿ÀÎ±¸|901Y027|½Ç¾÷·ü|I61BC|¿ø°è¿­|I28A|||||||Y|Y||
-ECOS(ÇÑ±¹ÀºÇà)|ECOS|°í¿ë/ÀÎ±¸ Åë°è|EMPLOY_POPULATION|8.6.2. °æÁ¦È°µ¿ÀÎ±¸|901Y027|½Ç¾÷·ü|I61BC|°èÀýÁ¶Á¤|I28B|||||||M|Y||
-ECOS(ÇÑ±¹ÀºÇà)|ECOS|°í¿ë/ÀÎ±¸ Åë°è|EMPLOY_POPULATION|8.6.2. °æÁ¦È°µ¿ÀÎ±¸|901Y027|°í¿ë·ü|I61E|¿ø°è¿­|I28A|||||||M|Y||
-ECOS(ÇÑ±¹ÀºÇà)|ECOS|°í¿ë/ÀÎ±¸ Åë°è|EMPLOY_POPULATION|8.6.2. °æÁ¦È°µ¿ÀÎ±¸|901Y027|°í¿ë·ü|I61E|¿ø°è¿­|I28A|||||||Y|Y||
-ECOS(ÇÑ±¹ÀºÇà)|ECOS|°í¿ë/ÀÎ±¸ Åë°è|EMPLOY_POPULATION|8.6.2. °æÁ¦È°µ¿ÀÎ±¸|901Y027|°í¿ë·ü|I61E|°èÀýÁ¶Á¤|I28B|||||||M|Y||
-ECOS(ÇÑ±¹ÀºÇà)|ECOS|°í¿ë/ÀÎ±¸ Åë°è|EMPLOY_POPULATION|8.6.1. Ãß°èÀÎ±¸/°í·ÉÀÎ±¸ºñÀ²/ÇÕ°èÃâ»êÀ²|901Y028|Ãß°èÀÎ±¸|I35A|||||||||Y|Y||
-ECOS(ÇÑ±¹ÀºÇà)|ECOS|°í¿ë/ÀÎ±¸ Åë°è|EMPLOY_POPULATION|8.6.1. Ãß°èÀÎ±¸/°í·ÉÀÎ±¸ºñÀ²/ÇÕ°èÃâ»êÀ²|901Y028|°í·ÉÀÎ±¸ºñÀ²(65¼¼ ÀÌ»ó%)|I35D|||||||||Y|Y||
-ECOS(ÇÑ±¹ÀºÇà)|ECOS|´ë¿Ü°Å·¡ Åë°è|FOREIGN_TRADE|2.5.1.1. ±¹Á¦¼öÁö|301Y013|°æ»ó¼öÁö|0|||||||||M|Y||
-ECOS(ÇÑ±¹ÀºÇà)|ECOS|´ë¿Ü°Å·¡ Åë°è|FOREIGN_TRADE|2.5.1.1. ±¹Á¦¼öÁö|301Y013|Á÷Á¢ÅõÀÚ(ÀÚ»ê)|BOPF11000000|||||||||M|Y||
-ECOS(ÇÑ±¹ÀºÇà)|ECOS|´ë¿Ü°Å·¡ Åë°è|FOREIGN_TRADE|2.5.1.1. ±¹Á¦¼öÁö|301Y013|Á÷Á¢ÅõÀÚ(ºÎÃ¤)|BOPF12000000|||||||||M|Y||
-ECOS(ÇÑ±¹ÀºÇà)|ECOS|´ë¿Ü°Å·¡ Åë°è|FOREIGN_TRADE|2.5.1.1. ±¹Á¦¼öÁö|301Y013|Áõ±ÇÅõÀÚ(ÀÚ»ê)|BOPF21000000|||||||||M|Y||
-ECOS(ÇÑ±¹ÀºÇà)|ECOS|´ë¿Ü°Å·¡ Åë°è|FOREIGN_TRADE|2.5.1.1. ±¹Á¦¼öÁö|301Y013|Áõ±ÇÅõÀÚ(ºÎÃ¤)|BOPF22000000|||||||||M|Y||
-ECOS(ÇÑ±¹ÀºÇà)|ECOS|´ë¿Ü°Å·¡ Åë°è|FOREIGN_TRADE|2.5.1.1. ±¹Á¦¼öÁö|301Y013|°æ»ó¼öÁö|0|||||||||Y|Y||
-ECOS(ÇÑ±¹ÀºÇà)|ECOS|´ë¿Ü°Å·¡ Åë°è|FOREIGN_TRADE|2.5.1.1. ±¹Á¦¼öÁö|301Y013|Á÷Á¢ÅõÀÚ(ÀÚ»ê)|BOPF11000000|||||||||Y|Y||
-ECOS(ÇÑ±¹ÀºÇà)|ECOS|´ë¿Ü°Å·¡ Åë°è|FOREIGN_TRADE|2.5.1.1. ±¹Á¦¼öÁö|301Y013|Á÷Á¢ÅõÀÚ(ºÎÃ¤)|BOPF12000000|||||||||Y|Y||
-ECOS(ÇÑ±¹ÀºÇà)|ECOS|´ë¿Ü°Å·¡ Åë°è|FOREIGN_TRADE|2.5.1.1. ±¹Á¦¼öÁö|301Y013|Áõ±ÇÅõÀÚ(ÀÚ»ê)|BOPF21000000|||||||||Y|Y||
-ECOS(ÇÑ±¹ÀºÇà)|ECOS|´ë¿Ü°Å·¡ Åë°è|FOREIGN_TRADE|2.5.1.1. ±¹Á¦¼öÁö|301Y013|Áõ±ÇÅõÀÚ(ºÎÃ¤)|BOPF22000000|||||||||Y|Y||
-ECOS(ÇÑ±¹ÀºÇà)|ECOS|´ë¿Ü°Å·¡ Åë°è|FOREIGN_TRADE|3.3.1.1.1. ¼öÃâ±Ý¾×Áö¼ö|403Y001|ÃÑÁö¼ö|*AA|||||||||Y|Y||
-ECOS(ÇÑ±¹ÀºÇà)|ECOS|´ë¿Ü°Å·¡ Åë°è|FOREIGN_TRADE|3.3.1.2.1. ¼öÀÔ±Ý¾×Áö¼ö|403Y003|ÃÑÁö¼ö|*AA|||||||||Y|Y||
-ECOS(ÇÑ±¹ÀºÇà)|ECOS|´ë¿Ü°Å·¡ Åë°è|FOREIGN_TRADE|3.5. ¿ÜÈ¯º¸À¯¾×|732Y001|ÇÕ°è|99|||||||||M|Y||
-ECOS(ÇÑ±¹ÀºÇà)|ECOS|´ë¿Ü°Å·¡ Åë°è|FOREIGN_TRADE|3.5. ¿ÜÈ¯º¸À¯¾×|732Y001|ÇÕ°è|99|||||||||Y|Y||
-ECOS(ÇÑ±¹ÀºÇà)|ECOS|´ë¿Ü°Å·¡ Åë°è|FOREIGN_TRADE|2.6.2.1. ´ë¿ÜÃ¤¹«|311Y004|´ë¿ÜÃ¤¹«|A000000|||||||||Y|Y||
-ECOS(ÇÑ±¹ÀºÇà)|ECOS|´ë¿Ü°Å·¡ Åë°è|FOREIGN_TRADE|2.6.2.2. ´ë¿ÜÃ¤±Ç|311Y005|´ë¿ÜÃ¤±Ç|B000000|||||||||Y|Y||
-ECOS(ÇÑ±¹ÀºÇà)|ECOS|´ë¿Ü°Å·¡ Åë°è|FOREIGN_TRADE|3.3.1.1.1. ¼öÃâ±Ý¾×Áö¼ö|403Y001|ÃÑÁö¼ö|*AA|||||||||M|Y||
-ECOS(ÇÑ±¹ÀºÇà)|ECOS|´ë¿Ü°Å·¡ Åë°è|FOREIGN_TRADE|3.3.1.2.1. ¼öÀÔ±Ý¾×Áö¼ö|403Y003|ÃÑÁö¼ö|*AA|||||||||M|Y||
-ECOS(ÇÑ±¹ÀºÇà)|ECOS|¹°°¡ Åë°è|PRICE|4.2.1. ¼ÒºñÀÚ¹°°¡Áö¼ö|901Y009|ÃÑÁö¼ö|0|||||||||Y|Y||
-ECOS(ÇÑ±¹ÀºÇà)|ECOS|¹°°¡ Åë°è|PRICE|4.1.1.1. »ý»êÀÚ¹°°¡Áö¼ö(±âº»ºÐ·ù)|404Y014|ÃÑÁö¼ö|*AA|||||||||Y|Y||
-ECOS(ÇÑ±¹ÀºÇà)|ECOS|¹°°¡ Åë°è|PRICE|4.3.1.1. ¼öÃâ¹°°¡Áö¼ö(±âº»ºÐ·ù)|402Y014|ÃÑÁö¼ö|*AA|||||||||Y|Y||
-ECOS(ÇÑ±¹ÀºÇà)|ECOS|¹°°¡ Åë°è|PRICE|4.3.2.1. ¼öÀÔ¹°°¡Áö¼ö(±âº»ºÐ·ù)|401Y015|ÃÑÁö¼ö|*AA|||||||||Y|Y||
-ECOS(ÇÑ±¹ÀºÇà)|ECOS|¹°°¡ Åë°è|PRICE|9.1.6.3. ±¹Á¦»óÇ°°¡°Ý|902Y003|Dubai(Çö¹°)|10102|||||||||Y|Y||
-ECOS(ÇÑ±¹ÀºÇà)|ECOS|¹°°¡ Åë°è|PRICE|9.1.6.3. ±¹Á¦»óÇ°°¡°Ý|902Y003|Brent(Çö¹°)|10103|||||||||Y|Y||
-ECOS(ÇÑ±¹ÀºÇà)|ECOS|¹°°¡ Åë°è|PRICE|9.1.6.3. ±¹Á¦»óÇ°°¡°Ý|902Y003|±Ý(Çö¹°)|40101|||||||||Y|Y||
-ECOS(ÇÑ±¹ÀºÇà)|ECOS|¹°°¡ Åë°è|PRICE|4.2.1. ¼ÒºñÀÚ¹°°¡Áö¼ö|901Y009|ÃÑÁö¼ö|0|||||||||M|Y||
-ECOS(ÇÑ±¹ÀºÇà)|ECOS|¹°°¡ Åë°è|PRICE|4.1.1.1. »ý»êÀÚ¹°°¡Áö¼ö(±âº»ºÐ·ù)|404Y014|ÃÑÁö¼ö|*AA|||||||||M|Y||
-ECOS(ÇÑ±¹ÀºÇà)|ECOS|¹°°¡ Åë°è|PRICE|4.3.1.1. ¼öÃâ¹°°¡Áö¼ö(±âº»ºÐ·ù)|402Y014|ÃÑÁö¼ö|*AA|||||||||M|Y||
-ECOS(ÇÑ±¹ÀºÇà)|ECOS|¹°°¡ Åë°è|PRICE|4.3.2.1. ¼öÀÔ¹°°¡Áö¼ö(±âº»ºÐ·ù)|401Y015|ÃÑÁö¼ö|*AA|||||||||M|Y||
-ECOS(ÇÑ±¹ÀºÇà)|ECOS|¹°°¡ Åë°è|PRICE|9.1.6.3. ±¹Á¦»óÇ°°¡°Ý|902Y003|Dubai(Çö¹°)|10102|||||||||M|Y||
-ECOS(ÇÑ±¹ÀºÇà)|ECOS|¹°°¡ Åë°è|PRICE|9.1.6.3. ±¹Á¦»óÇ°°¡°Ý|902Y003|Brent(Çö¹°)|10103|||||||||M|Y||
-ECOS(ÇÑ±¹ÀºÇà)|ECOS|¹°°¡ Åë°è|PRICE|9.1.6.3. ±¹Á¦»óÇ°°¡°Ý|902Y003|±Ý(Çö¹°)|40101|||||||||M|Y||
-ECOS(ÇÑ±¹ÀºÇà)|ECOS|°Ç¼³ Åë°è|CEMENT|8.4.1. ±¹³»°Ç¼³¼öÁÖ¾×|901Y020|ÃÑ¼öÁÖ¾×|I42A|||||||||Y|Y||
-ECOS(ÇÑ±¹ÀºÇà)|ECOS|°Ç¼³ Åë°è|CEMENT|8.4.1. ±¹³»°Ç¼³¼öÁÖ¾×|901Y020|°ø°øºÎ¹®|I42AAA|||||||||Y|Y||
-ECOS(ÇÑ±¹ÀºÇà)|ECOS|°Ç¼³ Åë°è|CEMENT|8.4.1. ±¹³»°Ç¼³¼öÁÖ¾×|901Y020|¹Î°£ºÎ¹®|I42AAB|||||||||Y|Y||
-ECOS(ÇÑ±¹ÀºÇà)|ECOS|°Ç¼³ Åë°è|CEMENT|8.4.1. ±¹³»°Ç¼³¼öÁÖ¾×|901Y020|°ÇÃà|I42ABA|||||||||Y|Y||
-ECOS(ÇÑ±¹ÀºÇà)|ECOS|°Ç¼³ Åë°è|CEMENT|8.4.1. ±¹³»°Ç¼³¼öÁÖ¾×|901Y020|Åä¸ñ|I42ABB|||||||||Y|Y||
-ECOS(ÇÑ±¹ÀºÇà)|ECOS|°íÃ¶ Åë°è|SCRAP_METAL|2.7.1.2. ÁÖ¿äÁöÇ¥(ºÐ±âÁöÇ¥)|200Y002|°Ç¼³ÅõÀÚ(¿ø)|10124|||||||||Q|Y||
-ECOS(ÇÑ±¹ÀºÇà)|ECOS|°íÃ¶ Åë°è|SCRAP_METAL|2.7.1.2. ÁÖ¿äÁöÇ¥(ºÐ±âÁöÇ¥)|200Y002|°Ç¼³ÅõÀÚ(°èÀý)|10224|||||||||Q|Y||
-ECOS(ÇÑ±¹ÀºÇà)|ECOS|°íÃ¶ Åë°è|SCRAP_METAL|8.4.2. °Ç¼³±â¼º¾×|901Y104|ÃÑ±â¼º¾×|I48A|°æ»ó|I37A|||||||M|Y||
-ECOS(ÇÑ±¹ÀºÇà)|ECOS|°íÃ¶ Åë°è|SCRAP_METAL|8.4.2. °Ç¼³±â¼º¾×|901Y104|ÃÑ±â¼º¾×|I48A|°èÀýÁ¶Á¤|I37C|||||||M|Y||
-ECOS(ÇÑ±¹ÀºÇà)|ECOS|°íÃ¶ Åë°è|SCRAP_METAL|8.4.2. °Ç¼³±â¼º¾×|901Y104|ÃÑ±â¼º¾×|I48A|ºÒº¯|I37B|||||||M|Y||
-ECOS(ÇÑ±¹ÀºÇà)|ECOS|°íÃ¶ Åë°è|SCRAP_METAL|8.4.2. °Ç¼³±â¼º¾×|901Y104|ÃÑ±â¼º¾×|I48A|ºÒº¯_°èÀýÁ¶Á¤|I37D|||||||M|Y||
-ECOS(ÇÑ±¹ÀºÇà)|ECOS|½É¸® Åë°è|TRIAL|6.2.1. ¼ÒºñÀÚµ¿ÇâÁ¶»ç(Àü±¹, ¿ù, 2008.9~)|511Y002|¼ÒºñÀÚ½É¸®Áö¼ö|FME|ÀüÃ¼|99988|||||||M|Y||
-ECOS(ÇÑ±¹ÀºÇà)|ECOS|½É¸® Åë°è|TRIAL|6.1.2.1. ¾÷Á¾º° ±â¾÷°æ±â½Ç»çÁö¼ö, 2009.8~(½ÇÀû)|512Y007|¾÷È²½ÇÀûBSI 1)|AA|Á¦Á¶¾÷|C0000|||||||M|Y||
+ECOS(í•œêµ­ì€í–‰)|ECOS|ê¸ˆë¦¬ í†µê³„|INTEREST_RATE|1.3.1. í•œêµ­ì€í–‰ ê¸°ì¤€ê¸ˆë¦¬ ë° ì—¬ìˆ˜ì‹ ê¸ˆë¦¬|722Y001|í•œêµ­ì€í–‰ê¸°ì¤€ê¸ˆë¦¬(ì—°%)|101000|||||||||M|Y||
+ECOS(í•œêµ­ì€í–‰)|ECOS|ê¸ˆë¦¬ í†µê³„|INTEREST_RATE|1.3.1. í•œêµ­ì€í–‰ ê¸°ì¤€ê¸ˆë¦¬ ë° ì—¬ìˆ˜ì‹ ê¸ˆë¦¬|722Y001|í•œêµ­ì€í–‰ê¸°ì¤€ê¸ˆë¦¬(ì—°%)|101000|||||||||Y|Y||
+ECOS(í•œêµ­ì€í–‰)|ECOS|ê¸ˆë¦¬ í†µê³„|INTEREST_RATE|1.3.2.2. ì‹œìž¥ê¸ˆë¦¬(ì›”,ë¶„ê¸°,ë…„)|721Y001|ë¬´ë‹´ë³´ì½œê¸ˆë¦¬(1ì¼)|1010000|||||||||M|Y||
+ECOS(í•œêµ­ì€í–‰)|ECOS|ê¸ˆë¦¬ í†µê³„|INTEREST_RATE|1.3.2.2. ì‹œìž¥ê¸ˆë¦¬(ì›”,ë¶„ê¸°,ë…„)|721Y001|ë‹´ë³´ì½œê¸ˆë¦¬(1ì¼)|1030000|||||||||M|Y||
+ECOS(í•œêµ­ì€í–‰)|ECOS|ê¸ˆë¦¬ í†µê³„|INTEREST_RATE|1.3.2.2. ì‹œìž¥ê¸ˆë¦¬(ì›”,ë¶„ê¸°,ë…„)|721Y001|êµ­ê³ ì±„(1ë…„)|5030000|||||||||M|Y||
+ECOS(í•œêµ­ì€í–‰)|ECOS|ê¸ˆë¦¬ í†µê³„|INTEREST_RATE|1.3.2.2. ì‹œìž¥ê¸ˆë¦¬(ì›”,ë¶„ê¸°,ë…„)|721Y001|êµ­ê³ ì±„(3ë…„)|5020000|||||||||M|Y||
+ECOS(í•œêµ­ì€í–‰)|ECOS|ê¸ˆë¦¬ í†µê³„|INTEREST_RATE|1.3.2.2. ì‹œìž¥ê¸ˆë¦¬(ì›”,ë¶„ê¸°,ë…„)|721Y001|êµ­ê³ ì±„(5ë…„)|5040000|||||||||M|Y||
+ECOS(í•œêµ­ì€í–‰)|ECOS|ì¦ê¶Œ í†µê³„|STOCK|1.5.1.2. ì£¼ì‹ì‹œìž¥(ì›”,ë…„)|901Y014|KOSPI_ì¢…ê°€|1070000|||||||||Y|Y||
+ECOS(í•œêµ­ì€í–‰)|ECOS|ì¦ê¶Œ í†µê³„|STOCK|1.5.1.2. ì£¼ì‹ì‹œìž¥(ì›”,ë…„)|901Y014|KOSPI_ì¢…ê°€|1070000|||||||||M|Y||
+ECOS(í•œêµ­ì€í–‰)|ECOS|ì¦ê¶Œ í†µê³„|STOCK|1.5.1.2. ì£¼ì‹ì‹œìž¥(ì›”,ë…„)|901Y014|KOSPI_í‰ê· |1080000|||||||||Y|Y||
+ECOS(í•œêµ­ì€í–‰)|ECOS|ì¦ê¶Œ í†µê³„|STOCK|1.5.1.2. ì£¼ì‹ì‹œìž¥(ì›”,ë…„)|901Y014|KOSPI_í‰ê· |1080000|||||||||M|Y||
+ECOS(í•œêµ­ì€í–‰)|ECOS|ì¦ê¶Œ í†µê³„|STOCK|1.5.1.2. ì£¼ì‹ì‹œìž¥(ì›”,ë…„)|901Y014|KOSPI_ê±°ëž˜ëŸ‰|1050000|||||||||M|Y||
+ECOS(í•œêµ­ì€í–‰)|ECOS|ì¦ê¶Œ í†µê³„|STOCK|1.5.1.2. ì£¼ì‹ì‹œìž¥(ì›”,ë…„)|901Y014|KOSPI_ê±°ëž˜ëŒ€ê¸ˆ|1060000|||||||||M|Y||
+ECOS(í•œêµ­ì€í–‰)|ECOS|ì¦ê¶Œ í†µê³„|STOCK|1.5.1.2. ì£¼ì‹ì‹œìž¥(ì›”,ë…„)|901Y014|KOSDAQ_ê±°ëž˜ëŸ‰|2050000|||||||||M|Y||
+ECOS(í•œêµ­ì€í–‰)|ECOS|ì¦ê¶Œ í†µê³„|STOCK|1.5.1.2. ì£¼ì‹ì‹œìž¥(ì›”,ë…„)|901Y014|KOSDAQ_ê±°ëž˜ëŒ€ê¸ˆ|2060000|||||||||M|Y||
+ECOS(í•œêµ­ì€í–‰)|ECOS|ì¦ê¶Œ í†µê³„|STOCK|1.5.1.2. ì£¼ì‹ì‹œìž¥(ì›”,ë…„)|901Y014|KOSDAQ_ì¢…ê°€|2090000|||||||||M|Y||
+ECOS(í•œêµ­ì€í–‰)|ECOS|ì¦ê¶Œ í†µê³„|STOCK|1.5.1.2. ì£¼ì‹ì‹œìž¥(ì›”,ë…„)|901Y014|KOSDAQ_í‰ê· |2100000|||||||||M|Y||
+ECOS(í•œêµ­ì€í–‰)|ECOS|ì„±ìž¥ë¥  í†µê³„|GROWTH_RATE|2.7.1.1. ì£¼ìš”ì§€í‘œ(ì—°ê°„ì§€í‘œ)|200Y001|êµ­ë‚´ì´ìƒì‚°(ì‹¤ì§ˆì„±ìž¥ë¥ %)|20101|||||||||Y|Y||
+ECOS(í•œêµ­ì€í–‰)|ECOS|ì„±ìž¥ë¥  í†µê³„|GROWTH_RATE|2.7.1.1. ì£¼ìš”ì§€í‘œ(ì—°ê°„ì§€í‘œ)|200Y001|ìž¬í™”ì™€ì„œë¹„ìŠ¤ì˜ìˆ˜ì¶œ(%)|30105|||||||||Y|Y||
+ECOS(í•œêµ­ì€í–‰)|ECOS|ì„±ìž¥ë¥  í†µê³„|GROWTH_RATE|2.7.1.1. ì£¼ìš”ì§€í‘œ(ì—°ê°„ì§€í‘œ)|200Y001|ìž¬í™”ì™€ì„œë¹„ìŠ¤ì˜ìˆ˜ìž…(%)|30106|||||||||Y|Y||
+ECOS(í•œêµ­ì€í–‰)|ECOS|ì†Œë“ í†µê³„|INCOME|2.7.2.1.3. ê²½ì œí™œë™ë³„ GDP ë° GNI(ì›ê³„ì—´, ëª…ëª©, ë¶„ê¸° ë° ì—°ê°„)|200Y005|êµ­ë‚´ì´ìƒì‚°(ì‹œìž¥ê°€ê²©GDP)|1400|||||||||Y|Y||
+ECOS(í•œêµ­ì€í–‰)|ECOS|ì†Œë“ í†µê³„|INCOME|2.7.1.1. ì£¼ìš”ì§€í‘œ(ì—°ê°„ì§€í‘œ)|200Y001|1ì¸ë‹¹êµ­ë¯¼ì´ì†Œë“(ëª…ëª©)|1010601|||||||||Y|Y||
+ECOS(í•œêµ­ì€í–‰)|ECOS|ìƒì‚° í†µê³„|PRODUCTION|8.3.1. ì‚°ì—…ë³„ ìƒì‚°/ì¶œí•˜/ìž¬ê³  ì§€ìˆ˜|901Y032|ì´ì§€ìˆ˜|I11A|ìƒì‚°ì§€ìˆ˜(ì›)|1|||||||Y|Y||
+ECOS(í•œêµ­ì€í–‰)|ECOS|ìƒì‚° í†µê³„|PRODUCTION|8.3.1. ì‚°ì—…ë³„ ìƒì‚°/ì¶œí•˜/ìž¬ê³  ì§€ìˆ˜|901Y032|ì´ì§€ìˆ˜|I11A|ì¶œí•˜ì§€ìˆ˜(ì›)|3|||||||Y|Y||
+ECOS(í•œêµ­ì€í–‰)|ECOS|ìƒì‚° í†µê³„|PRODUCTION|8.3.1. ì‚°ì—…ë³„ ìƒì‚°/ì¶œí•˜/ìž¬ê³  ì§€ìˆ˜|901Y032|ì´ì§€ìˆ˜|I11A|ìž¬ê³ ì§€ìˆ˜(ì›)|5|||||||Y|Y||
+ECOS(í•œêµ­ì€í–‰)|ECOS|ìƒì‚° í†µê³„|PRODUCTION|8.3.1. ì‚°ì—…ë³„ ìƒì‚°/ì¶œí•˜/ìž¬ê³  ì§€ìˆ˜|901Y032|ì œì¡°ì—…|I11AC|ìƒì‚°ì§€ìˆ˜(ì›)|1|||||||M|Y||
+ECOS(í•œêµ­ì€í–‰)|ECOS|ìƒì‚° í†µê³„|PRODUCTION|8.3.1. ì‚°ì—…ë³„ ìƒì‚°/ì¶œí•˜/ìž¬ê³  ì§€ìˆ˜|901Y032|ì œì¡°ì—…|I11AC|ìƒì‚°ì§€ìˆ˜(ê³„ì ˆ)|2|||||||M|Y||
+ECOS(í•œêµ­ì€í–‰)|ECOS|ìƒì‚° í†µê³„|PRODUCTION|8.3.1. ì‚°ì—…ë³„ ìƒì‚°/ì¶œí•˜/ìž¬ê³  ì§€ìˆ˜|901Y032|ì œì¡°ì—…|I11AC|ì¶œí•˜ì§€ìˆ˜(ì›)|3|||||||M|Y||
+ECOS(í•œêµ­ì€í–‰)|ECOS|ìƒì‚° í†µê³„|PRODUCTION|8.3.1. ì‚°ì—…ë³„ ìƒì‚°/ì¶œí•˜/ìž¬ê³  ì§€ìˆ˜|901Y032|ì œì¡°ì—…|I11AC|ì¶œí•˜ì§€ìˆ˜(ê³„ì ˆ)|4|||||||M|Y||
+ECOS(í•œêµ­ì€í–‰)|ECOS|ìƒì‚° í†µê³„|PRODUCTION|8.3.1. ì‚°ì—…ë³„ ìƒì‚°/ì¶œí•˜/ìž¬ê³  ì§€ìˆ˜|901Y032|ì œì¡°ì—…|I11AC|ìž¬ê³ ì§€ìˆ˜(ì›)|5|||||||M|Y||
+ECOS(í•œêµ­ì€í–‰)|ECOS|ìƒì‚° í†µê³„|PRODUCTION|8.3.1. ì‚°ì—…ë³„ ìƒì‚°/ì¶œí•˜/ìž¬ê³  ì§€ìˆ˜|901Y032|ì œì¡°ì—…|I11AC|ìž¬ê³ ì§€ìˆ˜(ê³„ì ˆ)|6|||||||M|Y||
+ECOS(í•œêµ­ì€í–‰)|ECOS|ìƒì‚° í†µê³„|PRODUCTION|8.1.4. ì „ì‚°ì—…ìƒì‚°ì§€ìˆ˜(ë†ë¦¼ì–´ì—…ì œì™¸)|901Y033|ì „ì‚°ì—…ìƒì‚°ì§€ìˆ˜(ë†ë¦¼ì–´ì—… ì œì™¸)|A00|ì›ê³„ì—´|1|||||||M|Y||
+ECOS(í•œêµ­ì€í–‰)|ECOS|ìƒì‚° í†µê³„|PRODUCTION|8.1.4. ì „ì‚°ì—…ìƒì‚°ì§€ìˆ˜(ë†ë¦¼ì–´ì—…ì œì™¸)|901Y033|ì „ì‚°ì—…ìƒì‚°ì§€ìˆ˜(ë†ë¦¼ì–´ì—… ì œì™¸)|A00|ê³„ì ˆì¡°ì •|2|||||||M|Y||
+ECOS(í•œêµ­ì€í–‰)|ECOS|ìƒì‚° í†µê³„|PRODUCTION|8.3.6. ì œì¡°ì—… ìƒì‚°ëŠ¥ë ¥ ë° ê°€ë™ë¥  ì§€ìˆ˜|901Y035|ì œì¡°ì—…|I32A|ê°€ë™ë¥ ì§€ìˆ˜(ì›)|I11B|||||||M|Y||
+ECOS(í•œêµ­ì€í–‰)|ECOS|ìƒì‚° í†µê³„|PRODUCTION|8.3.6. ì œì¡°ì—… ìƒì‚°ëŠ¥ë ¥ ë° ê°€ë™ë¥  ì§€ìˆ˜|901Y035|ì œì¡°ì—…|I32A|ê°€ë™ë¥ ì§€ìˆ˜(ì›)|I11B|||||||Y|Y||
+ECOS(í•œêµ­ì€í–‰)|ECOS|ìƒì‚° í†µê³„|PRODUCTION|8.3.6. ì œì¡°ì—… ìƒì‚°ëŠ¥ë ¥ ë° ê°€ë™ë¥  ì§€ìˆ˜|901Y035|ì œì¡°ì—…|I32A|ìƒì‚°ëŠ¥ë ¥ì§€ìˆ˜|I11A|||||||M|Y||
+ECOS(í•œêµ­ì€í–‰)|ECOS|ìƒì‚° í†µê³„|PRODUCTION|8.3.6. ì œì¡°ì—… ìƒì‚°ëŠ¥ë ¥ ë° ê°€ë™ë¥  ì§€ìˆ˜|901Y035|ì œì¡°ì—…|I32A|ê°€ë™ë¥ ì§€ìˆ˜(ê³„ì ˆì¡°ì •)|I11C|||||||M|Y||
+ECOS(í•œêµ­ì€í–‰)|ECOS|ê²½ê¸° í†µê³„|ECONOMY|8.5.2. ìž¬ë³„ ë° ìƒí’ˆêµ°ë³„ íŒë§¤ì•¡ì§€ìˆ˜|901Y100|ìŠ¹ìš©ì°¨|G11|ìŠ¹ìš©ì°¨_ê²½ìƒì§€ìˆ˜|T1|||||||Y|Y||
+ECOS(í•œêµ­ì€í–‰)|ECOS|ê²½ê¸° í†µê³„|ECONOMY|8.5.2. ìž¬ë³„ ë° ìƒí’ˆêµ°ë³„ íŒë§¤ì•¡ì§€ìˆ˜|901Y100|ìŠ¹ìš©ì°¨|G11|ìŠ¹ìš©ì°¨_ë¶ˆë³€ì§€ìˆ˜|T2|||||||Y|Y||
+ECOS(í•œêµ­ì€í–‰)|ECOS|ê²½ê¸° í†µê³„|ECONOMY|8.1.3. ì„¤ë¹„íˆ¬ìžì§€ìˆ˜|901Y066|ì›ì§€ìˆ˜|I15A|||||||||Y|Y||
+ECOS(í•œêµ­ì€í–‰)|ECOS|ê²½ê¸° í†µê³„|ECONOMY|8.3.3. ì„¤ë¹„ìš© ê¸°ê³„ë¥˜ ìƒì‚°ì§€ìˆ˜|901Y036|ê¸°ê³„ì„¤ë¹„ë¥˜|10|ë‚´ìˆ˜ì¶œí•˜ì§€ìˆ˜(ì›ì§€ìˆ˜)|T13|||||||M|Y||
+ECOS(í•œêµ­ì€í–‰)|ECOS|ê²½ê¸° í†µê³„|ECONOMY|8.3.3. ì„¤ë¹„ìš© ê¸°ê³„ë¥˜ ìƒì‚°ì§€ìˆ˜|901Y036|ê¸°ê³„ì„¤ë¹„ë¥˜|10|ë‚´ìˆ˜ì¶œí•˜ì§€ìˆ˜(ì›ì§€ìˆ˜)|T13|||||||Y|Y||
+ECOS(í•œêµ­ì€í–‰)|ECOS|ê²½ê¸° í†µê³„|ECONOMY|8.3.3. ì„¤ë¹„ìš© ê¸°ê³„ë¥˜ ìƒì‚°ì§€ìˆ˜|901Y036|ê¸°ê³„ì„¤ë¹„ë¥˜|10|ë‚´ìˆ˜ì¶œí•˜ì§€ìˆ˜(ê³„ì ˆì¡°ì •)|T23|||||||M|Y||
+ECOS(í•œêµ­ì€í–‰)|ECOS|ê²½ê¸° í†µê³„|ECONOMY|8.3.8. ê¸°ê³„ìˆ˜ì£¼ì•¡|901Y018|êµ­ë‚´ìˆ˜ìš”|I351AA|||||||||Y|Y||
+ECOS(í•œêµ­ì€í–‰)|ECOS|ê²½ê¸° í†µê³„|ECONOMY|8.3.8. ê¸°ê³„ìˆ˜ì£¼ì•¡|901Y018|êµ­ë‚´ìˆ˜ìš”(ì„ ë°•ì œì™¸)|I35AAA|||||||||M|Y||
+ECOS(í•œêµ­ì€í–‰)|ECOS|ê²½ê¸° í†µê³„|ECONOMY|8.5.2. ìž¬ë³„ ë° ìƒí’ˆêµ°ë³„ íŒë§¤ì•¡ì§€ìˆ˜|901Y100|ìŠ¹ìš©ì°¨|G11|ê²½ìƒì§€ìˆ˜|T1|||||||M|Y||
+ECOS(í•œêµ­ì€í–‰)|ECOS|ê²½ê¸° í†µê³„|ECONOMY|8.5.2. ìž¬ë³„ ë° ìƒí’ˆêµ°ë³„ íŒë§¤ì•¡ì§€ìˆ˜|901Y100|ìŠ¹ìš©ì°¨|G11|ë¶ˆë³€ì§€ìˆ˜|T2|||||||M|Y||
+ECOS(í•œêµ­ì€í–‰)|ECOS|ê²½ê¸° í†µê³„|ECONOMY|8.5.2. ìž¬ë³„ ë° ìƒí’ˆêµ°ë³„ íŒë§¤ì•¡ì§€ìˆ˜|901Y100|ìŠ¹ìš©ì°¨|G11|ê³„ì •ì¡°ì •ì§€ìˆ˜|T3|||||||M|Y||
+ECOS(í•œêµ­ì€í–‰)|ECOS|ê²½ê¸° í†µê³„|ECONOMY|8.1.3. ì„¤ë¹„íˆ¬ìžì§€ìˆ˜|901Y066|ì›ì§€ìˆ˜|I15A|||||||||M|Y||
+ECOS(í•œêµ­ì€í–‰)|ECOS|ê²½ê¸° í†µê³„|ECONOMY|8.1.3. ì„¤ë¹„íˆ¬ìžì§€ìˆ˜|901Y066|ê³„ì ˆì¡°ì •ì§€ìˆ˜|I15B|||||||||M|Y||
+ECOS(í•œêµ­ì€í–‰)|ECOS|ê²½ê¸° í†µê³„|ECONOMY|8.4.1. êµ­ë‚´ê±´ì„¤ìˆ˜ì£¼ì•¡|901Y020|ì´ìˆ˜ì£¼ì•¡|I42A|||||||||M|Y||
+ECOS(í•œêµ­ì€í–‰)|ECOS|ê²½ê¸° í†µê³„|ECONOMY|8.4.1. êµ­ë‚´ê±´ì„¤ìˆ˜ì£¼ì•¡|901Y020|ê³µê³µë¶€ë¬¸|I42AAA|ì¤‘ì•™ì •ë¶€|I42AAAA|||||||M|Y||
+ECOS(í•œêµ­ì€í–‰)|ECOS|ê²½ê¸° í†µê³„|ECONOMY|8.4.1. êµ­ë‚´ê±´ì„¤ìˆ˜ì£¼ì•¡|901Y020|ê³µê³µë¶€ë¬¸|I42AAA|ì§€ë°©ìžì¹˜ë‹¨ì²´|I42AAAB|||||||M|Y||
+ECOS(í•œêµ­ì€í–‰)|ECOS|ê²½ê¸° í†µê³„|ECONOMY|8.4.1. êµ­ë‚´ê±´ì„¤ìˆ˜ì£¼ì•¡|901Y020|ê³µê³µë¶€ë¬¸|I42AAA|ê³µê¸°ì—…|I42AAAC|||||||M|Y||
+ECOS(í•œêµ­ì€í–‰)|ECOS|ê²½ê¸° í†µê³„|ECONOMY|8.4.1. êµ­ë‚´ê±´ì„¤ìˆ˜ì£¼ì•¡|901Y020|ê³µê³µë¶€ë¬¸|I42AAA|ê¸°íƒ€ê³µê³µë‹¨ì²´|I42AAAD|||||||M|Y||
+ECOS(í•œêµ­ì€í–‰)|ECOS|ê²½ê¸° í†µê³„|ECONOMY|8.4.1. êµ­ë‚´ê±´ì„¤ìˆ˜ì£¼ì•¡|901Y020|ë¯¼ê°„ë¶€ë¬¸|I42AAB|ì œì¡°ì—…|I42AABA|||||||M|Y||
+ECOS(í•œêµ­ì€í–‰)|ECOS|ê²½ê¸° í†µê³„|ECONOMY|8.4.1. êµ­ë‚´ê±´ì„¤ìˆ˜ì£¼ì•¡|901Y020|ë¯¼ê°„ë¶€ë¬¸|I42AAB|ë¹„ì œì¡°ì—…|I42AABB|||||||M|Y||
+ECOS(í•œêµ­ì€í–‰)|ECOS|ê²½ê¸° í†µê³„|ECONOMY|8.4.1. êµ­ë‚´ê±´ì„¤ìˆ˜ì£¼ì•¡|901Y020|êµ­ë‚´ì™¸êµ­ê¸°ê´€|I42AAC|||||||||M|Y||
+ECOS(í•œêµ­ì€í–‰)|ECOS|ê²½ê¸° í†µê³„|ECONOMY|8.4.1. êµ­ë‚´ê±´ì„¤ìˆ˜ì£¼ì•¡|901Y020|ë¯¼ìž|I42AAD|||||||||M|Y||
+ECOS(í•œêµ­ì€í–‰)|ECOS|ê²½ê¸° í†µê³„|ECONOMY|8.4.1. êµ­ë‚´ê±´ì„¤ìˆ˜ì£¼ì•¡|901Y020|ê±´ì¶•|I42ABA|ì£¼íƒ|I42ABAA|||||||M|Y||
+ECOS(í•œêµ­ì€í–‰)|ECOS|ê²½ê¸° í†µê³„|ECONOMY|8.4.1. êµ­ë‚´ê±´ì„¤ìˆ˜ì£¼ì•¡|901Y020|ê±´ì¶•|I42ABA|ì‚¬ë¬´ì‹¤ ë° ì í¬|I42ABAB|||||||M|Y||
+ECOS(í•œêµ­ì€í–‰)|ECOS|ê²½ê¸° í†µê³„|ECONOMY|8.4.1. êµ­ë‚´ê±´ì„¤ìˆ˜ì£¼ì•¡|901Y020|ê±´ì¶•|I42ABA|ê³µìž¥ ë° ì°½ê³ |I42ABAC|||||||M|Y||
+ECOS(í•œêµ­ì€í–‰)|ECOS|ê²½ê¸° í†µê³„|ECONOMY|8.4.1. êµ­ë‚´ê±´ì„¤ìˆ˜ì£¼ì•¡|901Y020|ê±´ì¶•|I42ABA|ê´€ê³µì„œ|I42ABAD|||||||M|Y||
+ECOS(í•œêµ­ì€í–‰)|ECOS|ê²½ê¸° í†µê³„|ECONOMY|8.4.1. êµ­ë‚´ê±´ì„¤ìˆ˜ì£¼ì•¡|901Y020|ê±´ì¶•|I42ABA|ê¸°íƒ€|I42ABAE|||||||M|Y||
+ECOS(í•œêµ­ì€í–‰)|ECOS|ê²½ê¸° í†µê³„|ECONOMY|8.4.1. êµ­ë‚´ê±´ì„¤ìˆ˜ì£¼ì•¡|901Y020|í† ëª©|I42ABB|ì¹˜ì‚° ë° ì¹˜ìˆ˜|I42ABBA|||||||M|Y||
+ECOS(í•œêµ­ì€í–‰)|ECOS|ê²½ê¸° í†µê³„|ECONOMY|8.4.1. êµ­ë‚´ê±´ì„¤ìˆ˜ì£¼ì•¡|901Y020|í† ëª©|I42ABB|ë†ë¦¼ ë° ìˆ˜ì‚°|I42ABBB|||||||M|Y||
+ECOS(í•œêµ­ì€í–‰)|ECOS|ê²½ê¸° í†µê³„|ECONOMY|8.4.1. êµ­ë‚´ê±´ì„¤ìˆ˜ì£¼ì•¡|901Y020|í† ëª©|I42ABB|ë„ë¡œ ë° êµëŸ‰|I42ABBC|||||||M|Y||
+ECOS(í•œêµ­ì€í–‰)|ECOS|ê²½ê¸° í†µê³„|ECONOMY|8.4.1. êµ­ë‚´ê±´ì„¤ìˆ˜ì£¼ì•¡|901Y020|í† ëª©|I42ABB|í•­ë§Œ ë° ê³µí•­|I42ABBD|||||||M|Y||
+ECOS(í•œêµ­ì€í–‰)|ECOS|ê²½ê¸° í†µê³„|ECONOMY|8.4.1. êµ­ë‚´ê±´ì„¤ìˆ˜ì£¼ì•¡|901Y020|í† ëª©|I42ABB|ì² ë„ ë° ê¶¤ë„|I42ABBE|||||||M|Y||
+ECOS(í•œêµ­ì€í–‰)|ECOS|ê²½ê¸° í†µê³„|ECONOMY|8.4.1. êµ­ë‚´ê±´ì„¤ìˆ˜ì£¼ì•¡|901Y020|í† ëª©|I42ABB|ìƒí•˜ìˆ˜ë„|I42ABBF|||||||M|Y||
+ECOS(í•œêµ­ì€í–‰)|ECOS|ê²½ê¸° í†µê³„|ECONOMY|8.4.1. êµ­ë‚´ê±´ì„¤ìˆ˜ì£¼ì•¡|901Y020|í† ëª©|I42ABB|ë°œì „ ë° ì†¡ì „|I42ABBG|||||||M|Y||
+ECOS(í•œêµ­ì€í–‰)|ECOS|ê²½ê¸° í†µê³„|ECONOMY|8.4.1. êµ­ë‚´ê±´ì„¤ìˆ˜ì£¼ì•¡|901Y020|í† ëª©|I42ABB|í† ì§€ì¡°ì„±|I42ABBH|||||||M|Y||
+ECOS(í•œêµ­ì€í–‰)|ECOS|ê²½ê¸° í†µê³„|ECONOMY|8.4.1. êµ­ë‚´ê±´ì„¤ìˆ˜ì£¼ì•¡|901Y020|í† ëª©|I42ABB|ì¡°ê²½ê³µì‚¬|I42ABBL|||||||M|Y||
+ECOS(í•œêµ­ì€í–‰)|ECOS|ê²½ê¸° í†µê³„|ECONOMY|8.4.1. êµ­ë‚´ê±´ì„¤ìˆ˜ì£¼ì•¡|901Y020|í† ëª©|I42ABB|ëŒ|I42ABBI|||||||M|Y||
+ECOS(í•œêµ­ì€í–‰)|ECOS|ê²½ê¸° í†µê³„|ECONOMY|8.4.1. êµ­ë‚´ê±´ì„¤ìˆ˜ì£¼ì•¡|901Y020|í† ëª©|I42ABB|ê¸°ê³„ì„¤ì¹˜|I42ABBJ|||||||M|Y||
+ECOS(í•œêµ­ì€í–‰)|ECOS|ê²½ê¸° í†µê³„|ECONOMY|8.4.1. êµ­ë‚´ê±´ì„¤ìˆ˜ì£¼ì•¡|901Y020|í† ëª©|I42ABB|ê¸°íƒ€|I42ABBK|||||||M|Y||
+ECOS(í•œêµ­ì€í–‰)|ECOS|ê³ ìš©/ì¸êµ¬ í†µê³„|EMPLOY_POPULATION|8.6.2. ê²½ì œí™œë™ì¸êµ¬|901Y027|ì‹¤ì—…ë¥ |I61BC|ì›ê³„ì—´|I28A|||||||M|Y||
+ECOS(í•œêµ­ì€í–‰)|ECOS|ê³ ìš©/ì¸êµ¬ í†µê³„|EMPLOY_POPULATION|8.6.2. ê²½ì œí™œë™ì¸êµ¬|901Y027|ì‹¤ì—…ë¥ |I61BC|ì›ê³„ì—´|I28A|||||||Y|Y||
+ECOS(í•œêµ­ì€í–‰)|ECOS|ê³ ìš©/ì¸êµ¬ í†µê³„|EMPLOY_POPULATION|8.6.2. ê²½ì œí™œë™ì¸êµ¬|901Y027|ì‹¤ì—…ë¥ |I61BC|ê³„ì ˆì¡°ì •|I28B|||||||M|Y||
+ECOS(í•œêµ­ì€í–‰)|ECOS|ê³ ìš©/ì¸êµ¬ í†µê³„|EMPLOY_POPULATION|8.6.2. ê²½ì œí™œë™ì¸êµ¬|901Y027|ê³ ìš©ë¥ |I61E|ì›ê³„ì—´|I28A|||||||M|Y||
+ECOS(í•œêµ­ì€í–‰)|ECOS|ê³ ìš©/ì¸êµ¬ í†µê³„|EMPLOY_POPULATION|8.6.2. ê²½ì œí™œë™ì¸êµ¬|901Y027|ê³ ìš©ë¥ |I61E|ì›ê³„ì—´|I28A|||||||Y|Y||
+ECOS(í•œêµ­ì€í–‰)|ECOS|ê³ ìš©/ì¸êµ¬ í†µê³„|EMPLOY_POPULATION|8.6.2. ê²½ì œí™œë™ì¸êµ¬|901Y027|ê³ ìš©ë¥ |I61E|ê³„ì ˆì¡°ì •|I28B|||||||M|Y||
+ECOS(í•œêµ­ì€í–‰)|ECOS|ê³ ìš©/ì¸êµ¬ í†µê³„|EMPLOY_POPULATION|8.6.1. ì¶”ê³„ì¸êµ¬/ê³ ë ¹ì¸êµ¬ë¹„ìœ¨/í•©ê³„ì¶œì‚°ìœ¨|901Y028|ì¶”ê³„ì¸êµ¬|I35A|||||||||Y|Y||
+ECOS(í•œêµ­ì€í–‰)|ECOS|ê³ ìš©/ì¸êµ¬ í†µê³„|EMPLOY_POPULATION|8.6.1. ì¶”ê³„ì¸êµ¬/ê³ ë ¹ì¸êµ¬ë¹„ìœ¨/í•©ê³„ì¶œì‚°ìœ¨|901Y028|ê³ ë ¹ì¸êµ¬ë¹„ìœ¨(65ì„¸ ì´ìƒ%)|I35D|||||||||Y|Y||
+ECOS(í•œêµ­ì€í–‰)|ECOS|ëŒ€ì™¸ê±°ëž˜ í†µê³„|FOREIGN_TRADE|2.5.1.1. êµ­ì œìˆ˜ì§€|301Y013|ê²½ìƒìˆ˜ì§€|0|||||||||M|Y||
+ECOS(í•œêµ­ì€í–‰)|ECOS|ëŒ€ì™¸ê±°ëž˜ í†µê³„|FOREIGN_TRADE|2.5.1.1. êµ­ì œìˆ˜ì§€|301Y013|ì§ì ‘íˆ¬ìž(ìžì‚°)|BOPF11000000|||||||||M|Y||
+ECOS(í•œêµ­ì€í–‰)|ECOS|ëŒ€ì™¸ê±°ëž˜ í†µê³„|FOREIGN_TRADE|2.5.1.1. êµ­ì œìˆ˜ì§€|301Y013|ì§ì ‘íˆ¬ìž(ë¶€ì±„)|BOPF12000000|||||||||M|Y||
+ECOS(í•œêµ­ì€í–‰)|ECOS|ëŒ€ì™¸ê±°ëž˜ í†µê³„|FOREIGN_TRADE|2.5.1.1. êµ­ì œìˆ˜ì§€|301Y013|ì¦ê¶Œíˆ¬ìž(ìžì‚°)|BOPF21000000|||||||||M|Y||
+ECOS(í•œêµ­ì€í–‰)|ECOS|ëŒ€ì™¸ê±°ëž˜ í†µê³„|FOREIGN_TRADE|2.5.1.1. êµ­ì œìˆ˜ì§€|301Y013|ì¦ê¶Œíˆ¬ìž(ë¶€ì±„)|BOPF22000000|||||||||M|Y||
+ECOS(í•œêµ­ì€í–‰)|ECOS|ëŒ€ì™¸ê±°ëž˜ í†µê³„|FOREIGN_TRADE|2.5.1.1. êµ­ì œìˆ˜ì§€|301Y013|ê²½ìƒìˆ˜ì§€|0|||||||||Y|Y||
+ECOS(í•œêµ­ì€í–‰)|ECOS|ëŒ€ì™¸ê±°ëž˜ í†µê³„|FOREIGN_TRADE|2.5.1.1. êµ­ì œìˆ˜ì§€|301Y013|ì§ì ‘íˆ¬ìž(ìžì‚°)|BOPF11000000|||||||||Y|Y||
+ECOS(í•œêµ­ì€í–‰)|ECOS|ëŒ€ì™¸ê±°ëž˜ í†µê³„|FOREIGN_TRADE|2.5.1.1. êµ­ì œìˆ˜ì§€|301Y013|ì§ì ‘íˆ¬ìž(ë¶€ì±„)|BOPF12000000|||||||||Y|Y||
+ECOS(í•œêµ­ì€í–‰)|ECOS|ëŒ€ì™¸ê±°ëž˜ í†µê³„|FOREIGN_TRADE|2.5.1.1. êµ­ì œìˆ˜ì§€|301Y013|ì¦ê¶Œíˆ¬ìž(ìžì‚°)|BOPF21000000|||||||||Y|Y||
+ECOS(í•œêµ­ì€í–‰)|ECOS|ëŒ€ì™¸ê±°ëž˜ í†µê³„|FOREIGN_TRADE|2.5.1.1. êµ­ì œìˆ˜ì§€|301Y013|ì¦ê¶Œíˆ¬ìž(ë¶€ì±„)|BOPF22000000|||||||||Y|Y||
+ECOS(í•œêµ­ì€í–‰)|ECOS|ëŒ€ì™¸ê±°ëž˜ í†µê³„|FOREIGN_TRADE|3.3.1.1.1. ìˆ˜ì¶œê¸ˆì•¡ì§€ìˆ˜|403Y001|ì´ì§€ìˆ˜|*AA|||||||||Y|Y||
+ECOS(í•œêµ­ì€í–‰)|ECOS|ëŒ€ì™¸ê±°ëž˜ í†µê³„|FOREIGN_TRADE|3.3.1.2.1. ìˆ˜ìž…ê¸ˆì•¡ì§€ìˆ˜|403Y003|ì´ì§€ìˆ˜|*AA|||||||||Y|Y||
+ECOS(í•œêµ­ì€í–‰)|ECOS|ëŒ€ì™¸ê±°ëž˜ í†µê³„|FOREIGN_TRADE|3.5. ì™¸í™˜ë³´ìœ ì•¡|732Y001|í•©ê³„|99|||||||||M|Y||
+ECOS(í•œêµ­ì€í–‰)|ECOS|ëŒ€ì™¸ê±°ëž˜ í†µê³„|FOREIGN_TRADE|3.5. ì™¸í™˜ë³´ìœ ì•¡|732Y001|í•©ê³„|99|||||||||Y|Y||
+ECOS(í•œêµ­ì€í–‰)|ECOS|ëŒ€ì™¸ê±°ëž˜ í†µê³„|FOREIGN_TRADE|2.6.2.1. ëŒ€ì™¸ì±„ë¬´|311Y004|ëŒ€ì™¸ì±„ë¬´|A000000|||||||||Y|Y||
+ECOS(í•œêµ­ì€í–‰)|ECOS|ëŒ€ì™¸ê±°ëž˜ í†µê³„|FOREIGN_TRADE|2.6.2.2. ëŒ€ì™¸ì±„ê¶Œ|311Y005|ëŒ€ì™¸ì±„ê¶Œ|B000000|||||||||Y|Y||
+ECOS(í•œêµ­ì€í–‰)|ECOS|ëŒ€ì™¸ê±°ëž˜ í†µê³„|FOREIGN_TRADE|3.3.1.1.1. ìˆ˜ì¶œê¸ˆì•¡ì§€ìˆ˜|403Y001|ì´ì§€ìˆ˜|*AA|||||||||M|Y||
+ECOS(í•œêµ­ì€í–‰)|ECOS|ëŒ€ì™¸ê±°ëž˜ í†µê³„|FOREIGN_TRADE|3.3.1.2.1. ìˆ˜ìž…ê¸ˆì•¡ì§€ìˆ˜|403Y003|ì´ì§€ìˆ˜|*AA|||||||||M|Y||
+ECOS(í•œêµ­ì€í–‰)|ECOS|ë¬¼ê°€ í†µê³„|PRICE|4.2.1. ì†Œë¹„ìžë¬¼ê°€ì§€ìˆ˜|901Y009|ì´ì§€ìˆ˜|0|||||||||Y|Y||
+ECOS(í•œêµ­ì€í–‰)|ECOS|ë¬¼ê°€ í†µê³„|PRICE|4.1.1.1. ìƒì‚°ìžë¬¼ê°€ì§€ìˆ˜(ê¸°ë³¸ë¶„ë¥˜)|404Y014|ì´ì§€ìˆ˜|*AA|||||||||Y|Y||
+ECOS(í•œêµ­ì€í–‰)|ECOS|ë¬¼ê°€ í†µê³„|PRICE|4.3.1.1. ìˆ˜ì¶œë¬¼ê°€ì§€ìˆ˜(ê¸°ë³¸ë¶„ë¥˜)|402Y014|ì´ì§€ìˆ˜|*AA|||||||||Y|Y||
+ECOS(í•œêµ­ì€í–‰)|ECOS|ë¬¼ê°€ í†µê³„|PRICE|4.3.2.1. ìˆ˜ìž…ë¬¼ê°€ì§€ìˆ˜(ê¸°ë³¸ë¶„ë¥˜)|401Y015|ì´ì§€ìˆ˜|*AA|||||||||Y|Y||
+ECOS(í•œêµ­ì€í–‰)|ECOS|ë¬¼ê°€ í†µê³„|PRICE|9.1.6.3. êµ­ì œìƒí’ˆê°€ê²©|902Y003|Dubai(í˜„ë¬¼)|10102|||||||||Y|Y||
+ECOS(í•œêµ­ì€í–‰)|ECOS|ë¬¼ê°€ í†µê³„|PRICE|9.1.6.3. êµ­ì œìƒí’ˆê°€ê²©|902Y003|Brent(í˜„ë¬¼)|10103|||||||||Y|Y||
+ECOS(í•œêµ­ì€í–‰)|ECOS|ë¬¼ê°€ í†µê³„|PRICE|9.1.6.3. êµ­ì œìƒí’ˆê°€ê²©|902Y003|ê¸ˆ(í˜„ë¬¼)|40101|||||||||Y|Y||
+ECOS(í•œêµ­ì€í–‰)|ECOS|ë¬¼ê°€ í†µê³„|PRICE|4.2.1. ì†Œë¹„ìžë¬¼ê°€ì§€ìˆ˜|901Y009|ì´ì§€ìˆ˜|0|||||||||M|Y||
+ECOS(í•œêµ­ì€í–‰)|ECOS|ë¬¼ê°€ í†µê³„|PRICE|4.1.1.1. ìƒì‚°ìžë¬¼ê°€ì§€ìˆ˜(ê¸°ë³¸ë¶„ë¥˜)|404Y014|ì´ì§€ìˆ˜|*AA|||||||||M|Y||
+ECOS(í•œêµ­ì€í–‰)|ECOS|ë¬¼ê°€ í†µê³„|PRICE|4.3.1.1. ìˆ˜ì¶œë¬¼ê°€ì§€ìˆ˜(ê¸°ë³¸ë¶„ë¥˜)|402Y014|ì´ì§€ìˆ˜|*AA|||||||||M|Y||
+ECOS(í•œêµ­ì€í–‰)|ECOS|ë¬¼ê°€ í†µê³„|PRICE|4.3.2.1. ìˆ˜ìž…ë¬¼ê°€ì§€ìˆ˜(ê¸°ë³¸ë¶„ë¥˜)|401Y015|ì´ì§€ìˆ˜|*AA|||||||||M|Y||
+ECOS(í•œêµ­ì€í–‰)|ECOS|ë¬¼ê°€ í†µê³„|PRICE|9.1.6.3. êµ­ì œìƒí’ˆê°€ê²©|902Y003|Dubai(í˜„ë¬¼)|10102|||||||||M|Y||
+ECOS(í•œêµ­ì€í–‰)|ECOS|ë¬¼ê°€ í†µê³„|PRICE|9.1.6.3. êµ­ì œìƒí’ˆê°€ê²©|902Y003|Brent(í˜„ë¬¼)|10103|||||||||M|Y||
+ECOS(í•œêµ­ì€í–‰)|ECOS|ë¬¼ê°€ í†µê³„|PRICE|9.1.6.3. êµ­ì œìƒí’ˆê°€ê²©|902Y003|ê¸ˆ(í˜„ë¬¼)|40101|||||||||M|Y||
+ECOS(í•œêµ­ì€í–‰)|ECOS|ê±´ì„¤ í†µê³„|CEMENT|8.4.1. êµ­ë‚´ê±´ì„¤ìˆ˜ì£¼ì•¡|901Y020|ì´ìˆ˜ì£¼ì•¡|I42A|||||||||Y|Y||
+ECOS(í•œêµ­ì€í–‰)|ECOS|ê±´ì„¤ í†µê³„|CEMENT|8.4.1. êµ­ë‚´ê±´ì„¤ìˆ˜ì£¼ì•¡|901Y020|ê³µê³µë¶€ë¬¸|I42AAA|||||||||Y|Y||
+ECOS(í•œêµ­ì€í–‰)|ECOS|ê±´ì„¤ í†µê³„|CEMENT|8.4.1. êµ­ë‚´ê±´ì„¤ìˆ˜ì£¼ì•¡|901Y020|ë¯¼ê°„ë¶€ë¬¸|I42AAB|||||||||Y|Y||
+ECOS(í•œêµ­ì€í–‰)|ECOS|ê±´ì„¤ í†µê³„|CEMENT|8.4.1. êµ­ë‚´ê±´ì„¤ìˆ˜ì£¼ì•¡|901Y020|ê±´ì¶•|I42ABA|||||||||Y|Y||
+ECOS(í•œêµ­ì€í–‰)|ECOS|ê±´ì„¤ í†µê³„|CEMENT|8.4.1. êµ­ë‚´ê±´ì„¤ìˆ˜ì£¼ì•¡|901Y020|í† ëª©|I42ABB|||||||||Y|Y||
+ECOS(í•œêµ­ì€í–‰)|ECOS|ê³ ì²  í†µê³„|SCRAP_METAL|2.7.1.2. ì£¼ìš”ì§€í‘œ(ë¶„ê¸°ì§€í‘œ)|200Y002|ê±´ì„¤íˆ¬ìž(ì›)|10124|||||||||Q|Y||
+ECOS(í•œêµ­ì€í–‰)|ECOS|ê³ ì²  í†µê³„|SCRAP_METAL|2.7.1.2. ì£¼ìš”ì§€í‘œ(ë¶„ê¸°ì§€í‘œ)|200Y002|ê±´ì„¤íˆ¬ìž(ê³„ì ˆ)|10224|||||||||Q|Y||
+ECOS(í•œêµ­ì€í–‰)|ECOS|ê³ ì²  í†µê³„|SCRAP_METAL|8.4.2. ê±´ì„¤ê¸°ì„±ì•¡|901Y104|ì´ê¸°ì„±ì•¡|I48A|ê²½ìƒ|I37A|||||||M|Y||
+ECOS(í•œêµ­ì€í–‰)|ECOS|ê³ ì²  í†µê³„|SCRAP_METAL|8.4.2. ê±´ì„¤ê¸°ì„±ì•¡|901Y104|ì´ê¸°ì„±ì•¡|I48A|ê³„ì ˆì¡°ì •|I37C|||||||M|Y||
+ECOS(í•œêµ­ì€í–‰)|ECOS|ê³ ì²  í†µê³„|SCRAP_METAL|8.4.2. ê±´ì„¤ê¸°ì„±ì•¡|901Y104|ì´ê¸°ì„±ì•¡|I48A|ë¶ˆë³€|I37B|||||||M|Y||
+ECOS(í•œêµ­ì€í–‰)|ECOS|ê³ ì²  í†µê³„|SCRAP_METAL|8.4.2. ê±´ì„¤ê¸°ì„±ì•¡|901Y104|ì´ê¸°ì„±ì•¡|I48A|ë¶ˆë³€_ê³„ì ˆì¡°ì •|I37D|||||||M|Y||
+ECOS(í•œêµ­ì€í–‰)|ECOS|ì‹¬ë¦¬ í†µê³„|TRIAL|6.2.1. ì†Œë¹„ìžë™í–¥ì¡°ì‚¬(ì „êµ­, ì›”, 2008.9~)|511Y002|ì†Œë¹„ìžì‹¬ë¦¬ì§€ìˆ˜|FME|ì „ì²´|99988|||||||M|Y||
+ECOS(í•œêµ­ì€í–‰)|ECOS|ì‹¬ë¦¬ í†µê³„|TRIAL|6.1.2.1. ì—…ì¢…ë³„ ê¸°ì—…ê²½ê¸°ì‹¤ì‚¬ì§€ìˆ˜, 2009.8~(ì‹¤ì )|512Y007|ì—…í™©ì‹¤ì BSI 1)|AA|ì œì¡°ì—…|C0000|||||||M|Y||
