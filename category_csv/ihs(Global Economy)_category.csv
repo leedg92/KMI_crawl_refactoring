@@ -1,0 +1,10 @@
+﻿COLLECT_PLACE_NM|COLLECT_PLACE_CD|DEPTH1_NM|DEPTH1_CD|DEPTH2_NM|DEPTH2_CD|DEPTH3_NM|DEPTH3_CD|DEPTH4_NM|DEPTH4_CD|DEPTH5_NM|DEPTH5_CD|DEPTH6_NM|DEPTH6_CD|DEPTH7_NM|DEPTH7_CD|COLLECT_RANGE|USE_YN|TABLE_NAME|COLUMNS_INFO
+IHS(Global Economy) 통계|01|Gross Domestic Product|0101|Real U.S. Dollars|010101|Real GDP (Gross Domestic Product), US$|01010101|South Korea|0101010101|||||||Y|Y|fct_ihs_economy|
+IHS(Global Economy) 통계|01|Gross Domestic Product|0101|Real Local Currency Units|010102|Real GDP at Factor Cost: Industry: Manufacturing, lcu|01010201|South Korea|0101020101|||||||Y|Y|fct_ihs_economy|
+IHS(Global Economy) 통계|01|Gross Domestic Product|0101|Real Local Currency Units|010102|Real GDP at Factor Cost: Industry: Construction, lcu|01010202|South Korea|0101020201|||||||Y|Y|fct_ihs_economy|
+IHS(Global Economy) 통계|01|Gross Domestic Product|0101|Real Local Currency Units|010102|Real Gross Domestic Demand (Absorption), lcu|01010203|South Korea|0101020301|||||||Y|Y|fct_ihs_economy|
+IHS(Global Economy) 통계|01|Gross Domestic Product|0101|Real Local Currency Units|010102|Real Gross Domestic Demand (Absorption), lcu|01010203|china|0101020302|||||||Y|Y|fct_ihs_economy|
+IHS(Global Economy) 통계|01|Output Indicators|0102|Industrial Production|010201|Industrial Production Index|01020101|world total|0102010100|||||||M|Y|fct_ihs_economy_month|
+IHS(Global Economy) 통계|01|Output Indicators|0102|Industrial Production|010201|Industrial Production Index|01020101|world total|0102010100|||||||Y|Y|fct_ihs_economy|
+IHS(Global Economy) 통계|01|Output Indicators|0102|Industrial Production|010201|Industrial Production Index|01020101|South Korea|0102010101|||||||M|Y|fct_ihs_economy_month|
+IHS(Global Economy) 통계|01|Output Indicators|0102|Industrial Production|010201|Industrial Production Index|01020101|South Korea|0102010101|||||||Y|Y|fct_ihs_economy|

@@ -1,0 +1,35 @@
+﻿COLLECT_PLACE_NM|COLLECT_PLACE_CD|DEPTH1_NM|DEPTH1_CD|DEPTH2_NM|DEPTH2_CD|DEPTH3_NM|DEPTH3_CD|DEPTH4_NM|DEPTH4_CD|DEPTH5_NM|DEPTH5_CD|DEPTH6_NM|DEPTH6_CD|DEPTH7_NM|DEPTH7_CD|COLLECT_RANGE|USE_YN|TABLE_NAME|COLUMNS_INFO
+IHS(Global Economy - New(WES)) 통계|HIS_ECO_NEW|Monetary and financial|01|Interest rate|0101|Central bank policy rate|010101||01010100|||||||M|Y|fct_ihs_economy_new_month|
+IHS(Global Economy - New(WES)) 통계|HIS_ECO_NEW|Monetary and financial|01|Interest rate|0101|Interest rate, long-term|010102||01010200|||||||M|Y|fct_ihs_economy_new_month|
+IHS(Global Economy - New(WES)) 통계|HIS_ECO_NEW|Monetary and financial|01|Interest rate|0101|Interest rate, long-term, differential with the USA|010103||01010300|||||||M|Y|fct_ihs_economy_new_month|
+IHS(Global Economy - New(WES)) 통계|HIS_ECO_NEW|Monetary and financial|01|Interest rate|0101|Interest rate, short-term|010104||01010400|||||||M|Y|fct_ihs_economy_new_month|
+IHS(Global Economy - New(WES)) 통계|HIS_ECO_NEW|Monetary and financial|01|Interest rate|0101|Interest rate, short-term, differential with the USA|010105||01010500|||||||M|Y|fct_ihs_economy_new_month|
+IHS(Global Economy - New(WES)) 통계|HIS_ECO_NEW|Monetary and financial|01|Interest rate|0101|Interest rate, short-term, real|010106||01010600|||||||M|Y|fct_ihs_economy_new_month|
+IHS(Global Economy - New(WES)) 통계|HIS_ECO_NEW|Monetary and financial|01|Interest rate|0101|Spread of long over short interest rate|010107||01010700|||||||M|Y|fct_ihs_economy_new_month|
+IHS(Global Economy - New(WES)) 통계|HIS_ECO_NEW|Prices and deflators|02|Consumer prices|0201|Consumer price index, aop|020101||02010100|||||||M|Y|fct_ihs_economy_new_month|
+IHS(Global Economy - New(WES)) 통계|HIS_ECO_NEW|Prices and deflators|02|Consumer prices|0201|Consumer price index, aop, USD|020102||02010200|||||||M|Y|fct_ihs_economy_new_month|
+IHS(Global Economy - New(WES)) 통계|HIS_ECO_NEW|Prices and deflators|02|Consumer prices|0201|Inflation, CPI, aop|020103||02010300|||||||M|Y|fct_ihs_economy_new_month|
+IHS(Global Economy - New(WES)) 통계|HIS_ECO_NEW|Prices and deflators|02|Consumer prices|0201|Inflation, CPI, aop, USD|020104||02010400|||||||M|Y|fct_ihs_economy_new_month|
+IHS(Global Economy - New(WES)) 통계|HIS_ECO_NEW|Prices and deflators|02|Producer and wholesale prices|0202|Inflation, WPI, aop|020201||02020100|||||||M|Y|fct_ihs_economy_new_month|
+IHS(Global Economy - New(WES)) 통계|HIS_ECO_NEW|Prices and deflators|02|Producer and wholesale prices|0202|Inflation, WPI, aop, USD|020202||02020200|||||||M|Y|fct_ihs_economy_new_month|
+IHS(Global Economy - New(WES)) 통계|HIS_ECO_NEW|Prices and deflators|02|Producer and wholesale prices|0202|Wholesale price index|020203||02020300|||||||M|Y|fct_ihs_economy_new_month|
+IHS(Global Economy - New(WES)) 통계|HIS_ECO_NEW|Prices and deflators|02|Producer and wholesale prices|0202|Wholesale price index, USD|020204||02020400|||||||M|Y|fct_ihs_economy_new_month|
+IHS(Global Economy - New(WES)) 통계|HIS_ECO_NEW|Exchange rate|03|Other exchange rate measures|0301|Effective exchange rate index, nominal|030101||03010100|||||||M|Y|fct_ihs_economy_new_month|
+IHS(Global Economy - New(WES)) 통계|HIS_ECO_NEW|Exchange rate|03|Other exchange rate measures|0301|Real FX index|030102||03010200|||||||M|Y|fct_ihs_economy_new_month|
+IHS(Global Economy - New(WES)) 통계|HIS_ECO_NEW|Exchange rate|03|Exchange rate USD per LC, aop|0302||030201||03020100|||||||M|Y|fct_ihs_economy_new_month|
+IHS(Global Economy - New(WES)) 통계|HIS_ECO_NEW|Exchange rate|03|Exchange rate USD per LC, aop|0302||030201||03020100|||||||M|Y|fct_ihs_economy_new_month|
+IHS(Global Economy - New(WES)) 통계|HIS_ECO_NEW|Exchange rate|03|Exchange rate USD per LC, eop|0303||030301||03030100|||||||Y|Y|fct_ihs_economy_new|
+IHS(Global Economy - New(WES)) 통계|HIS_ECO_NEW|Population, labor and wages|04|Population|0401|Population, total|040101||04010100|||||||Y|Y|fct_ihs_economy_new|
+IHS(Global Economy - New(WES)) 통계|HIS_ECO_NEW|Population, labor and wages|04|Population|0401|Population, age 00-14, UN|040102||04010200|||||||Y|Y|fct_ihs_economy_new|
+IHS(Global Economy - New(WES)) 통계|HIS_ECO_NEW|Population, labor and wages|04|Population|0401|Population, age 15-64, UN|040103||04010300|||||||Y|Y|fct_ihs_economy_new|
+IHS(Global Economy - New(WES)) 통계|HIS_ECO_NEW|Population, labor and wages|04|Population|0401|Population, age 65-, UN|040104||04010400|||||||Y|Y|fct_ihs_economy_new|
+IHS(Global Economy - New(WES)) 통계|HIS_ECO_NEW|Population, labor and wages|04|Population|0401|Population, rural, growth|040105||04010500|||||||Y|Y|fct_ihs_economy_new|
+IHS(Global Economy - New(WES)) 통계|HIS_ECO_NEW|Population, labor and wages|04|Population|0401|Population, urban, growth|040106||04010600|||||||Y|Y|fct_ihs_economy_new|
+IHS(Global Economy - New(WES)) 통계|HIS_ECO_NEW|Output and Retail|05|Output|0501|Production index, industry|050101||05010100|||||||Y|Y|fct_ihs_economy_new|
+IHS(Global Economy - New(WES)) 통계|HIS_ECO_NEW|Output and Retail|05|Output|0501|Production index, manufacturing|050102||05010200|||||||Y|Y|fct_ihs_economy_new|
+IHS(Global Economy - New(WES)) 통계|HIS_ECO_NEW|National income account|06|GDP at market prices|0601|GDP, real, USD, harmonized|060101|GDP, real, harmonized|06010101|||||||Y|Y|fct_ihs_economy_new|
+IHS(Global Economy - New(WES)) 통계|HIS_ECO_NEW|National income account|06|GDP at market prices|0601|GDP, real, USD, harmonized|060101|GDP PPP, real, harmonized|06010102|||||||Y|Y|fct_ihs_economy_new|
+IHS(Global Economy - New(WES)) 통계|HIS_ECO_NEW|National income account|06|GDP at market prices|0601|GDP, real, USD, harmonized|060101|GDP per capita, real, harmonized|06010103|||||||Y|Y|fct_ihs_economy_new|
+IHS(Global Economy - New(WES)) 통계|HIS_ECO_NEW|National income account|06|GDP at market prices|0601|GDP, nominal, USD, harmonized|060101|GDP per employee, harmonized|06010104|||||||Y|Y|fct_ihs_economy_new|
+IHS(Global Economy - New(WES)) 통계|HIS_ECO_NEW|National income account|06|GDP at market prices|0601|GDP, nominal, USD, harmonized|060101|GDP per capita PPP, harmonized|06010105|||||||Y|Y|fct_ihs_economy_new|
+IHS(Global Economy - New(WES)) 통계|HIS_ECO_NEW|National income account|06|GDP at market prices|0601|GDP, nominal, USD, harmonized|060101|GDP per capita, Calendar Year, harmonized|06010106|||||||Y|Y|fct_ihs_economy_new|
