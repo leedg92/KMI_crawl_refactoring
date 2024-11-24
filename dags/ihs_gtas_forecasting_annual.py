@@ -300,20 +300,23 @@ def func1():
                 print('마지막 페이지 입니다.')                
                 break
             else:
-                # 스크롤 제일 밑으로
+                
+                # 스크롤을 맨 밑으로 내리
                 browser.execute_script("window.scrollTo(0, document.body.scrollHeight);")
                 
-                concept_all_select_element = WebDriverWait(browser, 60).until(EC.visibility_of_element_located((By.XPATH, CONCEPT_ALL_SELECT_ELEMENT)))
+                # 컨셉체크 해제
+                concept_all_select_element = WebDriverWait(browser, 60).until(EC.visibility_of_element_located((By.XPATH, IHS_CONCEPT_ALL_SELECT_ELEMENT)))
                 concept_all_select_element.click()
                 
                 time.sleep(5)
                 
                 # 다음페이지 누르기
-                next_page_btn_element = WebDriverWait(browser, 360).until(EC.visibility_of_element_located((By.XPATH, NEXT_PAGE_BTN_ELEMENT)))
+                next_page_btn_element = WebDriverWait(browser, 60).until(EC.visibility_of_element_located((By.XPATH, IHS_NEXT_PAGE_BTN_ELEMENT)))
                 next_page_btn_element.click()
                 print(f'현재 페이지: {current_page_count}, 총 페이지: {total_page_count}')
                 
                 time.sleep(5)
+                
                 continue
     
     
