@@ -34,6 +34,10 @@ MDB_DATABASE = 'kmi_dw_db'
 # ECOS API KEY 유효기간 2023.01.11 ~ 2025.01.11
 ECOS_API_KEY = "8KD0RJO6MEUW4E540QG8"
 
+##. unctad_shipping_connectivity
+UNCTAD_URL = 'https://unctadstat-api.unctad.org/bulkdownload/US.PLSCI/US_PLSCI'
+UNCTAD_DOWNLOAD_PATH = '/opt/airflow/downloads/unctad/'
+UNCTAD_DESTINATION_PATH = '/opt/airflow/downloads/unctad/done/'
 
 ##. IHS_ECONOMY
 IHS_URL = "https://connect.ihsmarkit.com/"

@@ -15,6 +15,7 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver import ActionChains
 import time, datetime
 import random
+import shutil
 from selenium import webdriver
 
 
@@ -29,7 +30,7 @@ from sqlalchemy import create_engine
 import pymysql
 import pendulum
 
-sys.path.append('/home/diquest/kmi_airflow/utils')
+sys.path.append('/opt/airflow/dags/utils')
 from config import *
 
 pymysql.install_as_MySQLdb()
@@ -39,11 +40,14 @@ def maria_kmi_dw_db_connection():
                                port = MDB_PORT,
                                user = MDB_USERNAME,
                                password = MDB_PASSWORD,
-                               db = 'kmi_dw_db',
+                               db = MDB_DATABASE,
                                charset = 'utf8')
     
 
     return def_conn
+
+def get_year_month_day():
+    return datetime.datetime.now().strftime('%Y%m%d')
 
 def insert_to_dwdb(result_dataframe, table_name):
     url = sqlalchemy.engine.URL.create(
