@@ -49,6 +49,12 @@ def maria_kmi_dw_db_connection():
 def get_year_month_day():
     return datetime.datetime.now().strftime('%Y%m%d')
 
+def get_month():
+    return datetime.datetime.now().strftime('%m')
+
+def get_day():
+    return datetime.datetime.now().strftime('%d')
+
 def insert_to_dwdb(result_dataframe, table_name):
     url = sqlalchemy.engine.URL.create(
         drivername = 'mysql',

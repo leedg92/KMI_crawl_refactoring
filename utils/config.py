@@ -54,6 +54,10 @@ KCIA_CATEGORY_LIST = [
     '/html/body/section/main/section[2]/section/div/div/div/div/div[1]/ul/li[6]/p',
     ]
 
+##. ksa_sea_freight_index
+KSA_URL = 'https://oneksa.kr/shipping_index'
+KSA_DOWNLOAD_PATH = '/opt/airflow/downloads/ksa/'
+KSA_DESTINATION_PATH = '/opt/airflow/downloads/ksa/done/'
 
 ##. IHS_ECONOMY
 IHS_URL = "https://connect.ihsmarkit.com/"
