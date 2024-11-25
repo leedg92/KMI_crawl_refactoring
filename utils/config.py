@@ -39,6 +39,22 @@ UNCTAD_URL = 'https://unctadstat-api.unctad.org/bulkdownload/US.PLSCI/US_PLSCI'
 UNCTAD_DOWNLOAD_PATH = '/opt/airflow/downloads/unctad/'
 UNCTAD_DESTINATION_PATH = '/opt/airflow/downloads/unctad/done/'
 
+##. kcia_oil_product
+KCIA_URL = 'https://kcia.kr/petrochemical-industry/statistics'
+KCIA_DOWNLOAD_PATH = '/opt/airflow/downloads/kcia/'
+KCIA_DESTINATION_PATH = '/opt/airflow/downloads/kcia/done/'
+KCIA_DATE_BTN_ELEMENT = '/html/body/section/main/section[2]/section/div/div/div/div/div[1]/p/select/option[1]'
+
+KCIA_CATEGORY_LIST = [
+    '/html/body/section/main/section[2]/section/div/div/div/div/div[1]/ul/li[1]/p',
+    '/html/body/section/main/section[2]/section/div/div/div/div/div[1]/ul/li[2]/p',
+    '/html/body/section/main/section[2]/section/div/div/div/div/div[1]/ul/li[3]/p',
+    '/html/body/section/main/section[2]/section/div/div/div/div/div[1]/ul/li[4]/p',
+    '/html/body/section/main/section[2]/section/div/div/div/div/div[1]/ul/li[5]/p',
+    '/html/body/section/main/section[2]/section/div/div/div/div/div[1]/ul/li[6]/p',
+    ]
+
+
 ##. IHS_ECONOMY
 IHS_URL = "https://connect.ihsmarkit.com/"
 

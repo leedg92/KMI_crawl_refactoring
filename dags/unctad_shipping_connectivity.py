@@ -70,6 +70,9 @@ def upsert_to_dataframe(result_dataframe, table_name):
     except pymysql.Error as e:        
         conn.rollback()
         return False
+    
+    finally:
+        conn.close()
 
 def download_file(url, local_filename):
     with requests.get(url, stream=True) as r:
