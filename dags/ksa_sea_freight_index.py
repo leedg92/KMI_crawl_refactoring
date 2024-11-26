@@ -67,7 +67,8 @@ def upsert_to_dataframe(result_dataframe, table_name, val_list):
             print(f"insert data at {table_name} : success ★☆★☆")
             return True
         
-    except pymysql.Error as e:        
+    except pymysql.Error as e:
+        print(e)       
         conn.rollback()
         return False
     
@@ -182,8 +183,9 @@ def preprocessing_data(origin_df):
     
     result_df = result_df.replace({'-': None})    
     result_df['BDI'] = result_df['BDI'].replace(',', '')
-    result_df['SCFI_EUROPE'] = result_df['SCFI_EUROPE'].replace(',,', ',')
+    result_df['SCFI_EUROPE'] = result_df['SCFI_EUROPE'].astype(str).str.replace(',,', ',')
     result_df['SCFI_EUROPE'] = result_df['SCFI_EUROPE'].replace(',', '')
+    result_df['SCFI_EUROPE'] = pd.to_numeric(result_df['SCFI_EUROPE'], errors='coerce')  # 숫자로 변환
     result_df = result_df.replace({np.nan: None})
 
     return result_df    
