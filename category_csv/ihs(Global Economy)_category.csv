@@ -1,10 +1,12 @@
-﻿COLLECT_PLACE_NM|COLLECT_PLACE_CD|DEPTH1_NM|DEPTH1_CD|DEPTH2_NM|DEPTH2_CD|DEPTH3_NM|DEPTH3_CD|DEPTH4_NM|DEPTH4_CD|DEPTH5_NM|DEPTH5_CD|DEPTH6_NM|DEPTH6_CD|DEPTH7_NM|DEPTH7_CD|COLLECT_RANGE|USE_YN|TABLE_NAME|COLUMNS_INFO
-IHS(Global Economy) 통계|01|Gross Domestic Product|0101|Real U.S. Dollars|010101|Real GDP (Gross Domestic Product), US$|01010101|South Korea|0101010101|||||||Y|Y|fct_ihs_economy|
-IHS(Global Economy) 통계|01|Gross Domestic Product|0101|Real Local Currency Units|010102|Real GDP at Factor Cost: Industry: Manufacturing, lcu|01010201|South Korea|0101020101|||||||Y|Y|fct_ihs_economy|
-IHS(Global Economy) 통계|01|Gross Domestic Product|0101|Real Local Currency Units|010102|Real GDP at Factor Cost: Industry: Construction, lcu|01010202|South Korea|0101020201|||||||Y|Y|fct_ihs_economy|
-IHS(Global Economy) 통계|01|Gross Domestic Product|0101|Real Local Currency Units|010102|Real Gross Domestic Demand (Absorption), lcu|01010203|South Korea|0101020301|||||||Y|Y|fct_ihs_economy|
-IHS(Global Economy) 통계|01|Gross Domestic Product|0101|Real Local Currency Units|010102|Real Gross Domestic Demand (Absorption), lcu|01010203|china|0101020302|||||||Y|Y|fct_ihs_economy|
-IHS(Global Economy) 통계|01|Output Indicators|0102|Industrial Production|010201|Industrial Production Index|01020101|world total|0102010100|||||||M|Y|fct_ihs_economy_month|
-IHS(Global Economy) 통계|01|Output Indicators|0102|Industrial Production|010201|Industrial Production Index|01020101|world total|0102010100|||||||Y|Y|fct_ihs_economy|
-IHS(Global Economy) 통계|01|Output Indicators|0102|Industrial Production|010201|Industrial Production Index|01020101|South Korea|0102010101|||||||M|Y|fct_ihs_economy_month|
-IHS(Global Economy) 통계|01|Output Indicators|0102|Industrial Production|010201|Industrial Production Index|01020101|South Korea|0102010101|||||||Y|Y|fct_ihs_economy|
+CATEGORY_CD|CATEGORY_NM|API_PATH|PARENT_CD|DEPTH_LEVEL|LAST_DEPTH_YN|COLLECTION_CYCLE|COLLECTION_TYPE
+04000000000000|S&P Global(IHS)(ECO)||00000000000000|01|N||
+04010000000000|Gross Domestic Product||04000000000000|02|N||
+04010100000000|Real U.S. Dollars||04010000000000|03|N||
+04010101000000|Real GDP (Gross Domestic Product), US$||04010100000000|04|Y|Y|A
+04010200000000|Real Local Currency Units||04010000000000|03|N||
+04010201000000|Real GDP at Factor Cost: Industry: Manufacturing, lcu||04010200000000|04|Y|Y|A
+04010202000000|Real GDP at Factor Cost: Industry: Construction, lcu||04010200000000|04|Y|Y|A
+04010203000000|Real Gross Domestic Demand (Absorption), lcu||04010200000000|04|Y|Y|A
+04020000000000|Output Indicators||04000000000000|02|N||
+04020100000000|Industrial Production||04020000000000|03|N||
+04020101000000|Industrial Production Index||04020100000000|04|Y|Y,M|A

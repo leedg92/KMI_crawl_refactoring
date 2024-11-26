@@ -1,0 +1,166 @@
+CATEGORY_CD|CATEGORY_NM|API_PATH|PARENT_CD|DEPTH_LEVEL|LAST_DEPTH_YN|COLLECTION_CYCLE|COLLECTION_TYPE
+02020000000000|Dry Bulk Metric Tons||02000000000000|02|N||
+02020100000000|Animal Products||02020000000000|03|N||
+02020101000000|Animal originated products||02020100000000|04|Y|Y,M|C
+02020102000000|Meat and fish products, not for human consumption; animal food, etc.||02020100000000|04|Y|Y,M|C
+02020200000000|Beverages and Oils||02020000000000|03|N||
+02020201000000|Spirits, liqueurs and other spirituous beverages||02020200000000|04|N||
+02020201010000|2207 Ethyl alcohol, undenatured, of an alcoholic strength by volume of 80% vol. or higher; ethyl alcohol and other spirits, denatured, of any strength||02020201000000|05|Y|Y,M|C
+02020201020000|2208 Ethyl alcohol, undenatured, of an alcoholic strength by volume of under 80% vol.; spirits, liqueurs and other spirituous beverages||02020201000000|05|Y|Y,M|C
+02020300000000|Chemicals and Related Products||02020000000000|03|N||
+02020301000000|Chemical elements||02020300000000|04|Y|Y,M|C
+02020302000000|Chemical products||02020300000000|04|Y|Y,M|C
+02020303000000|Essential oils, perfumes, and beauty preparations||02020300000000|04|Y|Y,M|C
+02020304000000|Fertilizers||02020300000000|04|N||
+02020304010000|3100 Fertilizers, n.e.s.||02020304000000|05|Y|Y,M|C
+02020304020000|3101 Animal or vegetable fertilizers, including mixed or chemically treated; fertilizers made by mixing or chemically treating animal or vegetable products||02020304000000|05|Y|Y,M|C
+02020304030000|3102 Mineral or chemical fertilizers, nitrogenous||02020304000000|05|Y|Y,M|C
+02020304040000|3103 Mineral or chemical fertilizers, phosphatic||02020304000000|05|Y|Y,M|C
+02020305000000|Inorganic chemical compounds||02020300000000|04|Y|Y,M|C
+02020306000000|Natural gums, lac, resins||02020300000000|04|Y|Y,M|C
+02020307000000|Natural rubber||02020300000000|04|Y|Y,M|C
+02020308000000|Organic chemicals||02020300000000|04|Y|Y,M|C
+02020309000000|Paint, varnishes, lacquers and inks||02020300000000|04|Y|Y,M|C
+02020310000000|Plastics and articles thereof||02020300000000|04|Y|Y,M|C
+02020311000000|Plastics in primary forms||02020300000000|04|Y|Y,M|C
+02020312000000|Rubber and articles thereof||02020300000000|04|Y|Y,M|C
+02020313000000|Soap and detergents||02020300000000|04|Y|Y,M|C
+02020400000000|Energy and Mining||02020000000000|03|N||
+02020401000000|Bitumen and asphalt||02020400000000|04|Y|Y,M|C
+02020402000000|Coal and coke||02020400000000|04|Y|Y,M|C
+02020403000000|Iron ores and concentrates||02020400000000|04|Y|Y,M|C
+02020404000000|Manganese ores and concentrates||02020400000000|04|Y|Y,M|C
+02020405000000|Marble and granite||02020400000000|04|Y|Y,M|C
+02020406000000|Mineral fuels, mineral oils and products of their distillation; bituminous substances; mineral waxes, n.e.s.||02020400000000|04|Y|Y,M|C
+02020407000000|Mineral tars and petroleum heavy ends, incl. bitumen; petroleum jelly||02020400000000|04|Y|Y,M|C
+02020408000000|Non-ferrous ores and concentrates, excl manganese ores||02020400000000|04|Y|Y,M|C
+02020409000000|Ores, slag and ash, n.e.s.||02020400000000|04|Y|Y,M|C
+02020410000000|Salt, sulphur, earths, plastering materials, lime and cement||02020400000000|04|Y|Y,M|C
+02020411000000|Salt; sulphur; earths, stone; plastering materials, lime and cement||02020400000000|04|Y|Y,M|C
+02020412000000|Sands, pebbles, gravel and crushed stone||02020400000000|04|Y|Y,M|C
+02020413000000|Slag, dross, ash||02020400000000|04|Y|Y,M|C
+02020500000000|Glass and Non-Metallic Products||02020000000000|03|N||
+02020501000000|Building stone, worked and non-metallic mineral products, n.e.s.||02020500000000|04|Y|Y,M|C
+02020502000000|Ceramic products||02020500000000|04|Y|Y,M|C
+02020503000000|Glass and glassware||02020500000000|04|Y|Y,M|C
+02020600000000|Machinery and Electrical Equipment||02020000000000|03|N||
+02020601000000|Bearings and gears||02020600000000|04|Y|Y,M|C
+02020602000000|Electric engines, generators and transformers||02020600000000|04|Y|Y,M|C
+02020603000000|Electricity distribution and control apparatus||02020600000000|04|Y|Y,M|C
+02020604000000|Electronic valves, tubes, semiconductors and other electronic components||02020600000000|04|Y|Y,M|C
+02020605000000|Engines and engine parts; incl. aircraft engines||02020600000000|04|Y|Y,M|C
+02020606000000|Liquid pumps||02020600000000|04|Y|Y,M|C
+02020607000000|Metallurgical machinery and equipment||02020600000000|04|Y|Y,M|C
+02020608000000|Tools, implements, cutlery, spoons and forks, of base metal; parts thereof, of base metal||02020600000000|04|Y|Y,M|C
+02020700000000|Metals and Metal Products||02020000000000|03|N||
+02020701000000|Albuminoidal substances; modified starches; glues; enzymes||02020700000000|04|Y|Y,M|C
+02020702000000|Aluminium and articles thereof||02020700000000|04|Y|Y,M|C
+02020703000000|Aluminium structures, tanks and containers||02020700000000|04|Y|Y,M|C
+02020704000000|Aluminium waste and scrap||02020700000000|04|Y|Y,M|C
+02020705000000|Basic iron and steel||02020700000000|04|Y|Y,M|C
+02020706000000|Copper and articles thereof||02020700000000|04|Y|Y,M|C
+02020707000000|Ferrous waste and scrap||02020700000000|04|Y|Y,M|C
+02020708000000|Flat-rolled products of iron and steel||02020700000000|04|Y|Y,M|C
+02020709000000|Iron and steel articles||02020700000000|04|Y|Y,M|C
+02020710000000|Iron and steel, n.e.s.||02020700000000|04|Y|Y,M|C
+02020711000000|Lead and articles thereof||02020700000000|04|Y|Y,M|C
+02020712000000|Metal products; misc base metal products||02020700000000|04|Y|Y,M|C
+02020713000000|Nickel and articles thereof||02020700000000|04|Y|Y,M|C
+02020714000000|Other non-ferrous metals and articles thereof||02020700000000|04|Y|Y,M|C
+02020715000000|Tin and articles thereof||02020700000000|04|Y|Y,M|C
+02020716000000|Zinc and articles thereof||02020700000000|04|Y|Y,M|C
+02020800000000|Miscellaneous||02020000000000|03|N||
+02020801000000|Goods not classified by kind||02020800000000|04|Y|Y,M|C
+02020802000000|Jewelry and precious metal articles||02020800000000|04|Y|Y,M|C
+02020803000000|Miscellaneous manufactured articles||02020800000000|04|Y|Y,M|C
+02020900000000|Textiles, Leather, and Apparel||02020000000000|03|N||
+02020901000000|Apparel and clothing accessories; not knitted or crocheted||02020900000000|04|Y|Y,M|C
+02020902000000|Textile fabrics, impregnated or laminated; suitable for industrial use||02020900000000|04|Y|Y,M|C
+02020903000000|Wadding, felt and nonwovens, special yarns; twine, cordage, ropes and cables||02020900000000|04|Y|Y,M|C
+02020904000000|Worn clothing and cloth waste||02020900000000|04|Y|Y,M|C
+02021000000000|Transportation Equipment and Parts||02020000000000|03|N||
+02021001000000|Railroad equipment, not self-propelled and parts||02021000000000|04|Y|Y,M|C
+02021100000000|Vegetable Products||02020000000000|03|N||
+02021101000000|Cane and beet sugar, molasses||02021100000000|04|Y|Y,M|C
+02021102000000|Cocoa and cocoa preparations||02021100000000|04|Y|Y,M|C
+02021103000000|Coffee||02021100000000|04|Y|Y,M|C
+02021104000000|Corn||02021100000000|04|Y|Y,M|C
+02021105000000|Food industry residues and wastes||02021100000000|04|Y|Y,M|C
+02021106000000|Food preparations of flour, meal, pasta, bread etc||02021100000000|04|Y|Y,M|C
+02021107000000|Food preparations, yeasts, sauces, soups and extracts||02021100000000|04|Y|Y,M|C
+02021108000000|Industrial or medicinal plants; straw and fodder||02021100000000|04|Y|Y,M|C
+02021109000000|Leguminous and other vegetables, dried||02021100000000|04|Y|Y,M|C
+02021110000000|Oil seeds and oleaginous fruits||02021100000000|04|Y|Y,M|C
+02021111000000|Onions, garlic, leeks, leguminous vegetables, other vegetables, fresh and chilled||02021100000000|04|Y|Y,M|C
+02021112000000|Other grains and cereals, incl. rye, barley, oats||02021100000000|04|N||
+02021112010000|1000 Cereals, n.e.s.||02021112000000|05|Y|Y,M|C
+02021112020000|1002 Rye||02021112000000|05|Y|Y,M|C
+02021112030000|1003 Barley||02021112000000|05|Y|Y,M|C
+02021112040000|1004 Oats||02021112000000|05|Y|Y,M|C
+02021113000000|Rice||02021100000000|04|Y|Y,M|C
+02021114000000|Seeds, fruits and spores for sowing||02021100000000|04|Y|Y,M|C
+02021115000000|Soybeans||02021100000000|04|Y|Y,M|C
+02021116000000|Sugar confectionery||02021100000000|04|Y|Y,M|C
+02021117000000|Sunflower seeds, rapeseed and colza seeds||02021100000000|04|N||
+02021117010000|1205 Rape or colza seeds, whether or not broken||02021117000000|05|Y|Y,M|C
+02021117020000|1206 Sunflower seeds, whether or not broken||02021117000000|05|Y|Y,M|C
+02021118000000|Vegetable plaiting materials; vegetable products not elsewhere specified or included||02021100000000|04|Y|Y,M|C
+02021119000000|Wheat||02021100000000|04|Y|Y,M|C
+02021120000000|Wheat and cereal flour, products and malt||02021100000000|04|Y|Y,M|C
+02021121000000|Newsprint and uncoated paper and paperboard excl. printing paper||02021100000000|04|Y|Y,M|C
+02021200000000|Wood, Paper and Related Products||02020000000000|03|N||
+02021201000000|Pulp||02021200000000|04|Y|Y,M|C
+02021202000000|Waste and scrap of paper or paperboard||02021200000000|04|Y|Y,M|C
+02021203000000|Wood charcoal||02021200000000|04|Y|Y,M|C
+02021204000000|Wood sleepers for railway and tramways||02021200000000|04|Y|Y,M|C
+02021205000000|Wood, incl. fuel wood||02021200000000|04|Y|Y,M|C
+02030000000000|Liquid Bulk (Tanker) Metric Tons||02000000000000|02|N||
+02030100000000|Animal Products||02030000000000|03|N||
+02030101000000|Milk, concentrated and whey||02030100000000|04|Y|Y,M|C
+02030200000000|Beverages and Oils||02030000000000|03|N||
+02030201000000|Animal and vegetable oils, excl. soybean oil||02030200000000|04|Y|Y,M|C
+02030202000000|Beer, cider, fermented beverages||02030200000000|04|N||
+02030202010000|2203 Beer made from malt||02030202000000|05|Y|Y,M|C
+02030202020000|2206 Fermented beverages, nesoi (includ cider, perry & mead); mixtures of fermented beverages & mixtures of fermntd beverages & non-alcohol beverages nesoi||02030202000000|05|Y|Y,M|C
+02030203000000|Grape alcoholic beverages, incl. wine||02030200000000|04|N||
+02030203010000|2204 Wine of fresh grapes, including fortified wines; grape must (having an alcoholic strength by volume exceeding 0.5% vol.) nesoi||02030203000000|05|Y|Y,M|C
+02030203020000|2205 Vermouth and other wine of fresh grapes flavored with plants or aromatic substances||02030203000000|05|Y|Y,M|C
+02030204000000|Palm, coconut and palm kernel oil||02030200000000|04|Y|Y,M|C
+02030205000000|Soybean oil||02030200000000|04|Y|Y,M|C
+02030206000000|Spirits, liqueurs and other spirituous beverages||02030200000000|04|N||
+02030206010000|2207 Ethyl alcohol, undenatured, of an alcoholic strength by volume of 80% vol. or higher; ethyl alcohol and other spirits, denatured, of any strength||02030206000000|05|Y|Y,M|C
+02030206020000|2208 Ethyl alcohol, undenatured, of an alcoholic strength by volume of under 80% vol.; spirits, liqueurs and other spirituous beverages||02030206000000|05|Y|Y,M|C
+02030207000000|Water, mineral and aerated water||02030200000000|04|N||
+02030207010000|2201 Waters, including natural or artificial mineral waters and aerated waters, not containing added sweetening nor flavored; ice and snow||02030207000000|05|Y|Y,M|C
+02030207020000|2202 Waters, including mineral waters and aerated waters, containing added sweetening or flavored, and other nonalcoholic beverages nesoi||02030207000000|05|Y|Y,M|C
+02030300000000|Chemicals and Related Products||02030000000000|03|N||
+02030301000000|Chemical elements||02030300000000|04|Y|Y,M|C
+02030302000000|Chemical products||02030300000000|04|Y|Y,M|C
+02030303000000|Essential oils, perfumes, and beauty preparations||02030300000000|04|Y|Y,M|C
+02030304000000|Fertilizers||02030300000000|04|N||
+02030304010000|3100 Fertilizers, n.e.s.||02030304000000|05|Y|Y,M|C
+02030304020000|3101 Animal or vegetable fertilizers, including mixed or chemically treated; fertilizers made by mixing or chemically treating animal or vegetable products||02030304000000|05|Y|Y,M|C
+02030304030000|3102 Mineral or chemical fertilizers, nitrogenous||02030304000000|05|Y|Y,M|C
+02030304040000|3103 Mineral or chemical fertilizers, phosphatic||02030304000000|05|Y|Y,M|C
+02030305000000|Inorganic chemical compounds||02030300000000|04|Y|Y,M|C
+02030306000000|Natural gums, lac, resins||02030300000000|04|Y|Y,M|C
+02030307000000|Organic chemicals||02030300000000|04|Y|Y,M|C
+02030308000000|Paint, varnishes, lacquers and inks||02030300000000|04|Y|Y,M|C
+02030309000000|Plastics in primary forms||02030300000000|04|Y|Y,M|C
+02030310000000|Rubber and articles thereof||02030300000000|04|Y|Y,M|C
+02030311000000|Rubber articles; waste and scrap of rubber||02030300000000|04|Y|Y,M|C
+02030312000000|Soap and detergents||02030300000000|04|Y|Y,M|C
+02030313000000|Waxes, polishes and creams, modeling pastes||02030300000000|04|Y|Y,M|C
+02030400000000|Energy and Mining||02030000000000|03|N||
+02030401000000|Bitumen and asphalt||02030400000000|04|Y|Y,M|C
+02030402000000|Crude oil||02030400000000|04|Y|Y,M|C
+02030403000000|Mineral fuels, mineral oils and products of their distillation; bituminous substances; mineral waxes, n.e.s.||02030400000000|04|Y|Y,M|C
+02030404000000|Mineral tars and petroleum heavy ends, incl. bitumen; petroleum jelly||02030400000000|04|Y|Y,M|C
+02030405000000|Natural gas, petroleum gases and gaseous hydrocarbons||02030400000000|04|Y|Y,M|C
+02030406000000|Refined Petroleum Products||02030400000000|04|Y|Y,M|C
+02030500000000|Metals and Metal Products||02030000000000|03|N||
+02030501000000|Albuminoidal substances; modified starches; glues; enzymes||02030500000000|04|Y|Y,M|C
+02030600000000|Vegetable Products||02030000000000|03|N||
+02030601000000|Cane and beet sugar, molasses||02030600000000|04|Y|Y,M|C
+02030602000000|Natural honey||02030600000000|04|Y|Y,M|C
+02030603000000|Preparations of vegetables, fruit, nuts or other parts of plants||02030600000000|04|Y|Y,M|C

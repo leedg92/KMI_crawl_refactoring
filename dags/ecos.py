@@ -32,7 +32,7 @@ from python_library import *
 ##. [2024-11-18 이동근] 리펙토링 시작(공통 함수 분리, 상수 정의, 함수 정의)
 ##. [2024-11-19 이동근] DB 적재 구현
 ##. [2024-11-20 이동근] Airflow 적재 구현
-##. [2024-11-21 이동근] 최신데이터 비교 로직 제거, 공통 설정 호출 함수 제거(무의미함)
+##. [2024-11-21 이동근] 최신데이  로직 제거, 공통 설정 호출 함수 제거(무의미함)
 ##----------------ECOS 데이터 수집 프로세스---------------
 ##. 
 ##  1. 공통 설정 및 코드 조회
@@ -96,35 +96,27 @@ ECOS_CONFIG = {
 ######################
 #. 수집할 통계 코드 조회
 def get_ecos_codes(category, period):
+    print(f"\n[DEBUG] Fetching codes for category: {category}, period: {period}")
+    
     conn = maria_kmi_dw_db_connection()
-    codes_df = pd.read_sql("""
-        SELECT DEPTH2_CD as table_code,
-               DEPTH3_CD as item_code3,
-               DEPTH4_CD as item_code4,
-               DEPTH2_NM as stat_name,
-               DEPTH3_NM as item_name
-        FROM FCT_MASTER_CODE
-        WHERE DEPTH1_CD = %s 
-        AND COLLECT_RANGE = %s
-        ORDER BY DEPTH2_CD
-    """, conn, params=[category, period])
+    query = """
+        SELECT 
+            LAST_CATEGORY_CD,
+            CATEGORY_NM,
+            COLLECTION_CYCLE,
+            FULL_PATH
+        FROM view_ecos_path_view
+        WHERE SUBSTRING_INDEX(FULL_PATH, '|', 1) = %s
+        AND COLLECTION_CYCLE = %s
+    """
+    print(f"\n[DEBUG] Executing query: {query}")
+    print(f"[DEBUG] With params: [{category}, {period}]")
+    
+    codes_df = pd.read_sql(query, conn, params=[category, period])
+    print(f"\n[DEBUG] Query result: {codes_df}")
+    
     conn.close()
-    
-    # 각 항목별로 개별 결과 생성
-    result = []
-    for _, row in codes_df.iterrows():
-        item_code3 = row['item_code3']
-        item_code4 = row['item_code4'] if pd.notna(row['item_code4']) and row['item_code4'] != '' else ''
-        item_code_list = [item_code3, item_code4] if item_code4 else [item_code3]
-        
-        result.append({
-            'TABLE_CODE': row['table_code'],
-            'ITEM_CODE_LIST': item_code_list, 
-            'STAT_NAME': row['stat_name'],
-            'ITEM_NAME': row['item_name']
-        })
-    
-    return result
+    return codes_df.to_dict('records')
 
 
 #. 현재 연월을 YYYYMM 형식으로 반환
@@ -170,13 +162,11 @@ def get_date_range(period_type='M'):
     return from_date, to_date
 
 #. ECOS API URL 생성
-def create_ecos_url(table_code, item_code_list, period='M'):
+def create_ecos_url(table_code, item_code, period='M'):
     from_date, to_date = get_date_range(period)
-    
-    # 연간 데이터 호출 시 'A' 사용
     api_period = 'A' if period == 'Y' else period
     
-    return '/'.join([
+    url = '/'.join([
         ECOS_CONFIG['API_URL'],
         ECOS_CONFIG['API_KEY'],
         ECOS_CONFIG['OUTPUT_FORMAT'],
@@ -187,96 +177,119 @@ def create_ecos_url(table_code, item_code_list, period='M'):
         api_period,
         from_date,
         to_date,
-        '/'.join(item_code_list)
+        item_code
     ])
+    
+    print(f"\n[DEBUG] Generated URL: {url}")
+    return url
 
 #. ECOS 데이터 수집 공통 함수
 def collect_ecos_data(category, period):
     print('--' * 10, f'(start) ecos_{category.lower()}', '--' * 10)
     
+    codes = get_ecos_codes(category, period)
+    if not codes:
+        print(f"[WARNING] No codes found for category {category} and period {period}")
+        return None
+        
     all_data = []
-    for input_code in get_ecos_codes(category, period):
+    for input_code in codes:
+        print(f"\n[DEBUG] Processing code: {input_code}")
+        
+        # FULL_PATH에서 필요한 정보 추출 (파이프 구분자 사용)
+        path_parts = input_code['FULL_PATH'].split('|')
+        table_code = path_parts[1]
+        
+        # 나머지 모든 부분을 item_code로 처리
+        item_codes = '/'.join(path_parts[2:])
+        
         full_url = create_ecos_url(
-            input_code['TABLE_CODE'], 
-            input_code['ITEM_CODE_LIST'],
+            table_code,
+            item_codes,
             period
         )
         
-        print(f"\n[API Call URL] {full_url}\n")  # API URL 로깅 추가
+        print(f"\n[API Call URL] {full_url}\n")
         
         response = requests.get(full_url)
-        response_json = response.json()
+        print(f"[DEBUG] Response status: {response.status_code}")
+        print(f"[DEBUG] Response content: {response.text[:500]}")
         
-        if 'StatisticSearch' in response_json:
-            data = response_json['StatisticSearch']['row']
-            current_time = pendulum.now().format('YYYY-MM-DD HH:mm:ss')
-            for item in data:
-                item = {key: value if value is not None else "" for key, value in item.items()}
-                item['CATEGORY'] = category
-                item['CREATED_DTM'] = current_time
-                item['UPDATE_DTM'] = current_time
+        if response.status_code == 200:
+            response_json = response.json()
+            if 'StatisticSearch' in response_json:
+                data = response_json['StatisticSearch']['row']
+                current_time = pendulum.now().format('YYYY-MM-DD HH:mm:ss')
                 
-                all_data.append(item)
+                for item in data:
+                    item = {key: value if value is not None else "" for key, value in item.items()}
+                    item['CATEGORY'] = category
+                    item['CREATE_DTM'] = current_time
+                    item['UPDATE_DTM'] = current_time
+                    all_data.append(item)
     
     if all_data:
-        df = pd.DataFrame(all_data)
-        
-        # 테이블명 변환
-        period_map = {
-            'M': 'month',
-            'Q': 'quarter',
-            'Y': 'year'
-        }
-        table_name = f'fct_ecos_statics_{period_map[period]}'
-        
-        return df
+        return pd.DataFrame(all_data)
     
     return None
 
 #. DB에 저장
-def insert_to_dataframe(result_dataframe, period='M'):    
-    # 기본 컬럼 처리
-    for index, row in result_dataframe.iterrows():
-        # TIME 컬럼에서 YEAR, MONTH, QUARTER 추출
-        if period == 'M':
-            result_dataframe.at[index, 'YEAR'] = row['TIME'][0:4]
-            result_dataframe.at[index, 'MONTH'] = row['TIME'][-2:]
-        elif period == 'Q':
-            result_dataframe.at[index, 'YEAR'] = row['TIME'][0:4]
-            result_dataframe.at[index, 'QUARTER'] = row['TIME'][-1:]
-        elif period == 'Y':
-            result_dataframe.at[index, 'YEAR'] = row['TIME']
+def insert_to_dataframe(df, period):
+    if df is None or df.empty:
+        print("No data to insert")
+        return
         
-        # 현재 시간 추가
-        current_time = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-        result_dataframe.at[index, 'CREATED_DTM'] = current_time
-        result_dataframe.at[index, 'UPDATE_DTM'] = current_time
-
-    # NULL 값을 빈 문자열로 대체
-    result_dataframe = result_dataframe.fillna('')
+    print("\n=== Inserting data to DB ===")
+    print(f"Data shape: {df.shape}")
     
-    # 기간별 테이블 선택
-    if period == 'M':
-        table_name = 'fct_ecos_statics_month'
-    elif period == 'Y':
+    # period에 따른 테이블 선택
+    if period == 'Y':
         table_name = 'fct_ecos_statics_year'
     elif period == 'Q':
         table_name = 'fct_ecos_statics_quarter'
+    elif period == 'M':
+        table_name = 'fct_ecos_statics_month'
+    else:
+        raise ValueError(f"Invalid period: {period}")
     
     conn = maria_kmi_dw_db_connection()
     cursor = conn.cursor()
     
-    for _, row in result_dataframe.iterrows():
-        merge_sql = f'''
-        INSERT INTO {table_name} (...) 
-        VALUES (...) 
-        ON DUPLICATE KEY UPDATE ...
-        '''
-        cursor.execute(merge_sql, row.to_dict())
-    
-    conn.commit()
-    cursor.close()
-    conn.close()
+    try:
+        # 컬럼명과 값을 동적으로 생성
+        columns = ', '.join(df.columns)
+        placeholders = ', '.join(['%s'] * len(df.columns))
+        update_stmt = ', '.join([f"{col} = VALUES({col})" for col in df.columns])
+        
+        # INSERT ON DUPLICATE KEY UPDATE 구문 생성
+        query = f"""
+            INSERT INTO {table_name} 
+            ({columns}) 
+            VALUES ({placeholders})
+            ON DUPLICATE KEY UPDATE {update_stmt}
+        """
+        
+        # 데이터프레임을 리스트로 변환
+        values = [tuple(x) for x in df.values]
+        
+        print(f"\n[DEBUG] Target table: {table_name}")
+        print(f"[DEBUG] Executing query: {query}")
+        print(f"[DEBUG] First row of values: {values[0] if values else 'No values'}")
+        
+        # 실행
+        cursor.executemany(query, values)
+        conn.commit()
+        
+        print(f"Successfully inserted/updated {len(df)} rows into {table_name}")
+        
+    except Exception as e:
+        print(f"Error inserting data: {str(e)}")
+        conn.rollback()
+        raise
+        
+    finally:
+        cursor.close()
+        conn.close()
 
 
 
@@ -289,13 +302,13 @@ def collect_ecos_interest_rate_data():
     if df is not None:
         print("\n=== INTEREST_RATE 월간 데이터 ===")
         print(df)
-        # insert_to_dataframe(df, 'M')
+        insert_to_dataframe(df, 'M')
     
     df_year = collect_ecos_data('INTEREST_RATE', 'Y')
     if df_year is not None:
         print("\n=== INTEREST_RATE 연간 데이터 ===")
         print(df_year)
-        # insert_to_dataframe(df_year, 'Y')
+        insert_to_dataframe(df_year, 'Y')
 
 #. ECOS 주식 데이터 수집
 def collect_ecos_stock_data():
@@ -303,13 +316,13 @@ def collect_ecos_stock_data():
     if df is not None:
         print("\n=== STOCK 월간 데이터 ===")
         print(df)
-        # insert_to_dataframe(df, 'M')
+        insert_to_dataframe(df, 'M')
     
     df_year = collect_ecos_data('STOCK', 'Y')
     if df_year is not None:
         print("\n=== STOCK 연간 데이터 ===")
         print(df_year)
-        # insert_to_dataframe(df_year, 'Y')
+        insert_to_dataframe(df_year, 'Y')
 
 #. ECOS 성장률 데이터 수집
 def collect_ecos_growth_rate_data():
@@ -317,7 +330,7 @@ def collect_ecos_growth_rate_data():
     if df is not None:
         print("\n=== GROWTH_RATE 데이터 ===")
         print(df)
-        # insert_to_dataframe(df, 'Y')
+        insert_to_dataframe(df, 'Y')
 
 #. ECOS 소득 데이터 수집
 def collect_ecos_income_data():
@@ -325,7 +338,7 @@ def collect_ecos_income_data():
     if df is not None:
         print("\n=== INCOME 데이터 ===")
         print(df)
-        # insert_to_dataframe(df, 'Y')
+        insert_to_dataframe(df, 'Y')
 
 #. ECOS 생산 데이터 수집
 def collect_ecos_production_data():
@@ -333,13 +346,13 @@ def collect_ecos_production_data():
     if df is not None:
         print("\n=== PRODUCTION 월간 데이터 ===")
         print(df)
-        # insert_to_dataframe(df, 'M')
+        insert_to_dataframe(df, 'M')
     
     df_year = collect_ecos_data('PRODUCTION', 'Y')
     if df_year is not None:
         print("\n=== PRODUCTION 연간 데이터 ===")
         print(df_year)
-        # insert_to_dataframe(df_year, 'Y')
+        insert_to_dataframe(df_year, 'Y')
 
 #. ECOS 경기 데이터 수집
 def collect_ecos_economy_data():
@@ -347,13 +360,13 @@ def collect_ecos_economy_data():
     if df is not None:
         print("\n=== ECONOMY 월간 데이터 ===")
         print(df)
-        # insert_to_dataframe(df, 'M')
+        insert_to_dataframe(df, 'M')
     
     df_year = collect_ecos_data('ECONOMY', 'Y')
     if df_year is not None:
         print("\n=== ECONOMY 연간 데이터 ===")
         print(df_year)
-        # insert_to_dataframe(df_year, 'Y')
+        insert_to_dataframe(df_year, 'Y')
 
 #. ECOS 고용/인구 데이터 수집
 def collect_ecos_employ_population_data():
@@ -361,13 +374,13 @@ def collect_ecos_employ_population_data():
     if df is not None:
         print("\n=== EMPLOY_POPULATION 월간 데이터 ===")
         print(df)
-        # insert_to_dataframe(df, 'M')
+        insert_to_dataframe(df, 'M')
     
     df_year = collect_ecos_data('EMPLOY_POPULATION', 'Y')
     if df_year is not None:
         print("\n=== EMPLOY_POPULATION 연간 데이터 ===")
         print(df_year)
-        # insert_to_dataframe(df_year, 'Y')
+        insert_to_dataframe(df_year, 'Y')
 
 #. ECOS 대외거래 데이터 수집
 def collect_ecos_foreign_trade_data():
@@ -375,13 +388,13 @@ def collect_ecos_foreign_trade_data():
     if df is not None:
         print("\n=== FOREIGN_TRADE 월간 데이터 ===")
         print(df)
-        # insert_to_dataframe(df, 'M')
+        insert_to_dataframe(df, 'M')
     
     df_year = collect_ecos_data('FOREIGN_TRADE', 'Y')
     if df_year is not None:
         print("\n=== FOREIGN_TRADE 연간 데이터 ===")
         print(df_year)
-        # insert_to_dataframe(df_year, 'Y')
+        insert_to_dataframe(df_year, 'Y')
 
 #. ECOS 물가 데이터 수집
 def collect_ecos_price_data():
@@ -389,13 +402,13 @@ def collect_ecos_price_data():
     if df is not None:
         print("\n=== PRICE 월간 데이터 ===")
         print(df)
-        # insert_to_dataframe(df, 'M')
+        insert_to_dataframe(df, 'M')
     
     df_year = collect_ecos_data('PRICE', 'Y')
     if df_year is not None:
         print("\n=== PRICE 연간 데이터 ===")
         print(df_year)
-        # insert_to_dataframe(df_year, 'Y')
+        insert_to_dataframe(df_year, 'Y')
 
 #. ECOS 건설 데이터 수집
 def collect_ecos_cement_data():
@@ -403,7 +416,7 @@ def collect_ecos_cement_data():
     if df_year is not None:
         print("\n=== CEMENT 데이터 ===")
         print(df_year)
-        # insert_to_dataframe(df_year, 'Y')
+        insert_to_dataframe(df_year, 'Y')
 
 #. ECOS 고철 데이터 수집
 def collect_ecos_scrap_metal_data():
@@ -411,13 +424,13 @@ def collect_ecos_scrap_metal_data():
     if df is not None:
         print("\n=== SCRAP_METAL 월간 데이터 ===")
         print(df)
-        # insert_to_dataframe(df, 'M')
+        insert_to_dataframe(df, 'M')
     
     df_quarter = collect_ecos_data('SCRAP_METAL', 'Q')
     if df_quarter is not None:
         print("\n=== SCRAP_METAL 분기 데이터 ===")
         print(df_quarter)
-        # insert_to_dataframe(df_quarter, 'Q')
+        insert_to_dataframe(df_quarter, 'Q')
 
 #. ECOS 심리 데이터 수집
 def collect_ecos_trial_data():
@@ -425,7 +438,7 @@ def collect_ecos_trial_data():
     if df is not None:
         print("\n=== TRIAL 데이터 ===")
         print(df)
-        # insert_to_dataframe(df, 'M')
+        insert_to_dataframe(df, 'M')
 
 ######################
 ## task 정의
@@ -445,7 +458,7 @@ t_collect_ecos_stock_data = PythonOperator(
     dag=init_dag
 )
 
-# GDP 실질성장률, 수출입 증가율 등 성장 관련 지표 수집
+# GDP 실질성장률, 수출입 증가율  성장 관련 지표 수집
 t_collect_ecos_growth_rate_data = PythonOperator(
     task_id='collect_ecos_growth_rate_data',
     python_callable=collect_ecos_growth_rate_data,
