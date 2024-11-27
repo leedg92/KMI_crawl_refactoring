@@ -11,6 +11,7 @@ from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support.ui import Select
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver import ActionChains
 import time, datetime
@@ -18,6 +19,7 @@ import random
 import glob
 import shutil
 from selenium import webdriver
+
 
 
 import pandas as pd
@@ -49,6 +51,9 @@ def maria_kmi_dw_db_connection():
 
 def get_year_month_day():
     return datetime.datetime.now().strftime('%Y%m%d')
+
+def get_year():
+    return datetime.datetime.now().strftime('%Y')
 
 def get_month():
     return datetime.datetime.now().strftime('%m')
