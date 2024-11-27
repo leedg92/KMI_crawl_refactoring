@@ -59,6 +59,16 @@ KSA_URL = 'https://oneksa.kr/shipping_index'
 KSA_DOWNLOAD_PATH = '/opt/airflow/downloads/ksa/'
 KSA_DESTINATION_PATH = '/opt/airflow/downloads/ksa/done/'
 
+##. kucea_used_car
+KUCEA_URL = 'http://www.kucea.or.kr/source_kor'
+KUCEA_DOWNLOAD_PATH = '/opt/airflow/downloads/kucea/'
+KUCEA_DESTINATION_PATH = '/opt/airflow/downloads/kucea/done/'
+
+##. knoc_oil
+KNOC_URL = 'https://www.petronet.co.kr/'
+KNOC_DOWNLOAD_PATH = '/opt/airflow/downloads/knoc/'
+KNOC_DESTINATION_PATH = '/opt/airflow/downloads/knoc/done/'
+
 ##. IHS_ECONOMY
 IHS_URL = "https://connect.ihsmarkit.com/"
 
