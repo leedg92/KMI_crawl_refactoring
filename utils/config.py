@@ -60,7 +60,7 @@ KSA_DOWNLOAD_PATH = '/opt/airflow/downloads/ksa/'
 KSA_DESTINATION_PATH = '/opt/airflow/downloads/ksa/done/'
 
 ##. kucea_used_car
-KUCEA_URL = 'http://www.kucea.or.kr/source_kor'
+KUCEA_URL = 'http://kucea.or.kr/source_kor'
 KUCEA_DOWNLOAD_PATH = '/opt/airflow/downloads/kucea/'
 KUCEA_DESTINATION_PATH = '/opt/airflow/downloads/kucea/done/'
 
@@ -68,6 +68,55 @@ KUCEA_DESTINATION_PATH = '/opt/airflow/downloads/kucea/done/'
 KNOC_URL = 'https://www.petronet.co.kr/'
 KNOC_DOWNLOAD_PATH = '/opt/airflow/downloads/knoc/'
 KNOC_DESTINATION_PATH = '/opt/airflow/downloads/knoc/done/'
+
+##. ers_rmtr_stts
+ERS_USER_ID = 'kmilibrary'
+ERS_USER_PW = '!kmilib2024'
+ERS_URL = 'https://stat.kosa.or.kr/ers/rmtr/ErsRmtrStts'
+ERS_DOWNLOAD_PATH = '/opt/airflow/downloads/ers_rmtr_stts/'
+ERS_DESTINATION_PATH = '/opt/airflow/downloads/ers_rmtr_stts/done/'
+
+ERS_LOGIN_BTN_ELEMENT = '/html/body/div/div/div/div[2]/div/div[2]/button'
+ERS_USER_ID_INPUT_ELEMENT = '/html/body/div/div/div/div[2]/div/div[3]/div/form/div/input[1]'
+ERS_USER_PW_INPUT_ELEMENT = '/html/body/div/div/div/div[2]/div/div[3]/div/form/div/input[2]'
+ERS_LOGIN_FINISH_BTN_ELEMENT = '/html/body/div/div/div/div[2]/div/div[3]/div/form/button'
+
+ERS_START_YEAR = '2010'
+ERS_START_MONTH = '01'
+
+ERS_MENU_SURVEY_STATISTICS_CATEGORY_ELEMENT = '/html/body/div/header/div/nav/ul/li[1]/a/span'
+ERS_INNER_MENU_RAW_MATERIAL_ELEMENT = '/html/body/div/header/div/nav/ul/li[1]/div/ul/li[2]/a/div'
+ERS_STEEL_CHECK_BOX_ELEMENT = '/html/body/div/section/div[1]/div[1]/ul/li[1]/label'
+ERS_DATE_SETTING_BTN_ELEMENT = '/html/body/div/section/div[2]/div/div[3]/div[1]/button[1]'
+ERS_MONTH_SETTING_BTN_ELEMENT = '/html/body/div/div[3]/section/div/div/div[2]/div/ul[1]/li[1]/button'
+ERS_YEAR_SETTING_BTN_ELEMENT = '/html/body/div/div[3]/section/div/div/div[2]/div/ul[1]/li[2]/button'
+ERS_START_YEAR_SELECT_BTN_ELEMENT = '/html/body/div/div[3]/section/div/div/div[2]/div/ul[2]/div/div/div[1]/div[1]/select'
+ERS_START_MONTH_SELECT_BTN_ELEMENT = '/html/body/div/div[3]/section/div/div/div[2]/div/ul[2]/div/div/div[1]/div[2]/select'
+ERS_DATE_ALL_SELECT_MONTH_BTN_ELEMENT = '/html/body/div/div[3]/section/div/div/div[2]/div/ul[2]/div/div/div[1]/div[6]/label/span'
+ERS_DATE_ALL_SELECT_YEAR_BTN_ELEMENT = '/html/body/div/div[3]/section/div/div/div[2]/div/ul[2]/div/div/div[1]/div[4]/label/span'
+ERS_DATE_APPLY_BTN_ELEMENT = '/html/body/div/div[3]/section/div/div/div[2]/div/button'
+ERS_UNIT_SELECT_BTN_ELEMENT = '/html/body/div/section/div[2]/div/div[3]/div[1]/button[2]'
+ERS_UNIT_TON_SELECT_ELEMENT = '/html/body/div/section/div[2]/div/div[3]/div[1]/div/div/div[1]/label/span'
+ERS_UNIT_T_TON_SELECT_ELEMENT = '/html/body/div/section/div[2]/div/div[3]/div[1]/div/div/div[2]/label/span'
+ERS_UNIT_H_TON_SELECT_ELEMENT = '/html/body/div/section/div[2]/div/div[3]/div[1]/div/div/div[3]/label/span'
+ERS_EXCEL_SAVE_BTN_ELEMENT = '/html/body/div/section/div[2]/div/div[4]/div[2]/div[1]/button[1]'
+
+ERS_COLS_MAPPING = {
+        '시점': 'YEAR',
+        '업체명': 'COMPANY_NAME',
+        '품목명': 'ITEM_NAME',    
+        '국내구매': 'DOMESTIC_PURCHASE',
+        '수입구매': 'IMPORT_PURCHASE',
+        '자가발생구매': 'SELF_GENERATED_PURCHASE',
+        '자가소비': 'SELF_CONSUMPTION',
+        '구매집계': 'PURCHASE_SUMMARY',
+        '국내판매': 'DOMESTIC_SALES',
+        '기타판매': 'OTHER_SALES',
+        '판매집계': 'SALES_SUMMARY',
+        '당월재고': 'CURRENT_MONTH_INVENTORY',
+        '전월재고': 'PREVIOUS_MONTH_INVENTORY'
+    }
+
 
 ##. tms_cds_stts
 TMS_USER_ID = 'kmilibrary'
@@ -84,37 +133,21 @@ TMS_LOGIN_FINISH_BTN_ELEMENT = '/html/body/div/div/div/div[2]/div/div[3]/div/for
 TMS_START_YEAR = '2010'
 TMS_START_MONTH = '01'
 
-# 테마별 통계 마우스 올리기
 TMS_MENU_THEME_BTN_ELEMENT = '/html/body/div/header/div/nav/ul/li[3]/a/span'
-# 조강생산 버튼
 TMS_INNER_MENU_TMS_CDS_STTS_BTN_ELEMENT = '/html/body/div/header/div/nav/ul/li[3]/div/ul/li/a/div'
-# [조강] 체크박스
 TMS_CDS_STTS_CHECK_ELEMENT = '/html/body/div/section/div[1]/div[1]/ul/li/label'
-# 시점 버튼
 TMS_DATE_SETTING_BTN_ELEMENT = '/html/body/div/section/div[2]/div/div[3]/div[1]/button[1]'
-# 시점(월단위)
 TMS_MONTH_SETTING_BTN_ELEMENT = '/html/body/div/div[3]/section/div/div/div[2]/div/ul[1]/li[1]/button'
-# 시점(연단위)
 TMS_YEAR_SETTING_BTN_ELEMENT = '/html/body/div/div[3]/section/div/div/div[2]/div/ul[1]/li[2]/button'
-# 시작_연선택
 TMS_START_YEAR_SELECT_BTN_ELEMENT = '/html/body/div/div[3]/section/div/div/div[2]/div/ul[2]/div/div/div[1]/div[1]/select'
-# 시작_월선택
 TMS_START_MONTH_SELECT_BTN_ELEMENT = '/html/body/div/div[3]/section/div/div/div[2]/div/ul[2]/div/div/div[1]/div[2]/select'
-# 날짜 전체 선택 (연단위)
 TMS_DATE_ALL_SELECT_YEAR_BTN_ELEMENT = '/html/body/div/div[3]/section/div/div/div[2]/div/ul[2]/div/div/div[1]/div[4]/label/span'
-# 날짜 전체 선택 (월단위)
 TMS_DATE_ALL_SELECT_MONTH_BTN_ELEMENT = '/html/body/div/div[3]/section/div/div/div[2]/div/ul[2]/div/div/div[1]/div[6]/label/span'
-# 적용하기 버튼
 TMS_DATE_APPLY_BTN_ELEMENT = '/html/body/div/div[3]/section/div/div/div[2]/div/button'
-# 단위 선택 버튼
 TMS_UNIT_SELECT_BTN_ELEMENT = '/html/body/div/section/div[2]/div/div[3]/div[1]/button[2]'
-# 단위 : 톤/$ 선택
 TMS_UNIT_TON_SELECT_ELEMENT = '/html/body/div/section/div[2]/div/div[3]/div[1]/div/div/div[1]/label/span'
-# 단위 : 천톤/천$
 TMS_UNIT_T_TON_SELECT_ELEMENT = '/html/body/div/section/div[2]/div/div[3]/div[1]/div/div/div[2]/label/span'
-# 단위 : 백만톤/백만$
 TMS_UNIT_H_TON_SELECT_ELEMENT = '/html/body/div/section/div[2]/div/div[3]/div[1]/div/div/div[3]/label/span'
-# 엑셀 저장 버튼
 TMS_EXCEL_SAVE_BTN_ELEMENT = '/html/body/div/section/div[2]/div/div[4]/div[2]/div[1]/button[1]'
 TMS_COLS_MAPPING = {
         '품목명': 'ITEM_NAME',
