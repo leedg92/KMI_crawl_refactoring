@@ -69,6 +69,67 @@ KNOC_URL = 'https://www.petronet.co.kr/'
 KNOC_DOWNLOAD_PATH = '/opt/airflow/downloads/knoc/'
 KNOC_DESTINATION_PATH = '/opt/airflow/downloads/knoc/done/'
 
+##. tms_cds_stts
+TMS_USER_ID = 'kmilibrary'
+TMS_USER_PW = '!kmilib2024'
+TMS_URL = 'https://stat.kosa.or.kr/tms/cds/TmsCdsStts'
+TMS_DOWNLOAD_PATH = '/opt/airflow/downloads/tms_cds_stts/'
+TMS_DESTINATION_PATH = '/opt/airflow/downloads/tms_cds_stts/done/'
+
+TMS_LOGIN_BTN_ELEMENT = '/html/body/div/div/div/div[2]/div/div[2]/button'
+TMS_USER_ID_INPUT_ELEMENT = '/html/body/div/div/div/div[2]/div/div[3]/div/form/div/input[1]'
+TMS_USER_PW_INPUT_ELEMENT = '/html/body/div/div/div/div[2]/div/div[3]/div/form/div/input[2]'
+TMS_LOGIN_FINISH_BTN_ELEMENT = '/html/body/div/div/div/div[2]/div/div[3]/div/form/button'
+
+TMS_START_YEAR = '2010'
+TMS_START_MONTH = '01'
+
+# 테마별 통계 마우스 올리기
+TMS_MENU_THEME_BTN_ELEMENT = '/html/body/div/header/div/nav/ul/li[3]/a/span'
+# 조강생산 버튼
+TMS_INNER_MENU_TMS_CDS_STTS_BTN_ELEMENT = '/html/body/div/header/div/nav/ul/li[3]/div/ul/li/a/div'
+# [조강] 체크박스
+TMS_CDS_STTS_CHECK_ELEMENT = '/html/body/div/section/div[1]/div[1]/ul/li/label'
+# 시점 버튼
+TMS_DATE_SETTING_BTN_ELEMENT = '/html/body/div/section/div[2]/div/div[3]/div[1]/button[1]'
+# 시점(월단위)
+TMS_MONTH_SETTING_BTN_ELEMENT = '/html/body/div/div[3]/section/div/div/div[2]/div/ul[1]/li[1]/button'
+# 시점(연단위)
+TMS_YEAR_SETTING_BTN_ELEMENT = '/html/body/div/div[3]/section/div/div/div[2]/div/ul[1]/li[2]/button'
+# 시작_연선택
+TMS_START_YEAR_SELECT_BTN_ELEMENT = '/html/body/div/div[3]/section/div/div/div[2]/div/ul[2]/div/div/div[1]/div[1]/select'
+# 시작_월선택
+TMS_START_MONTH_SELECT_BTN_ELEMENT = '/html/body/div/div[3]/section/div/div/div[2]/div/ul[2]/div/div/div[1]/div[2]/select'
+# 날짜 전체 선택 (연단위)
+TMS_DATE_ALL_SELECT_YEAR_BTN_ELEMENT = '/html/body/div/div[3]/section/div/div/div[2]/div/ul[2]/div/div/div[1]/div[4]/label/span'
+# 날짜 전체 선택 (월단위)
+TMS_DATE_ALL_SELECT_MONTH_BTN_ELEMENT = '/html/body/div/div[3]/section/div/div/div[2]/div/ul[2]/div/div/div[1]/div[6]/label/span'
+# 적용하기 버튼
+TMS_DATE_APPLY_BTN_ELEMENT = '/html/body/div/div[3]/section/div/div/div[2]/div/button'
+# 단위 선택 버튼
+TMS_UNIT_SELECT_BTN_ELEMENT = '/html/body/div/section/div[2]/div/div[3]/div[1]/button[2]'
+# 단위 : 톤/$ 선택
+TMS_UNIT_TON_SELECT_ELEMENT = '/html/body/div/section/div[2]/div/div[3]/div[1]/div/div/div[1]/label/span'
+# 단위 : 천톤/천$
+TMS_UNIT_T_TON_SELECT_ELEMENT = '/html/body/div/section/div[2]/div/div[3]/div[1]/div/div/div[2]/label/span'
+# 단위 : 백만톤/백만$
+TMS_UNIT_H_TON_SELECT_ELEMENT = '/html/body/div/section/div[2]/div/div[3]/div[1]/div/div/div[3]/label/span'
+# 엑셀 저장 버튼
+TMS_EXCEL_SAVE_BTN_ELEMENT = '/html/body/div/section/div[2]/div/div[4]/div[2]/div[1]/button[1]'
+TMS_COLS_MAPPING = {
+        '품목명': 'ITEM_NAME',
+        '시점': 'YEAR',
+        '당년실적_계': 'CURRENT_RESULT_TOTAL',
+        '당년실적_전로강_집계': 'CURRENT_RESULT_BOF_TOTAL',
+        '당년실적_전로강_보통강': 'CURRENT_RESULT_BOF_ORDINARY_STEEL',
+        '당년실적_전로강_특수강': 'CURRENT_RESULT_BOF_SPECIAL_STEEL',
+        '당년실적_전기로강_집계': 'CURRENT_RESULT_EAF_TOTAL',
+        '당년실적_전기로강_보통강': 'CURRENT_RESULT_EAF_ORDINARY_STEEL',
+        '당년실적_전기로강_특수강': 'CURRENT_RESULT_EAF_SPECIAL_STEEL'
+    }
+
+
+
 ##. IHS_ECONOMY
 IHS_URL = "https://connect.ihsmarkit.com/"
 
