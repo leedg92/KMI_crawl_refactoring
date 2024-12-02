@@ -68,7 +68,7 @@ def insert_to_dwdb(result_dataframe, table_name):
         password = MDB_PASSWORD,
         host = MDB_HOST,
         port = MDB_PORT,
-        database = 'kmi_dw_db'
+        database = MDB_DATABASE
     )
 
     engine = create_engine(url)
