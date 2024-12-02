@@ -88,7 +88,7 @@ def func1():
 
     final_df = processing_dataframe(def_result_df)
 
-    def_table_name = 'fct_world_bank_cargo_volume_2'
+    def_table_name = 'fct_world_bank_cargo_volume'
     def_check_column = 'DATE'
     def_conn = maria_kmi_dw_db_connection()
     def_origin_df = pd.read_sql(f"SELECT DISTINCT({def_check_column}) FROM {def_table_name}", con=def_conn)
