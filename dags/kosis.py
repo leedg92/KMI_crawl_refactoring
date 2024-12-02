@@ -34,6 +34,9 @@ from kosis_config import *
 # - 데이터 7, 8 추가
 # - 코드 최적화 (kosis_config 추가)
 
+##. 2024-12-02
+# - read_sql 구문 변경(dtype 삭제)
+
 ######################
 ## DAG 정의
 ######################
@@ -48,7 +51,7 @@ init_dag = DAG(
     dag_id = 'kosis_data_collector',
     default_args = init_args,
     # schedule_interval = '@once'
-    schedule_interval = '0 1 * * *'
+    schedule_interval = '0 1 1 * *'
 )
 
 task_start = DummyOperator(task_id='start', dag=init_dag)
@@ -121,8 +124,8 @@ def func1():
     def_table_name = 'fct_kosis_population_metrics'
     def_check_column = 'LST_CHN_DE'
     def_conn = maria_kmi_dw_db_connection()
-    def_origin_df = pd.read_sql(f"SELECT DISTINCT({def_check_column}) FROM {def_table_name}", con=def_conn, dtype='object')
-    def_origin_cols = pd.read_sql(f"SELECT * FROM {def_table_name} LIMIT 5", con=def_conn, dtype='object')
+    def_origin_df = pd.read_sql(f"SELECT DISTINCT({def_check_column}) FROM {def_table_name}", con=def_conn)
+    def_origin_cols = pd.read_sql(f"SELECT * FROM {def_table_name} LIMIT 5", con=def_conn)
     def_conn.close()
 
     if response_df[def_check_column].max() == def_origin_df[def_check_column].max():
@@ -157,8 +160,8 @@ def func2():
     def_table_name = 'fct_kosis_population_secenario'
     def_check_column = 'LST_CHN_DE'
     def_conn = maria_kmi_dw_db_connection()
-    def_origin_df = pd.read_sql(f"SELECT DISTINCT({def_check_column}) FROM {def_table_name}", con=def_conn, dtype='object')
-    def_origin_cols = pd.read_sql(f"SELECT * FROM {def_table_name} LIMIT 5", con=def_conn, dtype='object')
+    def_origin_df = pd.read_sql(f"SELECT DISTINCT({def_check_column}) FROM {def_table_name}", con=def_conn)
+    def_origin_cols = pd.read_sql(f"SELECT * FROM {def_table_name} LIMIT 5", con=def_conn)
     def_conn.close()
 
     if response_df[def_check_column].max() == def_origin_df[def_check_column].max():
@@ -204,8 +207,8 @@ def func3():
     def_table_name = 'fct_kosis_grain_consumption'
     def_check_column = 'LST_CHN_DE'
     def_conn = maria_kmi_dw_db_connection()
-    def_origin_df = pd.read_sql(f"SELECT DISTINCT({def_check_column}) FROM {def_table_name}", con=def_conn, dtype='object')
-    def_origin_cols = pd.read_sql(f"SELECT * FROM {def_table_name} LIMIT 5", con=def_conn, dtype='object')
+    def_origin_df = pd.read_sql(f"SELECT DISTINCT({def_check_column}) FROM {def_table_name}", con=def_conn)
+    def_origin_cols = pd.read_sql(f"SELECT * FROM {def_table_name} LIMIT 5", con=def_conn)
     def_conn.close()
 
     if response_df[def_check_column].max() == def_origin_df[def_check_column].max():
@@ -244,8 +247,8 @@ def func4():
     def_table_name = 'fct_kosis_region_income'
     def_check_column = 'LST_CHN_DE'
     def_conn = maria_kmi_dw_db_connection()
-    def_origin_df = pd.read_sql(f"SELECT DISTINCT({def_check_column}) FROM {def_table_name}", con=def_conn, dtype='object')
-    def_origin_cols = pd.read_sql(f"SELECT * FROM {def_table_name} LIMIT 5", con=def_conn, dtype='object')
+    def_origin_df = pd.read_sql(f"SELECT DISTINCT({def_check_column}) FROM {def_table_name}", con=def_conn)
+    def_origin_cols = pd.read_sql(f"SELECT * FROM {def_table_name} LIMIT 5", con=def_conn)
     def_conn.close()
     
     if response_df[def_check_column].max() == def_origin_df[def_check_column].max():
@@ -313,8 +316,8 @@ def func5():
     def_table_name = 'fct_kosis_product_index'
     def_check_column = 'LST_CHN_DE'
     def_conn = maria_kmi_dw_db_connection()
-    def_origin_df = pd.read_sql(f"SELECT DISTINCT({def_check_column}) FROM {def_table_name}", con=def_conn, dtype='object')
-    def_origin_cols = pd.read_sql(f"SELECT * FROM {def_table_name} LIMIT 5", con=def_conn, dtype='object')
+    def_origin_df = pd.read_sql(f"SELECT DISTINCT({def_check_column}) FROM {def_table_name}", con=def_conn)
+    def_origin_cols = pd.read_sql(f"SELECT * FROM {def_table_name} LIMIT 5", con=def_conn)
     def_conn.close()
 
     if response_df[def_check_column].max() == def_origin_df[def_check_column].max():
@@ -377,8 +380,8 @@ def func6():
     def_check_column = 'LST_CHN_DE'
     
     def_conn = maria_kmi_dw_db_connection()
-    def_origin_df = pd.read_sql(f"SELECT DISTINCT({def_check_column}) FROM {def_table_name}", con=def_conn, dtype='object')
-    def_origin_cols = pd.read_sql(f"SELECT * FROM {def_table_name} LIMIT 5", con=def_conn, dtype='object')
+    def_origin_df = pd.read_sql(f"SELECT DISTINCT({def_check_column}) FROM {def_table_name}", con=def_conn)
+    def_origin_cols = pd.read_sql(f"SELECT * FROM {def_table_name} LIMIT 5", con=def_conn)
     def_conn.close()
 
     if response_df[def_check_column].max() == def_origin_df[def_check_column].max():
@@ -413,8 +416,8 @@ def func7():
     def_table_name = 'fct_kosis_service_industry'
     def_check_column = 'LST_CHN_DE'
     def_conn = maria_kmi_dw_db_connection()
-    def_origin_df = pd.read_sql(f"SELECT DISTINCT({def_check_column}) FROM {def_table_name}", con=def_conn, dtype='object')
-    def_origin_cols = pd.read_sql(f"SELECT * FROM {def_table_name} LIMIT 5", con=def_conn, dtype='object')
+    def_origin_df = pd.read_sql(f"SELECT DISTINCT({def_check_column}) FROM {def_table_name}", con=def_conn)
+    def_origin_cols = pd.read_sql(f"SELECT * FROM {def_table_name} LIMIT 5", con=def_conn)
     def_conn.close()
 
     if response_df[def_check_column].max() == def_origin_df[def_check_column].max():
@@ -491,8 +494,8 @@ def func8():
     def_check_column = 'LST_CHN_DE'
 
     def_conn = maria_kmi_dw_db_connection()
-    def_origin_df = pd.read_sql(f"SELECT DISTINCT({def_check_column}) FROM {def_table_name}", con=def_conn, dtype='object')
-    def_origin_cols = pd.read_sql(f"SELECT * FROM {def_table_name} LIMIT 5", con=def_conn, dtype='object')
+    def_origin_df = pd.read_sql(f"SELECT DISTINCT({def_check_column}) FROM {def_table_name}", con=def_conn)
+    def_origin_cols = pd.read_sql(f"SELECT * FROM {def_table_name} LIMIT 5", con=def_conn)
     def_conn.close()
 
     if response_df[def_check_column].max() == def_origin_df[def_check_column].max():
