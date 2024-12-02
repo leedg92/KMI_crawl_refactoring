@@ -24,6 +24,9 @@ def convert_to_category_structure(
    collection_type: str = 'A',
    category_prefix: str = '11'
 ):
+   # CSV 헤더 정의
+   header = "CATEGORY_CD|CATEGORY_NM|API_PATH|PARENT_CD|DEPTH_LEVEL|LAST_DEPTH_YN|COLLECTION_CYCLE|COLLECTION_TYPE"
+   
    # 엑셀 파일 읽기
    df = pd.read_excel(excel_path)
    print(f"총 {len(df)}개의 행을 읽었습니다.")
@@ -36,18 +39,24 @@ def convert_to_category_structure(
    current_depth_values = {i: None for i in range(1, 8)}
    current_depth_codes = {i: None for i in range(1, 8)}
    
-   # 헤더 준비
-   header = "CATEGORY_CD|CATEGORY_NM|API_PATH|PARENT_CD|DEPTH_LEVEL|LAST_DEPTH_YN|COLLECTION_CYCLE|COLLECTION_TYPE"
-   
    for idx, row in df.iterrows():
        try:
            # 각 depth 값 확인
            last_valid_depth = 0
+           current_depth = 0
+           
+           # 먼저 마지막 유효 depth를 찾음
+           for depth in range(1, 8):
+               depth_value = row[f'DEPTH_{depth:02d}'].strip() if not pd.isna(row[f'DEPTH_{depth:02d}']) else None
+               if depth_value:
+                   last_valid_depth = depth
+           
+           # depth별 처리
            for depth in range(1, 8):
                depth_value = row[f'DEPTH_{depth:02d}'].strip() if not pd.isna(row[f'DEPTH_{depth:02d}']) else None
                
                if depth_value:
-                   last_valid_depth = depth
+                   current_depth = depth
                    
                    # 값이 변경되었거나 처음인 경우
                    if depth_value != current_depth_values[depth]:
@@ -65,6 +74,15 @@ def convert_to_category_structure(
                            code_parts.append(get_sequence_code(depth_counters[d]))
                        current_depth_codes[depth] = ''.join(code_parts)
                        
+                       # API_PATH 처리
+                       api_path = ''
+                       api_path_col = f'API_PATH_{depth:02d}'  # 현재 depth에 해당하는 API_PATH 컬럼
+                       if api_path_col in df.columns:
+                           api_path = str(row[api_path_col]).strip() if not pd.isna(row[api_path_col]) else ''
+                       
+                       # 디버깅을 위한 출력
+                       print(f"Processing depth {depth}, API_PATH column: {api_path_col}, value: {api_path}")
+                       
                        # 결과 저장
                        is_last = (depth == last_valid_depth)
                        parent_code = '00000000000000' if depth == 1 else current_depth_codes[depth-1]
@@ -77,14 +95,16 @@ def convert_to_category_structure(
                            if row['W'] == 'V': cycles.append('W')
                            if row['D'] == 'V': cycles.append('D')
                            collection_cycle = ','.join(cycles)
+                           current_collection_type = collection_type
                        else:
                            collection_cycle = ''
+                           current_collection_type = ''
                        
                        result_dict[current_depth_codes[depth]] = (
-                           f"{current_depth_codes[depth]}|{depth_value}||"
+                           f"{current_depth_codes[depth]}|{depth_value}|{api_path}|"
                            f"{parent_code}|{depth:02d}|"
                            f"{'Y' if is_last else 'N'}|"
-                           f"{collection_cycle}|{collection_type if is_last else ''}"
+                           f"{collection_cycle}|{current_collection_type}"
                        )
            
            if (idx + 1) % 100 == 0 or (idx + 1) == len(df):
@@ -97,15 +117,20 @@ def convert_to_category_structure(
    # 결과를 코드 순서대로 정렬하여 파일로 저장하기 전에 코드 길이 보정
    formatted_dict = {}
    for code, value in result_dict.items():
+       value_parts = value.split('|')
+       
+       # 카테고리 코드 보정
        if len(code) != 14:
            new_code = code.ljust(14, '0')
-           value_parts = value.split('|')
            value_parts[0] = new_code
-           if value_parts[3] != '00000000000000':
-               value_parts[3] = value_parts[3].ljust(14, '0')
-           formatted_dict[new_code] = '|'.join(value_parts)
        else:
-           formatted_dict[code] = value
+           new_code = code
+           
+       # 부모 코드 보정 (14자리로 맞춤)
+       if value_parts[3] != '00000000000000':
+           value_parts[3] = value_parts[3].ljust(14, '0')
+           
+       formatted_dict[new_code] = '|'.join(value_parts)
    
    # 정렬 및 저장
    result_rows = [header] + [formatted_dict[k] for k in sorted(formatted_dict.keys())]
@@ -157,9 +182,9 @@ def convert_to_category_structure(
 
 if __name__ == "__main__":
    convert_to_category_structure(
-       excel_path="D:\\Dev\\KMI_WORKSPACE\\WIP\\category_csv\\유엔 무역 개발 기구 unctadstat(UNCTAD)_dataset.xlsx",
-       collection_type="A",
-       category_prefix="11"
+       excel_path="D:\\Dev\\KMI_WORKSPACE\\WIP\\category_csv\\01. [A]_한국은행 경제통계 시스템(ECOS)_dataset.xlsx",
+       collection_type="A", 
+       category_prefix="01"
    )
 
 def validate_results(result_dict: dict, df: pd.DataFrame) -> bool:
