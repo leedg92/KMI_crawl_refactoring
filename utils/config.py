@@ -39,6 +39,14 @@ UNCTAD_URL = 'https://unctadstat-api.unctad.org/bulkdownload/US.PLSCI/US_PLSCI'
 UNCTAD_DOWNLOAD_PATH = '/opt/airflow/downloads/unctad/'
 UNCTAD_DESTINATION_PATH = '/opt/airflow/downloads/unctad/done/'
 
+##. investing_bdi_index
+INVESTING_URL = 'https://www.investing.com/indices/baltic-dry-historical-data'
+INVESTING_DOWNLOAD_PATH = '/opt/airflow/downloads/investing/'
+INVESTING_DESTINATION_PATH = '/opt/airflow/downloads/investing/done/'
+
+INVESTRING_USER_ID = 'honggeun.kwak@diquest.com'
+INVESTRING_USER_PW = '1q2w3e4r!@'
+
 ##. kcia_oil_product
 KCIA_URL = 'https://kcia.kr/petrochemical-industry/statistics'
 KCIA_DOWNLOAD_PATH = '/opt/airflow/downloads/kcia/'
