@@ -91,7 +91,7 @@ def func1():
     def_table_name = 'fct_world_bank_cargo_volume_2'
     def_check_column = 'DATE'
     def_conn = maria_kmi_dw_db_connection()
-    def_origin_df = pd.read_sql(f"SELECT DISTINCT({def_check_column}) FROM {def_table_name}", con=def_conn, dtype='object')
+    def_origin_df = pd.read_sql(f"SELECT DISTINCT({def_check_column}) FROM {def_table_name}", con=def_conn)
     def_conn.close()
 
     if final_df[def_check_column].max() == def_origin_df[def_check_column].max():
