@@ -140,6 +140,9 @@ def investing_file_download(time_frame):
     
     # Set selenium
     opts = set_selenium_options()
+    opts.add_argument("--disable-dev-shm-usage")  # 공유 메모리 비활성화
+    opts.add_argument("--disable-devtools")  # DevTools 비활성화
+    opts.add_argument("--remote-debugging-port=0")  # DevTools 디버깅 포트 비활성화
     browser = set_webdriver_browser(opts, INVESTING_DOWNLOAD_PATH)
 
     # URL Access    
