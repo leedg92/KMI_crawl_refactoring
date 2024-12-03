@@ -102,17 +102,18 @@ def wait_for_xlsx_and_read(download_path, timeout=60):
 def kucea_file_download():
     
     # 쿠키 목록
-    cookies = [
-        {'name': 'foo', 'value': 'bar'},
-        {'name': 'session_id', 'value': '12345', 'path': '/'},
-        {'name': 'secure_token', 'value': 'abcde', 'path': '/', 'secure': True},
-        {'name': 'tracking', 'value': 'enabled', 'sameSite': 'Strict'}
-    ]
+    cookie = {
+        'name': 'sensitive_data',
+        'value': 'secret',
+        'secure': True,               
+        'httpOnly': True,             
+    }
     
     # Set selenium
     opts = set_selenium_options()
-    browser = set_webdriver_browser_cookies(opts, KUCEA_DOWNLOAD_PATH, cookies, KUCEA_URL)
+    browser = set_webdriver_browser_cookies(opts, KUCEA_DOWNLOAD_PATH, cookie, KUCEA_URL)
 
+    
     # URL Access    
     try:
         # browser.get(KUCEA_URL)

@@ -154,9 +154,8 @@ def set_webdriver_browser_cookies(options, downloadPath, cookies, target_url):
     browser.implicitly_wait(10)  # 페이지 로드 대기
     
     # 쿠키 추가
-    for cookie in cookies:
-        browser.add_cookie(cookie)
-        print(f"[INFO] Added cookie: {cookie}")
+    browser.add_cookie(cookies)
+    print(f"[INFO] Added cookie: {cookies}")
 
     # 쿠키 적용을 위해 다시 로드
     browser.get(target_url)
