@@ -25,7 +25,7 @@ import pymysql
 ######################
 init_args = {
     'owner' : OWNER_NAME,
-    'start_date' : datetime.datetime(2024, 11, 11)
+    'start_date' : datetime.datetime(2024, 12, 3)
 }
 init_dag = DAG(
     dag_id = 'investing_bdi_index_collector',
@@ -105,7 +105,7 @@ def random_sleep():
 def preprocessing_data(term, origin_df):
     df = origin_df.copy()
 
-    columns_mapping = eval(conf['COLS_MAPPING'])
+    columns_mapping = INVESTING_COLS_MAPPING
     df.rename(columns=columns_mapping, inplace=True)
     drop_col_name = ['VOL']
     df.drop(columns=drop_col_name, axis=1, inplace=True)
@@ -147,14 +147,16 @@ def investing_file_download(time_frame):
         browser.get(INVESTING_URL)
         browser.implicitly_wait(10)
         time.sleep(0.5)
+                  
+        # 다운로드 버튼 클릭        
+        download_btn_element = WebDriverWait(browser, 60).until(
+            EC.element_to_be_clickable((By.XPATH, '/html/body/div[1]/div[2]/div[2]/div[2]/div[1]/div[2]/div[2]/div[2]/div[1]/div/span[2]'))
+        )
+        browser.execute_script("arguments[0].click();", download_btn_element)
         
-        # 다운로드 버튼 클릭
-        download_btn_element = browser.find_element(By.XPATH, '/html/body/div[1]/div[2]/div[2]/div[2]/div[1]/div[2]/div[2]/div[2]/div[1]/div/span[2]')
-        download_btn_element.click()
-        
-        # login 처리 
-        sign_in_btn_element = browser.find_element(By.XPATH, '/html/body/div[4]/div/div/form/p[2]/button')
-        sign_in_btn_element.click()
+        # login 처리         
+        sign_in_btn_element = WebDriverWait(browser, 60).until(EC.visibility_of_element_located((By.XPATH, '/html/body/div[4]/div/div/form/p[2]/button')))
+        browser.execute_script("arguments[0].click();", sign_in_btn_element)
         
         print(f'[Login] Input User ID ~~~')
         user_id_input_element = WebDriverWait(browser, 20).until(EC.visibility_of_element_located((By.XPATH, '/html/body/div[4]/div/div/form/div[3]/input')))
@@ -166,23 +168,35 @@ def investing_file_download(time_frame):
         user_pw_input_element.send_keys(INVESTING_USER_PW)
         random_sleep()
         
-        login_finish_signin_btn_element = browser.find_element(By.XPATH, '/html/body/div[4]/div/div/form/button')
-        login_finish_signin_btn_element.click()
-        
-        
+        login_finish_btn_element = WebDriverWait(browser, 20).until(
+            EC.presence_of_element_located((By.XPATH, '/html/body/div[4]/div/div/form/button'))
+        )
+        login_finish_btn_element.click()
+        print(f'[Login] Success Login.')
+
+       
         # time frame 선택
-        time_frame_element = browser.find_element(By.XPATH, '/html/body/div[1]/div[2]/div[2]/div[2]/div[1]/div[2]/div[2]/div[1]/div[2]/span') 
-        time_frame_element.click()
+        time_frame_element = browser.find_element(By.XPATH, '/html/body/div[1]/div[2]/div[2]/div[2]/div[1]/div[2]/div[2]/div[1]/div[2]/span')         
+        browser.execute_script("arguments[0].scrollIntoView(true);", time_frame_element)
+        browser.execute_script("arguments[0].click();", time_frame_element)
+        
+        random_sleep()
+        print('time frame 선택')
+        term_select_btn_element = browser.find_element(By.XPATH, time_frame) 
+        browser.execute_script("arguments[0].click();", term_select_btn_element)
+        print('time frame 주기 선택')
         random_sleep()
         
-        term_select_btn_element = browser.find_element(By.XPATH, time_frame) 
-        term_select_btn_element.click()
-
-        # 다운로드 버튼 클릭
-        download_btn_element = browser.find_element(By.XPATH, '/html/body/div[1]/div[2]/div[2]/div[2]/div[1]/div[2]/div[2]/div[2]/div[1]/div/span[2]')
-        download_btn_element.click()
+        # 다운로드 버튼 클릭        
+        download_btn_element = WebDriverWait(browser, 60).until(
+            EC.element_to_be_clickable((By.XPATH, '/html/body/div[1]/div[2]/div[2]/div[2]/div[1]/div[2]/div[2]/div[2]/div[1]/div/div[1]/span'))
+        )
+        browser.execute_script("arguments[0].click();", download_btn_element)
+        
+        print('다운로드 버튼 클릭')
         
         new_files = wait_for_csv_and_read(INVESTING_DOWNLOAD_PATH)
+        
         
         return new_files       
         
@@ -200,6 +214,7 @@ def func1():
     time_frame_daliy = '/html/body/div[1]/div[2]/div[2]/div[2]/div[1]/div[2]/div[2]/div[1]/div[2]/div/div[1]/span'
     term = 'D'
     file_names = investing_file_download(time_frame_daliy)
+    print(file_names)
     
     full_file_name = INVESTING_DOWNLOAD_PATH + file_names
     done_file_name = INVESTING_DESTINATION_PATH + term +'_' + get_year_month_day() + '_' + file_name

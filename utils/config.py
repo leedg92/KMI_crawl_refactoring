@@ -10,18 +10,18 @@ OWNER_NAME = 'ISCHOI'
 #MDB_DATABASE = 'kmi_dw_db'
 
 ##. kmi DB
-#MDB_USERNAME = 'saltlux'
-#MDB_PASSWORD = 'saltlux1qw2#ER$'
-#MDB_HOST = '192.168.2.125'
-#MDB_PORT = 33306
-#MDB_DATABASE = 'ihs'
+MDB_USERNAME = 'saltlux'
+MDB_PASSWORD = 'saltlux1qw2#ER$'
+MDB_HOST = '192.168.2.125'
+MDB_PORT = 33306
+MDB_DATABASE = 'ihs'
 
 ##, ulsan DB
-MDB_HOST = '211.193.141.217'
-MDB_PORT = 33671
-MDB_USERNAME = 'dgyoo'
-MDB_PASSWORD = 'ehdrms2@'
-MDB_DATABASE = 'kmi_dw_db'
+# MDB_HOST = '211.193.141.217'
+# MDB_PORT = 33671
+# MDB_USERNAME = 'dgyoo'
+# MDB_PASSWORD = 'ehdrms2@'
+# MDB_DATABASE = 'kmi_dw_db'
 
 
 ##. KOSIS
@@ -44,8 +44,18 @@ INVESTING_URL = 'https://www.investing.com/indices/baltic-dry-historical-data'
 INVESTING_DOWNLOAD_PATH = '/opt/airflow/downloads/investing/'
 INVESTING_DESTINATION_PATH = '/opt/airflow/downloads/investing/done/'
 
-INVESTRING_USER_ID = 'honggeun.kwak@diquest.com'
-INVESTRING_USER_PW = '1q2w3e4r!@'
+INVESTING_USER_ID = 'honggeun.kwak@diquest.com'
+INVESTING_USER_PW = '1q2w3e4r!@'
+
+INVESTING_COLS_MAPPING = {
+               'Date': 'DATE',
+               'Price': 'PRICE',
+               'Open': 'OPEN',
+               'High': 'HIGH',
+               'Low': 'LOW',
+               'Vol.': 'VOL',
+               'Change %%': 'CHANGE'
+            }
 
 ##. kcia_oil_product
 KCIA_URL = 'https://kcia.kr/petrochemical-industry/statistics'
