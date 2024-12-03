@@ -128,7 +128,7 @@ def set_selenium_options():
     opts.add_argument("--disable-blink-features=AutomationControlled")
     
     # 인증서 오류 무시
-    opts.add_argument("--ignore-certificate-errors")   
+    opts.add_argument("--ignore-certificate-errors")
     
     return opts
 
@@ -142,4 +142,26 @@ def set_webdriver_browser(options, downloadPath):
     browser.execute_cdp_cmd('Page.setDownloadBehavior', params)
     browser.set_page_load_timeout(600)
 
+    return browser
+
+def set_webdriver_browser_cookies(options, downloadPath, cookies, target_url):
+    service = Service(executable_path='/usr/local/bin/chromedriver')    
+    browser = webdriver.Chrome(service=service, options=options)
+    print(f"[INFO] ({datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')}) => Initializing WebDriver...")
+    
+    # 페이지 이동 (쿠키를 추가하려는 도메인)
+    browser.get(target_url)
+    browser.implicitly_wait(10)  # 페이지 로드 대기
+    
+    # 쿠키 추가
+    for cookie in cookies:
+        browser.add_cookie(cookie)
+        print(f"[INFO] Added cookie: {cookie}")
+
+    # 쿠키 적용을 위해 다시 로드
+    browser.get(target_url)
+    
+    params = {'behavior': 'allow', 'downloadPath': downloadPath}
+    browser.execute_cdp_cmd('Page.setDownloadBehavior', params)
+    browser.set_page_load_timeout(600)
     return browser
