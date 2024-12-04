@@ -25,7 +25,7 @@ import pymysql
 ######################
 init_args = {
     'owner' : OWNER_NAME,
-    'start_date' : datetime.datetime(2024, 11, 11)
+    'start_date' : datetime.datetime(2024, 12, 4)
 }
 init_dag = DAG(
     dag_id = 'ksa_sea_freight_index_collector',
@@ -92,9 +92,9 @@ def ksa_file_download():
         start_date_element = browser.find_element(By.XPATH, '/html/body/div[1]/div/section/form/div/div/div/div[1]/input')
         start_date_element.click()
         
-        #2010 - 2019 date seetting
-        start_year_element = browser.find_element(By.XPATH, '/html/body/div[2]/div[1]/nav/div[2]')
-        browser.execute_script("arguments[0].innerText = '2010 - 2019';", start_year_element)
+        #2010 - 2019 date setting
+        # start_year_element = browser.find_element(By.XPATH, '/html/body/div[2]/div[1]/nav/div[2]')
+        # browser.execute_script("arguments[0].innerText = '2010 - 2019';", start_year_element)
         
         start_date_title_element = browser.find_element(By.XPATH, '/html/body/div[2]/div[1]/nav/div[2]')
         start_date_title_element.click()
@@ -103,8 +103,7 @@ def ksa_file_download():
 
         start_date_year_elements = browser.find_elements(By.XPATH, '/html/body/div[2]/div[1]/div/div[3]/div/div')
         for start_date_year_element in start_date_year_elements:
-            #if start_date_year_element.text == str(int(get_year()) - 1):
-            if start_date_year_element.text == str(2011):
+            if start_date_year_element.text == str(int(get_year()) - 1):
                 start_date_year_element.click()
                 break
         start_date_month_elements = browser.find_elements(By.XPATH, '/html/body/div[2]/div[1]/div/div[2]/div/div')
