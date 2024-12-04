@@ -101,46 +101,16 @@ def wait_for_xlsx_and_read(download_path, timeout=60):
 
 def kucea_file_download():
     
-    # 쿠키 목록
-    cookies = [{
-        'name': 'PHPSESSID',
-        'value': 'j0mvphg7ld6dtkmvh7h781f152',
-        'secure': True,
-        'httpOnly': True,
-        'domain' : 'kucea.or.kr',
-        'path' : '/'
-    },{
-        'name': 'mobile',
-        'value': 'false',
-        'secure': True,
-        'httpOnly': True,
-        'domain' : 'kucea.or.kr',
-        'path' : '/'
-    },{
-        'name': 'user-agent',
-        'value': 'f51bb482c660d0eeadd1f058058a2b35',
-        'secure': True,
-        'httpOnly': True,
-        'domain' : 'kucea.or.kr',
-        'path' : '/'
-    }]
+    # Set firefox
+    browser = set_firefox_browser(KUCEA_DOWNLOAD_PATH)
     
-    # Set selenium
-    opts = set_selenium_options()
-    browser = set_webdriver_browser_cookies(opts, KUCEA_DOWNLOAD_PATH, cookies, KUCEA_URL)
-    print("browser.get_cookies()")
-    print(browser.get_cookies())
-    
-    # URL Access    
+    # URL Access
     try:
-        # browser.get(KUCEA_URL)
-        # browser.implicitly_wait(20)
+        browser.get(KUCEA_URL)
+        browser.implicitly_wait(20)
         
         specific_word = "통관기준"
-        print(specific_word)
-        current_url = browser.current_url
-        print(current_url)
-        print(browser.page_source)
+        
        # 행의 수를 기반으로 반복문 실행
         rows_count = len(browser.find_elements(By.XPATH, "//table/tbody/tr"))
         time.sleep(3)

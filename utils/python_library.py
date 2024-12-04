@@ -9,6 +9,7 @@ from airflow.operators.python import PythonOperator
 from airflow.operators.dummy_operator import DummyOperator
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.chrome.service import Service
+from selenium.webdriver.firefox.options import Options as FireOptions
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support.ui import Select
@@ -103,7 +104,24 @@ def drop_table(table_name):
 
     except Exception as e:
         print(e)
-        
+
+def set_firefox_options(download_path):
+    # Set Firefox options
+    options = Options()
+    options.add_argument("--disable-blink-features=AutomationControlled")
+    options.add_argument("--disable-extensions")
+    options.add_argument("--disable-popup-blocking")
+    options.add_argument("--window-size=1920,1080")  # Window size    
+    options.set_preference("browser.download.dir", download_path)
+    options.set_preference("browser.download.folderList", 2)  # 2: Use custom download directory
+    options.set_preference("browser.helperApps.neverAsk.saveToDisk", "application/octet-stream")
+    options.set_preference("browser.download.useDownloadDir", True)
+    options.set_preference("pdfjs.disabled", True)  # Disable built-in PDF viewer
+
+    return options
+
+
+
         
 def set_selenium_options():
     opts = Options()
@@ -144,24 +162,24 @@ def set_webdriver_browser(options, downloadPath):
 
     return browser
 
-def set_webdriver_browser_cookies(options, downloadPath, cookies, target_url):
-    service = Service(executable_path='/usr/local/bin/chromedriver')    
-    browser = webdriver.Chrome(service=service, options=options)
-    print(f"[INFO] ({datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')}) => Initializing WebDriver...")
+def set_firefox_browser(download_path=None):
     
-    # 페이지 이동 (쿠키를 추가하려는 도메인)
-    browser.get(target_url)
-    browser.implicitly_wait(10)  # 페이지 로드 대기
-    
-    # 쿠키 추가
-    for cookie in cookies:
-        browser.add_cookie(cookie)
-        print(f"[INFO] Added cookie: {cookie}")
+    options = FireOptions()
+    options.add_argument("--disable-popup-blocking")
+    options.add_argument("--disable-extensions")
+    options.add_argument("--window-size=1920,1080")  
 
-    # 쿠키 적용을 위해 다시 로드
-    browser.get(target_url)
-    
-    params = {'behavior': 'allow', 'downloadPath': downloadPath}
-    browser.execute_cdp_cmd('Page.setDownloadBehavior', params)
-    browser.set_page_load_timeout(600)
-    return browser
+    if download_path:
+        options.set_preference("browser.download.dir", download_path)
+        options.set_preference("browser.download.folderList", 2)  
+        options.set_preference("browser.helperApps.neverAsk.saveToDisk", "application/octet-stream")
+        options.set_preference("pdfjs.disabled", True)
+
+    try:
+        browser = webdriver.Firefox(options=options)
+        print(f"[INFO] ({datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')}) => Initializing WebDriver...")
+        
+        return browser
+    except Exception as e:
+        print(f"[ERROR] Failed to initialize Firefox WebDriver: {e}")
+        raise
