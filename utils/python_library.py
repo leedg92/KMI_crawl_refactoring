@@ -17,6 +17,7 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver import ActionChains
 import time, datetime
 import random
+import re
 import glob
 import shutil
 from selenium import webdriver
@@ -104,24 +105,6 @@ def drop_table(table_name):
 
     except Exception as e:
         print(e)
-
-def set_firefox_options(download_path):
-    # Set Firefox options
-    options = Options()
-    options.add_argument("--disable-blink-features=AutomationControlled")
-    options.add_argument("--disable-extensions")
-    options.add_argument("--disable-popup-blocking")
-    options.add_argument("--window-size=1920,1080")  # Window size    
-    options.set_preference("browser.download.dir", download_path)
-    options.set_preference("browser.download.folderList", 2)  # 2: Use custom download directory
-    options.set_preference("browser.helperApps.neverAsk.saveToDisk", "application/octet-stream")
-    options.set_preference("browser.download.useDownloadDir", True)
-    options.set_preference("pdfjs.disabled", True)  # Disable built-in PDF viewer
-
-    return options
-
-
-
         
 def set_selenium_options():
     opts = Options()
@@ -163,22 +146,27 @@ def set_webdriver_browser(options, downloadPath):
     return browser
 
 def set_firefox_browser(download_path=None):
-    
+   
     options = FireOptions()
+   
+    # 헤드리스 모드 설정
+    options.add_argument("--headless")
+    options.add_argument("--disable-gpu")
     options.add_argument("--disable-popup-blocking")
     options.add_argument("--disable-extensions")
-    options.add_argument("--window-size=1920,1080")  
-
+    options.add_argument("--window-size=1920,1080")  # Adjust as needed
+ 
+    # Optional: Add download preferences
     if download_path:
         options.set_preference("browser.download.dir", download_path)
         options.set_preference("browser.download.folderList", 2)  
         options.set_preference("browser.helperApps.neverAsk.saveToDisk", "application/octet-stream")
-        options.set_preference("pdfjs.disabled", True)
-
+        options.set_preference("pdfjs.disabled", True)  
+ 
+    # Initialize the WebDriver
     try:
         browser = webdriver.Firefox(options=options)
-        print(f"[INFO] ({datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')}) => Initializing WebDriver...")
-        
+        print("[INFO] Firefox WebDriver initialized successfully.")
         return browser
     except Exception as e:
         print(f"[ERROR] Failed to initialize Firefox WebDriver: {e}")

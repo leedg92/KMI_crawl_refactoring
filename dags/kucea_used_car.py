@@ -27,7 +27,7 @@ import pymysql
 ######################
 init_args = {
     'owner' : OWNER_NAME,
-    'start_date' : datetime.datetime(2024, 11, 11)
+    'start_date' : datetime.datetime(2024, 12, 4)
 }
 init_dag = DAG(
     dag_id = 'kucea_used_car_collector',
@@ -129,6 +129,9 @@ def kucea_file_download():
                     cell = row.find_element(By.XPATH, "./td[2]/a")
                     cell.click()
                     browser.implicitly_wait(10)
+                    
+                    #sleep 안주면 에러발생
+                    time.sleep(1)
 
                     # 첨부 파일 선택
                     attached_btn_element = browser.find_elements(By.XPATH, '/html/body/div[1]/div[2]/div/div/div/div[1]/div/div[3]/dl/dt/button')
@@ -138,20 +141,18 @@ def kucea_file_download():
                     
                     # 첨부 파일 다운로드                    
                     files_before = os.listdir(KUCEA_DOWNLOAD_PATH)
-                    print('첨부파일 다운로드 strat111111')
+                    print('files_before::')
                     print(files_before)
                     download_file_element = browser.find_elements(By.XPATH, '/html/body/div[1]/div[2]/div/div/div/div[1]/div/div[3]/dl/dd/ul/li/a')
                     download_file_element[0].click()
                     
-                    print('첨부파일 다운로드 strat22222')
                     wait_for_xlsx_and_read(KUCEA_DOWNLOAD_PATH)
-                    print('첨부파일 다운로드 strat33333')
+
                     files_after = os.listdir(KUCEA_DOWNLOAD_PATH)
+                    print('files_after::')
                     print(files_after)
                     new_files = [f for f in files_after if f not in files_before]
                     
-                    print('첨부파일 다운로드 strat44444')
-                    print(new_files)
                     return new_files
                 
             except Exception as e:
@@ -219,36 +220,39 @@ def preprocessing_data(df):
 def func1():
     print('--' * 10, '(start) kucea_used_car_collector', '--' * 10)    
     
-    download_file_name = kucea_file_download()
+    download_file_name = kucea_file_download()[0]
     
     full_file_name = KUCEA_DOWNLOAD_PATH + download_file_name
     done_file_name = KUCEA_DESTINATION_PATH + get_year_month_day() + '_' + download_file_name
     
     origin_df = pd.read_excel(full_file_name, header=None, sheet_name=None)
     for sheet_name, sheet_df in origin_df.items():
-            number_data = re.search(r'\d+', sheet_name)
-            if number_data:
-                year = number_data.group()
-            else:  # 시트에 숫자(년도) 정보가 없는 경우 패스 (ex. HS CODE)
-                continue
+        print('sheet_name')
+        print(sheet_name)
+        number_data = re.search(r'\d+', sheet_name)
+        if number_data:
+            year = number_data.group()
+        else:  # 시트에 숫자(년도) 정보가 없는 경우 패스 (ex. HS CODE)
+            continue
 
-            result_df = preprocessing_data(sheet_df)
-            if len(result_df) == 0:
-                continue
-            # 시트이름의 연도 값 사용
-            result_df['YEAR'] = year
-            
-            val_list = []
-            for index, result in result_df.iterrows():
-                val_list.append(result.tolist())
-            
-            ## DB insert
-            print(result_df)
-            def_table_name = 'fct_kcuea_used_car'
-            upsert_to_dataframe(result_df, def_table_name, val_list)    
+        result_df = preprocessing_data(sheet_df)
+        if len(result_df) == 0:
+            continue
+        # 시트이름의 연도 값 사용
+        result_df['YEAR'] = year
+        
+        val_list = []
+        for index, result in result_df.iterrows():
+            val_list.append(result.tolist())
+        
+        ## DB insert
+        def_table_name = 'fct_kcuea_used_car'
+        upsert_to_dataframe(result_df, def_table_name, val_list)    
 
-            # 데이터 추출이 완료된 파일, done 으로 이동
-            shutil.move(full_file_name, done_file_name)
+        time.sleep(1)
+        
+    # 데이터 추출이 완료된 파일, done 으로 이동
+    shutil.move(full_file_name, done_file_name)
         
         
     
