@@ -202,6 +202,22 @@ def wait_for_csv_and_read(download_path, timeout=60):
     print(f'[warning] 타임아웃: {download_path}에서 CSV 파일을 찾을 수 없습니다.')
     return None
 
+
+def reset_browser_and_navigate(tool_query_nm):
+    
+    opts = set_selenium_options()
+    new_browser = set_webdriver_browser(opts, IHS_GTAS_DOWNLOAD_PATH)
+    new_browser.get(IHS_URL)
+    new_browser.implicitly_wait(10)
+    
+    # 로그인
+    try_login(new_browser)
+    
+    # 페이지 이동
+    try_move_page(new_browser, tool_query_nm)
+    
+    return new_browser
+
 def func1():
     print('--' * 10, '(start) ihs_gtas_forecasting_annual', '--' * 10)
     
@@ -220,7 +236,9 @@ def func1():
     try_move_page(browser, tool_query_nm)
     
     while True:
+        try:
             time.sleep(5)
+            
             # 컨셉 모두 선택
             concept_all_select_element = WebDriverWait(browser, 60).until(EC.visibility_of_element_located((By.XPATH, IHS_CONCEPT_ALL_SELECT_ELEMENT)))
             concept_all_select_element.click()
@@ -233,14 +251,13 @@ def func1():
             export_btn_element.click()
             
             selected_series_btn_element = browser.find_element(By.XPATH, IHS_SELECTED_SERIES_BTN_ELEMENT)
-            actions = ActionChains(browser) # Mouse Over Event
+            actions = ActionChains(browser)  # Mouse Over Event
             actions.move_to_element(selected_series_btn_element).perform()
             selected_series_btn_element.click()
             
             selected_export_csv_btn_element = browser.find_element(By.XPATH, IHS_SELECTED_EXPORT_CSV_BTN_ELEMENT)
             selected_export_csv_btn_element.click()
             
-        
             download_popup_close_btn_element = WebDriverWait(browser, 400).until(EC.visibility_of_element_located((By.XPATH, IHS_DOWNLOAD_POPUP_CLOSE_BTN_ELEMENT)))
             download_popup_close_btn_element.click()
             
@@ -249,75 +266,85 @@ def func1():
             # Export CSV - Download csv Link Click (csv)
             print(f'[EXPORT CSV] Clicking Download Link ~~~')
             download_link_element = WebDriverWait(browser, 360).until(EC.visibility_of_element_located((By.XPATH, IHS_DOWNLOAD_LINK_ELEMENT)))
-            download_link_element.click()
-
-            # Export Csv 완료 될때 까지 기다리기
-            time.sleep(random.uniform(5, 10))
-
-            # csv 파일 읽기
-            csv_file_path = wait_for_csv_and_read(IHS_GTAS_DOWNLOAD_PATH)
-            
-            if csv_file_path is not None:
-                print('CSV 파일을 성공적으로 읽었습니다.')
+            if download_link_element:
+                download_link_element.click()
             else:
-                print('CSV 파일을 읽지 못했습니다.')
+                raise Exception("Download link not found")
+        
+        except Exception as e:
+            print(f"Error occurred: {e}. Reinitializing browser...")
+            # 기존 브라우저 닫기
+            browser.quit()
+            # 새 브라우저 열기 및 초기화
+            browser = reset_browser_and_navigate(tool_query_nm)
+
+        # Export Csv 완료 될때 까지 기다리기
+        time.sleep(random.uniform(5, 10))
+
+        # csv 파일 읽기
+        csv_file_path = wait_for_csv_and_read(IHS_GTAS_DOWNLOAD_PATH)
+        
+        if csv_file_path is not None:
+            print('CSV 파일을 성공적으로 읽었습니다.')
+        else:
+            print('CSV 파일을 읽지 못했습니다.')
+        
+        #####CSV READ######
+        df = pd.read_csv(csv_file_path)
+        
+        
+        ####### 전처리 하기#############
+        
+        ### Remove Cols(Not Use)
+        drop_col_name = ['Start Date', 'End Date', 'Period']
+        df['YEAR'] = pd.to_datetime(df['Period']).dt.year
+        df.drop(columns=drop_col_name, axis=1, inplace=True)
+        df.rename(columns={'Import Country/Territory': 'IMPORT', 'Export Country/Territory': 'EXPORT', 'Value': 'DATA_VALUE'}, inplace=True)
+        df.columns = df.columns.str.upper()
+        df = df.replace({np.nan: None})
+        
+        print(df.head)
+        
+        ####### 전처리 하기#############
+        
+        ### DB insert 하기            
+        
+        
+        # total page count 랑 현재 페이지가 같으면 break
+        current_page_count_element = WebDriverWait(browser, 60).until(EC.visibility_of_element_located((By.XPATH, IHS_CURRENT_PAGE_COUNT_ELEMENT)))
+        current_page_count = current_page_count_element.text
+        
+        total_page_count_element = WebDriverWait(browser, 60).until(EC.visibility_of_element_located((By.XPATH, IHS_TOTAL_PAGE_COUNT_ELEMENT)))
+        total_page_count = total_page_count_element.text
+        
+        # 파일 done 경로로 이동
+        ## shutil.move(csv_file_path, f"{conf['DESTINATION_PATH']}_{os.path.basename(csv_file_path).split('.')[0]}_{current_page_count}.csv")
+        
+        # 파일 삭제
+        os.remove(csv_file_path)
+        
+        if (current_page_count == total_page_count):
+            print('마지막 페이지 입니다.')                
+            break
+        else:
             
-            #####CSV READ######
-            df = pd.read_csv(csv_file_path)
+            # 스크롤을 맨 밑으로 내리
+            browser.execute_script("window.scrollTo(0, document.body.scrollHeight);")
             
+            # 컨셉체크 해제
+            concept_all_select_element = WebDriverWait(browser, 60).until(EC.visibility_of_element_located((By.XPATH, IHS_CONCEPT_ALL_SELECT_ELEMENT)))
+            concept_all_select_element.click()
             
-            ####### 전처리 하기#############
+            time.sleep(5)
             
-            ### Remove Cols(Not Use)
-            drop_col_name = ['Start Date', 'End Date', 'Period']
-            df['YEAR'] = pd.to_datetime(df['Period']).dt.year
-            df.drop(columns=drop_col_name, axis=1, inplace=True)
-            df.rename(columns={'Import Country/Territory': 'IMPORT', 'Export Country/Territory': 'EXPORT', 'Value': 'DATA_VALUE'}, inplace=True)
-            df.columns = df.columns.str.upper()
-            df = df.replace({np.nan: None})
+            # 다음페이지 누르기
+            next_page_btn_element = WebDriverWait(browser, 60).until(EC.visibility_of_element_located((By.XPATH, IHS_NEXT_PAGE_BTN_ELEMENT)))
+            next_page_btn_element.click()
+            print(f'현재 페이지: {current_page_count}, 총 페이지: {total_page_count}')
             
-            print(df.head)
+            time.sleep(5)
             
-            ####### 전처리 하기#############
-            
-            ### DB insert 하기            
-            
-            
-            # total page count 랑 현재 페이지가 같으면 break
-            current_page_count_element = WebDriverWait(browser, 60).until(EC.visibility_of_element_located((By.XPATH, IHS_CURRENT_PAGE_COUNT_ELEMENT)))
-            current_page_count = current_page_count_element.text
-            
-            total_page_count_element = WebDriverWait(browser, 60).until(EC.visibility_of_element_located((By.XPATH, IHS_TOTAL_PAGE_COUNT_ELEMENT)))
-            total_page_count = total_page_count_element.text
-            
-            # 파일 done 경로로 이동
-            ## shutil.move(csv_file_path, f"{conf['DESTINATION_PATH']}_{os.path.basename(csv_file_path).split('.')[0]}_{current_page_count}.csv")
-            
-            # 파일 삭제
-            os.remove(csv_file_path)
-            
-            if (current_page_count == total_page_count):
-                print('마지막 페이지 입니다.')                
-                break
-            else:
-                
-                # 스크롤을 맨 밑으로 내리
-                browser.execute_script("window.scrollTo(0, document.body.scrollHeight);")
-                
-                # 컨셉체크 해제
-                concept_all_select_element = WebDriverWait(browser, 60).until(EC.visibility_of_element_located((By.XPATH, IHS_CONCEPT_ALL_SELECT_ELEMENT)))
-                concept_all_select_element.click()
-                
-                time.sleep(5)
-                
-                # 다음페이지 누르기
-                next_page_btn_element = WebDriverWait(browser, 60).until(EC.visibility_of_element_located((By.XPATH, IHS_NEXT_PAGE_BTN_ELEMENT)))
-                next_page_btn_element.click()
-                print(f'현재 페이지: {current_page_count}, 총 페이지: {total_page_count}')
-                
-                time.sleep(5)
-                
-                continue    
+            continue    
     
     print('--' * 10, '(end) ihs_gtas_forecasting_annual', '--' * 10)
 
