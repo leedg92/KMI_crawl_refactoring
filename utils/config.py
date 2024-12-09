@@ -194,6 +194,10 @@ IHS_USER_PW_INPUT_ELEMENT = '/html/body/div[2]/div/div[2]/div[2]/div[1]/div/div/
 IHS_LOGIN_FINISH_BTN_ELEMENT = '/html/body/div[2]/div/div[2]/div[2]/div[1]/div/div/div/div/div[2]/div[2]/button[2]'
 IHS_DOWNLOAD_PATH = '/opt/airflow/downloads/ihs_economy/'
 IHS_DESTINATION_PATH = '/opt/airflow/downloads/ihs_economy/done/'
+IHS_NEW_DOWNLOAD_PATH = '/opt/airflow/downloads/ihs_economy_new/'
+IHS_NEW_DESTINATION_PATH = '/opt/airflow/downloads/ihs_economy_new/done/'
+IHS_GTAS_DOWNLOAD_PATH = '/opt/airflow/downloads/ihs/'
+IHS_GTAS_DESTINATION_PATH = '/opt/airflow/downloads/ihs/done/'
 TOOL_QUERIES_TABLE_ELEMENT = '/html/body/my-app/div[2]/db-app/cui-page-template/cui-content/cms-app/cms-page/cms-saved-content/section/cms-table-container[1]/section/cui-card/div/cms-default-table/div/table'
 
 IHS_TOTAL_PAGE_COUNT_ELEMENT = '/html/body/my-app/div[2]/db-app/cui-page-template/cui-content/db-build-query/cui-content/div/div/div/db-search-results-container/db-series-results/cui-card/div/section/div/grid-proxy/div/div/dg-grid/ag-grid/span/ag-grid-angular/div/div[4]/span[2]/span/span[4]'
@@ -210,3 +214,24 @@ IHS_SHOW_MORE_BTN_ELEMENT = '/html/body/my-app/div[2]/db-app/cui-page-template/c
 IHS_DOWNLOAD_POPUP_CLOSE_BTN_ELEMENT = '/html/body/my-app/app-notifications-component/cui-growler/div/cui-growl/div/section/div/cui-icon'
 IHS_DOWNLOAD_LINK_ELEMENT = '/html/body/my-app/app-notifications-component/cui-growler/div/cui-growl/div/section/section[2]/div/a'
 
+
+##. clarksons
+CLARKSONS_URL = 'https://sin.clarksons.net/'
+CLARKSONS_DOWNLOAD_PATH = '/opt/airflow/downloads/clarksons/'
+CLARKSONS_DESTINATION_PATH = '/opt/airflow/downloads/clarksons/done/'
+
+CLARKSONS_USER_ID = 'kmimaritime'
+CLARKSONS_USER_PW = '!Kmilib4388'
+
+CLARKSONS_LOGIN_BTN = '/html/body/div[1]/div[2]/div[4]/div/div/div/div[3]/a[1]'
+CLARKSONS_LOGIN_ID = '/html/body/div[15]/div/div/div[2]/form/div[1]/div/input'
+CLARKSONS_LOGIN_ID_CONTINUE = '/html/body/div[14]/div/div/div[2]/form/div[2]/button'
+CLARKSONS_LOGIN_PW = '/html/body/div[15]/div/div/div[2]/form/ng-template/div[1]/div/input[1]'
+CLARKSONS_LOGIN_FINISH_BTN = '/html/body/div[14]/div/div/div[2]/form/div[2]/button'
+
+CATEGORY_TOP_ELEMENT = '/html/body/app-root/div/main/div[2]/app-timeseries-base/section/div/div/app-browse/kendo-splitter/kendo-splitter-pane[1]/timeseries-browse-hierarchy/kendo-treeview'
+CATEGORY_CHECK_BOX_ELEMENT = './div/span/span/span/div/input'
+FREQUENCY_DIV_ELEMENT = '/html/body/app-root/div/main/div[2]/app-timeseries-base/section/div/div/app-browse/kendo-splitter/kendo-splitter-pane[2]/app-grid-chart-data/div/article/timeseries-frequency-panel/div'
+DOWNLOAD_PANEL_ELEMENT = '/html/body/app-root/div/main/div[2]/app-timeseries-base/section/div/div/app-browse/kendo-splitter/kendo-splitter-pane[2]/app-grid-chart-data/div/article/timeseries-viewmode-panel/div/div'
+DOWNLOAD_EXCEL_ACCEPT_BTN = '/html/body/ngb-modal-window/div/div/modal/div[2]/app-download-modal/section/div[4]/a'
+CATEGORY_TOGGLE_ELEMENT = './div/span/kendo-icon-wrapper/kendo-svgicon'

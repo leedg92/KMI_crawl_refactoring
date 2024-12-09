@@ -28,7 +28,7 @@ import pymysql
 ######################
 init_args = {
     'owner' : OWNER_NAME,
-    'start_date' : datetime.datetime(2024, 11, 11)
+    'start_date' : datetime.datetime(2024, 12, 9)
 }
 init_dag = DAG(
     dag_id = 'ihs_gtas_forecasting_annual_collector',
@@ -209,7 +209,7 @@ def func1():
     
     
     opts = set_selenium_options()
-    browser = set_webdriver_browser(opts, IHS_DOWNLOAD_PATH)
+    browser = set_webdriver_browser(opts, IHS_GTAS_DOWNLOAD_PATH)
     browser.get(IHS_URL)
     browser.implicitly_wait(10)
     
@@ -255,7 +255,7 @@ def func1():
             time.sleep(random.uniform(5, 10))
 
             # csv 파일 읽기
-            csv_file_path = wait_for_csv_and_read(IHS_DOWNLOAD_PATH)
+            csv_file_path = wait_for_csv_and_read(IHS_GTAS_DOWNLOAD_PATH)
             
             if csv_file_path is not None:
                 print('CSV 파일을 성공적으로 읽었습니다.')
@@ -317,11 +317,7 @@ def func1():
                 
                 time.sleep(5)
                 
-                continue
-    
-    
-    
-    
+                continue    
     
     print('--' * 10, '(end) ihs_gtas_forecasting_annual', '--' * 10)
 

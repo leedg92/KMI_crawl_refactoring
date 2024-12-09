@@ -109,7 +109,7 @@ def try_login(browser, api_key):
 
 def try_api(api_key):    
     opts = set_selenium_options()
-    browser = set_webdriver_browser(opts, IHS_DOWNLOAD_PATH)
+    browser = set_webdriver_browser(opts, IHS_NEW_DOWNLOAD_PATH)
     browser.get(IHS_URL)
     browser.implicitly_wait(10)
     try_login(browser, api_key)
