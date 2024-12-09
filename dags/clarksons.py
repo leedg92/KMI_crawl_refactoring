@@ -398,7 +398,7 @@ def func2():
     
     print('--' * 10, ' download success ', '--' * 10)    
     for file_name in file_names:
-        full_file_name = CLARKSONS_DOWNLOAD_PATH + file_names
+        full_file_name = CLARKSONS_DOWNLOAD_PATH + file_name
         done_file_name = CLARKSONS_DESTINATION_PATH + frequency +'_' + get_year_month_day() + '_' + file_name
         
         origin_df = pd.read_excel(full_file_name, header=None)
@@ -428,7 +428,7 @@ def func3():
     
     print('--' * 10, ' download success ', '--' * 10)    
     for file_name in file_names:
-        full_file_name = CLARKSONS_DOWNLOAD_PATH + file_names
+        full_file_name = CLARKSONS_DOWNLOAD_PATH + file_name
         done_file_name = CLARKSONS_DESTINATION_PATH + frequency +'_' + get_year_month_day() + '_' + file_name
         
         origin_df = pd.read_excel(full_file_name, header=None)
@@ -457,19 +457,21 @@ fct_clarksons_statics_year = PythonOperator(
     dag = init_dag
 )
 
-# fct_clarksons_statics_quarter = PythonOperator(
-#     task_id = 'fct_clarksons_statics_quarter',
-#     python_callable = func2,
-#     dag = init_dag
-# )
+fct_clarksons_statics_quarter = PythonOperator(
+    task_id = 'fct_clarksons_statics_quarter',
+    python_callable = func2,
+    dag = init_dag
+)
 
-# fct_clarksons_statics_month = PythonOperator(
-#     task_id = 'fct_clarksons_statics_month',
-#     python_callable = func3,
-#     dag = init_dag
-# )
+fct_clarksons_statics_month = PythonOperator(
+    task_id = 'fct_clarksons_statics_month',
+    python_callable = func3,
+    dag = init_dag
+)
 
 
 task_start >> \
 fct_clarksons_statics_year >> \
+fct_clarksons_statics_quarter >> \
+fct_clarksons_statics_month >> \
 task_end
