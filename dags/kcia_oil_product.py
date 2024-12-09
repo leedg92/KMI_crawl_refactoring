@@ -30,7 +30,8 @@ init_dag = DAG(
     dag_id = 'kcia_oil_product_collector',
     default_args = init_args,
     # schedule_interval = '@once'
-    schedule_interval = '0 1 * * *'
+    schedule_interval = '0 1 * * *',
+    catchup=False
 )
 task_start = DummyOperator(task_id='start', dag=init_dag)
 task_end = DummyOperator(task_id='end', dag=init_dag)

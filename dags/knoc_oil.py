@@ -36,7 +36,8 @@ init_dag = DAG(
     dag_id = 'knoc_oil_collector',
     default_args = init_args,
     # schedule_interval = '@once'
-    schedule_interval = '0 1 1 * *'
+    schedule_interval = '0 1 1 * *',
+    catchup=False
 )
 task_start = DummyOperator(task_id='start', dag=init_dag)
 task_end = DummyOperator(task_id='end', dag=init_dag)

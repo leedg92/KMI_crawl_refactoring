@@ -28,7 +28,8 @@ init_dag = DAG(
     dag_id = 'worldbank_data_collector',
     default_args = init_args,
     # schedule_interval = '@once'
-    schedule_interval = '0 1 1 * *'
+    schedule_interval = '0 1 1 * *',
+    catchup=False
 )
 
 task_start = DummyOperator(task_id='start', dag=init_dag)
