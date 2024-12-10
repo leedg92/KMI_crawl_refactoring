@@ -204,20 +204,43 @@ def wait_for_csv_and_read(download_path, timeout=60):
     return None
 
 
-def reset_browser_and_navigate(tool_query_nm):
-    
-    opts = set_selenium_options()
-    new_browser = set_webdriver_browser(opts, IHS_GTAS_DOWNLOAD_PATH)
-    new_browser.get(IHS_URL)
-    new_browser.implicitly_wait(10)
-    
-    # 로그인
-    try_login(new_browser)
-    
-    # 페이지 이동
-    try_move_page(new_browser, tool_query_nm)
-    
-    return new_browser
+def retry_export_csv(browser, actions):
+    """
+    재시도 로직을 수행하는 함수.
+    """
+    try:
+        # 스크롤을 맨 위로 올리기
+        browser.execute_script("window.scrollTo(0, 0);")
+        
+        # export > selected series > csv static 클릭
+        export_btn_element = browser.find_element(By.XPATH, IHS_EXPORT_BTN_ELEMENT)
+        export_btn_element.click()
+        
+        selected_series_btn_element = browser.find_element(By.XPATH, IHS_SELECTED_SERIES_BTN_ELEMENT)
+        actions.move_to_element(selected_series_btn_element).perform()
+        selected_series_btn_element.click()
+        
+        selected_export_csv_btn_element = browser.find_element(By.XPATH, IHS_SELECTED_EXPORT_CSV_BTN_ELEMENT)
+        selected_export_csv_btn_element.click()
+        
+        download_popup_close_btn_element = WebDriverWait(browser, 400).until(EC.visibility_of_element_located((By.XPATH, IHS_DOWNLOAD_POPUP_CLOSE_BTN_ELEMENT)))
+        download_popup_close_btn_element.click()
+        
+        time.sleep(random.uniform(5, 10))
+        
+        # Export CSV - Download csv Link Click (csv)
+        print(f'[EXPORT CSV] Clicking Download Link ~~~')
+        download_link_element = WebDriverWait(browser, 360).until(EC.visibility_of_element_located((By.XPATH, IHS_DOWNLOAD_LINK_ELEMENT)))
+        if download_link_element:
+            download_link_element.click()
+        else:
+            raise Exception("Download link not found")
+    except Exception as retry_error:
+        print(f"Retry failed: {retry_error}")
+        return False
+    return True
+
+
 
 def func1():
     print('--' * 10, '(start) ihs_gtas_forecasting_annual', '--' * 10)
@@ -273,11 +296,15 @@ def func1():
                 raise Exception("Download link not found")
         
         except Exception as e:
-            print(f"Error occurred: {e}. Reinitializing browser...")
-            # 기존 브라우저 닫기
-            browser.quit()
-            # 새 브라우저 열기 및 초기화
-            browser = reset_browser_and_navigate(tool_query_nm)
+            print(f"Error occurred: {e}. Retrying...")
+            if browser.service.is_connectable() and browser.session_id:
+                print("현재 browser 상태: 브라우저가 켜져 있습니다.")
+            else:
+                print("현재 browser 상태: 브라우저가 꺼져 있습니다.")
+            # retry_export_csv 함수 호출
+            if not retry_export_csv(browser, ActionChains(browser)):
+                print("Retry failed. Aborting iteration...")
+                continue
 
         # Export Csv 완료 될때 까지 기다리기
         time.sleep(random.uniform(5, 10))
