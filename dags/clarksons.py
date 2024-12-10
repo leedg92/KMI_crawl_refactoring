@@ -158,58 +158,82 @@ def try_close_popup(browser):
         browser.close()
         raise e
 
-def try_download_excel(browser, frequncy):
-    files_before = os.listdir(download_path)
+def try_download_excel(browser, frequency):
+    files_before = os.listdir(CLARKSONS_DOWNLOAD_PATH)  
     try:
-        # Frequency Box
-        is_exist_frequency_btn = False
+        # Frequency 버튼 선택
+        is_frequency_btn_found = False
         time.sleep(1)
-        frequency_div_element = WebDriverWait(browser, 30).until(EC.element_to_be_clickable((By.XPATH, FREQUENCY_DIV_ELEMENT)))
+        frequency_div_element = WebDriverWait(browser, 30).until(
+            EC.presence_of_element_located((By.XPATH, FREQUENCY_DIV_ELEMENT))
+        )
         frequency_btn_elements = frequency_div_element.find_elements(By.XPATH, './button')
-        for frequency_btn_element in frequency_btn_elements:
-            print(frequency_btn_element.text.lower())
-            if frequency_btn_element.text.lower() == frequncy.lower():
-                # frequency_btn_element.click()
-                clickable_frequeuncy_btn_element = WebDriverWait(browser, 30).until(EC.element_to_be_clickable(frequency_btn_element))
-                clickable_frequeuncy_btn_element.click()
-                is_exist_frequency_btn = True
+        
+        for btn in frequency_btn_elements:
+            if btn.text.strip().lower() == frequency.strip().lower():
+                browser.execute_script("arguments[0].scrollIntoView(true);", btn)  # 버튼이 화면에 보이도록 스크롤
+                WebDriverWait(browser, 10).until(EC.element_to_be_clickable(btn)).click()
+                is_frequency_btn_found = True
                 break
-        if not is_exist_frequency_btn:
+
+        if not is_frequency_btn_found:
+            print("[ERROR] Frequency button not found.")
             return
 
-        # File Download(Excel)
-        download_panel_element = WebDriverWait(browser, 30).until(EC.visibility_of_element_located((By.XPATH, DOWNLOAD_PANEL_ELEMENT)))
-        download_panel_elements = download_panel_element.find_elements(By.XPATH, './crsl-button')
-        for download_panel_element in download_panel_elements:
-            if download_panel_element.text.lower().replace(' ', '') == 'excel':
-                clickable_excel_btn_element = WebDriverWait(browser, 30).until(EC.element_to_be_clickable(download_panel_element))
-                clickable_excel_btn_element.click()
-                break
-        download_excel_accept_btn_element = WebDriverWait(browser, 30).until(EC.element_to_be_clickable((By.XPATH, DOWNLOAD_EXCEL_ACCEPT_BTN)))
-        download_excel_accept_btn_element.click()
+        # 다운로드 패널에서 엑셀 버튼 클릭
+        download_panel_element = WebDriverWait(browser, 30).until(
+            EC.presence_of_element_located((By.XPATH, DOWNLOAD_PANEL_ELEMENT))
+        )
+        download_buttons = download_panel_element.find_elements(By.XPATH, './crsl-button')
 
-        print(f'[DOWNLOAD EXCEL] Download Path: {download_path}')
-        print(f'[DOWNLOAD EXCEL] Before Download File List: {files_before}')
-        print(f'[DOWNLOAD EXCEL] Waiting Download File ~~~')
+        is_excel_btn_found = False
+        for btn in download_buttons:
+            if btn.text.strip().lower().replace(' ', '') == 'excel':
+                browser.execute_script("arguments[0].scrollIntoView(true);", btn)
+                WebDriverWait(browser, 10).until(EC.element_to_be_clickable(btn)).click()
+                is_excel_btn_found = True
+                break
+
+        if not is_excel_btn_found:
+            print("[ERROR] Excel download button not found.")
+            return
+
+        # 엑셀 다운로드 승인 버튼 클릭
+        download_excel_accept_btn = WebDriverWait(browser, 30).until(
+            EC.element_to_be_clickable((By.XPATH, DOWNLOAD_EXCEL_ACCEPT_BTN))
+        )
+        download_excel_accept_btn.click()
+
+        print(f'[INFO] Download initiated: {download_path}')
         start_time = time.time()
-        while True:
-            time.sleep(1)  # 1초간 대기 후 다시 확인
-            print(f'[DOWNLOAD EXCEL] While Download File List: {os.listdir(download_path)}')
-            if all(not filename.endswith('.crdownload') for filename in os.listdir(download_path)) \
-                    and bool(glob.glob(os.path.join(download_path, '*.xlsx'))):
-                print(f'[DOWNLOAD EXCEL] Download Finished: {os.listdir(download_path)}')
-                break
-            elif time.time() - start_time > 120:
-                print('[DOWNLOAD EXCEL] ({multiprocessing.current_process().pid})Time Over Downloading.')
-                break
-        files_after = os.listdir(download_path)
-        print(f'[DOWNLOAD EXCEL] After Download File List: {files_after}')
 
-        download_file_nm = [f for f in files_after if f not in files_before]
-        return download_file_nm[0]
+        # 다운로드 완료 대기
+        while True:
+            time.sleep(1)
+            current_files = os.listdir(download_path)
+            print(f'[INFO] Current files: {current_files}')
+            
+            # .xlsx 파일이 존재하고 .crdownload 파일이 없는지 확인
+            if any(f.endswith('.xlsx') for f in current_files) and \
+               all(not f.endswith('.crdownload') for f in current_files):
+                print(f'[INFO] Download complete: {current_files}')
+                break
+
+            if time.time() - start_time > 120:  # 2분 제한
+                print('[ERROR] Download timed out.')
+                return None
+
+        files_after = os.listdir(download_path)
+        new_files = [f for f in files_after if f not in files_before]
+        if new_files:
+            return new_files[0]
+        else:
+            print("[ERROR] No new file detected.")
+            return None
+
     except Exception as e:
-        print(e)
-        browser.close()
+        print(f"[ERROR] Exception occurred: {e}")
+        return None
 
 def preprocessing_annual_data(origin_df):
     df = origin_df.copy()
@@ -229,7 +253,22 @@ def preprocessing_annual_data(origin_df):
     result_df = result_df.replace({np.nan: None})
 
     return result_df
- 
+
+def convert_quarter_str_to_date(date_str):
+    if isinstance(date_str, str) and 'Q' in date_str:
+        try:
+            year = int(date_str.split('-')[1])
+            quarter_num = int(date_str[1])
+            month = (quarter_num - 1) * 3 + 1
+            return pd.Timestamp(year=year, month=month, day=1)
+        except Exception as e:
+            return None
+    else:
+        try:
+            return pd.to_datetime(date_str, errors='coerce')
+        except Exception as e:
+            return None
+        
 def preprocessing_quarterly_data(origin_df):
     df = origin_df.copy()
 
@@ -314,41 +353,52 @@ def clarksons_file_download(frequency):
 
     # 최종 다운받은 파일 명 리스트
     downloaded_files = []
-    for each_data in processed_records:
-        print(f'category_depth_list = {each_data}')
-        category_top_element = WebDriverWait(browser, 30).until(EC.visibility_of_element_located((By.XPATH, CATEGORY_TOP_ELEMENT)))
-        for category_value in each_data:
-            category_ul_element = category_top_element.find_element(By.XPATH, './ul')
-            category_li_elements = category_ul_element.find_elements(By.XPATH, './li')
-            for category_li_element in category_li_elements:
-                # 선택한 li의 라벨 텍스트
-                category_li_text_element = category_li_element.find_element(By.XPATH, './div')
-                if category_li_text_element.text.replace(' ', '') == category_value.replace(' ', ''):
-                    if category_li_text_element.text.replace(' ', '') == each_data[-1].replace(' ', ''):
-                        if len(DATA_ELEMENT_STACK) == MAX_CHECK_BOX_CNT:
-                            for pre_clicked_element in DATA_ELEMENT_STACK:
-                                browser.execute_script('arguments[0].scrollIntoView();', pre_clicked_element)
-                                pre_clicked_element.click()
-                            DATA_ELEMENT_STACK.clear()
+    try:
+        for each_data in processed_records:
+            print(f'category_depth_list = {each_data}')
+            category_top_element = WebDriverWait(browser, 30).until(EC.visibility_of_element_located((By.XPATH, CATEGORY_TOP_ELEMENT)))
+            for category_value in each_data:
+                category_ul_element = category_top_element.find_element(By.XPATH, './ul')
+                category_li_elements = category_ul_element.find_elements(By.XPATH, './li')
+                for category_li_element in category_li_elements:
+                    # 선택한 li의 라벨 텍스트
+                    category_li_text_element = category_li_element.find_element(By.XPATH, './div')
+                    if category_li_text_element.text.replace(' ', '') == category_value.replace(' ', ''):
+                        if category_li_text_element.text.replace(' ', '') == each_data[-1].replace(' ', ''):
+                            if len(DATA_ELEMENT_STACK) == MAX_CHECK_BOX_CNT:
+                                for pre_clicked_element in DATA_ELEMENT_STACK:
+                                    browser.execute_script('arguments[0].scrollIntoView();', pre_clicked_element)
+                                    pre_clicked_element.click()
+                                DATA_ELEMENT_STACK.clear()
 
-                        category_check_box_element = category_li_element.find_element(By.XPATH, CATEGORY_CHECK_BOX_ELEMENT)
-                        browser.execute_script('arguments[0].scrollIntoView();', category_check_box_element)
-                        category_check_box_element.click()
-                        DATA_ELEMENT_STACK.append(category_check_box_element)
-                        print(f'The Check Box({category_li_text_element.text}) is Checked: {category_check_box_element.is_selected()}')
-                        if not category_check_box_element.is_selected():
-                            print(f'[warning] The Check Box is not Checked: {category_li_text_element.text}')
+                            category_check_box_element = category_li_element.find_element(By.XPATH, CATEGORY_CHECK_BOX_ELEMENT)
+                            browser.execute_script('arguments[0].scrollIntoView();', category_check_box_element)
+                            category_check_box_element.click()
+                            DATA_ELEMENT_STACK.append(category_check_box_element)
+                            print(f'The Check Box({category_li_text_element.text}) is Checked: {category_check_box_element.is_selected()}')
+                            if not category_check_box_element.is_selected():
+                                print(f'[warning] The Check Box is not Checked: {category_li_text_element.text}')
 
-                        if len(DATA_ELEMENT_STACK) == MAX_CHECK_BOX_CNT \
-                                or category_value.replace(' ', '') == processed_records[-1][-1].replace(' ', ''):
-                            download_file_name = try_download_excel(browser, frequency)
-                            downloaded_files.append(download_file_name)
+                            if len(DATA_ELEMENT_STACK) == MAX_CHECK_BOX_CNT \
+                                    or category_value.replace(' ', '') == processed_records[-1][-1].replace(' ', ''):
+                                download_file_name = try_download_excel(browser, frequency)
+                                downloaded_files.append(download_file_name)
 
-                    if category_li_element.get_attribute('aria-expanded') == 'false':
-                        category_li_toggle_element = WebDriverWait(category_li_element, 10).until(EC.element_to_be_clickable((By.XPATH, CATEGORY_TOGGLE_ELEMENT)))
-                        browser.execute_script('arguments[0].scrollIntoView();', category_li_toggle_element)
-                        category_li_toggle_element.click()
-                    category_top_element = category_li_element
+                        if category_li_element.get_attribute('aria-expanded') == 'false':
+                            category_li_toggle_element = WebDriverWait(category_li_element, 10).until(EC.element_to_be_clickable((By.XPATH, CATEGORY_TOGGLE_ELEMENT)))
+                            browser.execute_script('arguments[0].scrollIntoView();', category_li_toggle_element)
+                            category_li_toggle_element.click()
+                        category_top_element = category_li_element
+                        
+    except Exception as e:
+        print(f"Error: {e}")
+        browser.refresh()        
+        time.sleep(5)
+        
+        return   
+    
+    # None 값 제외
+    downloaded_files = [file for file in downloaded_files if file is not None]     
 
     return downloaded_files
 
@@ -367,22 +417,23 @@ def func1():
     
     print('--' * 10, ' download success ', '--' * 10)    
     for file_name in file_names:
-        full_file_name = CLARKSONS_DOWNLOAD_PATH + file_name
-        done_file_name = CLARKSONS_DESTINATION_PATH + frequency +'_' + get_year_month_day() + '_' + file_name
-        
-        origin_df = pd.read_excel(full_file_name, header=None)
-        result_df = preprocessing_annual_data(origin_df)    
+        if file_name is not None:
+            full_file_name = CLARKSONS_DOWNLOAD_PATH + file_name
+            done_file_name = CLARKSONS_DESTINATION_PATH + frequency +'_' + get_year_month_day() + '_' + file_name
+            
+            origin_df = pd.read_excel(full_file_name, header=None)
+            result_df = preprocessing_annual_data(origin_df)    
 
-        print(result_df)
-        val_list = []
-        for index, result in result_df.iterrows():
-            val_list.append(result.tolist())
-        
-        def_table_name = 'fct_clarksons_statics_year'
-        upsert_to_dataframe(result_df, def_table_name, val_list)
-        
-        # 데이터 추출이 완료된 파일, done 으로 이동
-        shutil.move(full_file_name, done_file_name)
+            print(result_df)
+            val_list = []
+            for index, result in result_df.iterrows():
+                val_list.append(result.tolist())
+            
+            def_table_name = 'fct_clarksons_statics_year'
+            upsert_to_dataframe(result_df, def_table_name, val_list)
+            
+            # 데이터 추출이 완료된 파일, done 으로 이동
+            shutil.move(full_file_name, done_file_name)
     
     print('--' * 10, '(end) clarksons_statics_year (year)', '--' * 10)
     
