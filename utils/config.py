@@ -196,8 +196,10 @@ IHS_DOWNLOAD_PATH = '/opt/airflow/downloads/ihs_economy/'
 IHS_DESTINATION_PATH = '/opt/airflow/downloads/ihs_economy/done/'
 IHS_NEW_DOWNLOAD_PATH = '/opt/airflow/downloads/ihs_economy_new/'
 IHS_NEW_DESTINATION_PATH = '/opt/airflow/downloads/ihs_economy_new/done/'
-IHS_GTAS_DOWNLOAD_PATH = '/opt/airflow/downloads/ihs/'
-IHS_GTAS_DESTINATION_PATH = '/opt/airflow/downloads/ihs/done/'
+IHS_GTAS_DOWNLOAD_PATH = '/opt/airflow/downloads/ihs_gatas/'
+IHS_GTAS_DESTINATION_PATH = '/opt/airflow/downloads/ihs_gtas/done/'
+# IHS_GTAS_DOWNLOAD_PATH = 'D:\\workspace\\kmi_crawling_src\\downloads\\ihs_gtas\\'
+# IHS_GTAS_DESTINATION_PATH = 'D:\\workspace\\kmi_crawling_src\\downloads\\ihs_gtas\\done\\'
 TOOL_QUERIES_TABLE_ELEMENT = '/html/body/my-app/div[2]/db-app/cui-page-template/cui-content/cms-app/cms-page/cms-saved-content/section/cms-table-container[1]/section/cui-card/div/cms-default-table/div/table'
 
 IHS_TOTAL_PAGE_COUNT_ELEMENT = '/html/body/my-app/div[2]/db-app/cui-page-template/cui-content/db-build-query/cui-content/div/div/div/db-search-results-container/db-series-results/cui-card/div/section/div/grid-proxy/div/div/dg-grid/ag-grid/span/ag-grid-angular/div/div[4]/span[2]/span/span[4]'
@@ -212,7 +214,32 @@ IHS_INNER_MENU_GTAS_ELEMENT = '/html/body/my-app/div[1]/cpe-menu/nav/cm-menu-pan
 IHS_SIDE_MENU_MY_SAVED_ELEMENT = '/html/body/my-app/div[2]/db-app/cui-page-template/cui-left-nav/cui-left-nav-main/div/cui-left-nav-main-element[3]/section'
 IHS_SHOW_MORE_BTN_ELEMENT = '/html/body/my-app/div[2]/db-app/cui-page-template/cui-content/cms-app/cms-page/cms-saved-content/section/cms-table-container[1]/section/cui-card/cui-card-footer/cui-group/span'
 IHS_DOWNLOAD_POPUP_CLOSE_BTN_ELEMENT = '/html/body/my-app/app-notifications-component/cui-growler/div/cui-growl/div/section/div/cui-icon'
-IHS_DOWNLOAD_LINK_ELEMENT = '/html/body/my-app/app-notifications-component/cui-growler/div/cui-growl/div/section/section[2]/div/a'
+
+IHS_GTAS_FIRST_LOADING_BAR_ELEMENT = '/html/body/my-app/div[2]/db-app/cui-page-template/cui-content/db-build-query/cui-content/div/cui-card/db-filters/cui-loader'
+IHS_GTAS_SEARCH_CONCEPT_INPUT_ELEMENT = '/html/body/my-app/div[2]/db-app/cui-page-template/cui-content/db-build-query/cui-content/div/cui-card/db-filters/div[3]/section/div[1]/div[1]/div/input'
+IHS_GTAS_CONCEPT_LABEL_ELEMENT = '/html/body/my-app/div[2]/db-app/cui-page-template/cui-content/db-build-query/cui-content/div/cui-card/db-filters/div[3]/section/div[1]/connect-treeview-container/section/div/section/div[5]/cui-checkbox/label/div/div/div'
+IHS_GTAS_CONCEPT_CHECK_BOX_ELEMENT = '/html/body/my-app/div[2]/db-app/cui-page-template/cui-content/db-build-query/cui-content/div/cui-card/db-filters/div[3]/section/div[1]/connect-treeview-container/section/div/section/div[5]/cui-checkbox'
+IHS_GTAS_SEARCH_CONCEPT_CLEAR_ALL_ELEMENT = '/html/body/my-app/div[2]/db-app/cui-page-template/cui-content/db-build-query/cui-content/div/cui-card/db-filters/div[3]/section/div[1]/div[2]/cui-group/cui-button[2]/button'
+
+IHS_GTAS_COMMODITY_LOADING_BAR_ELEMENT = '/html/body/my-app/div[2]/db-app/cui-page-template/cui-content/db-build-query/cui-content/div/cui-card/db-filters/div[3]/section/div[2]/cui-loader'
+IHS_GTAS_SEARCH_COMMODITY_INPUT_ELEMENT = '/html/body/my-app/div[2]/db-app/cui-page-template/cui-content/db-build-query/cui-content/div/cui-card/db-filters/div[3]/section/div[2]/div[1]/div/input'
+IHS_GTAS_SEARCH_COMMODITY_SELECT_ALL_ELEMENT = '/html/body/my-app/div[2]/db-app/cui-page-template/cui-content/db-build-query/cui-content/div/cui-card/db-filters/div[3]/section/div[2]/div[2]/cui-group/cui-button[1]/button'
+IHS_GTAS_SEARCH_COMMODITY_CLEAR_ALL_ELEMENT = '/html/body/my-app/div[2]/db-app/cui-page-template/cui-content/db-build-query/cui-content/div/cui-card/db-filters/div[3]/section/div[2]/div[2]/cui-group/cui-button[2]/button'
+IHS_GTAS_COMMODITY_ZONE_ELEMENTS = '/html/body/my-app/div[2]/db-app/cui-page-template/cui-content/db-build-query/cui-content/div/cui-card/db-filters/div[3]/section/div[2]/connect-treeview-container/section/div/section/div/cui-checkbox/label/div/div/div'
+IHS_GTAS_CONCEPT_LOADING_BAR_ELEMENT = '/html/body/my-app/div[2]/db-app/cui-page-template/cui-content/db-build-query/cui-content/div/cui-card/db-filters/div[3]/section/div[1]/cui-loader'
+IHS_GTAS_VIEW_RESULTS_BTN_ELEMENT = '/html/body/my-app/div[2]/db-app/cui-page-template/cui-content/db-build-query/cui-content/div/cui-card/db-filters/div[3]/div/cui-group[2]/cui-button[2]/button'
+
+IHS_GTAS_CONFIRM_BTN_ELEMENT = '/html/body/cui-modal-window/div/div/cui-confirmation-modal/div[3]/cui-group/cui-button[2]/button'
+IHS_GTAS_VIEW_RESULTS_LOADING_BAR_ELEMENT = '/html/body/my-app/div[2]/db-app/cui-page-template/cui-content/db-build-query/cui-content/div/div/div/db-search-results-container/db-series-results/cui-card/div/section/div/grid-proxy/div/cui-loader'
+IHS_GTAS_NOTICE_POPUP_ZONE_ELEMENT = '/html/body/my-app/app-notifications-component/cui-growler/div'
+IHS_GTAS_EXPORT_BTN_ELEMENT = '/html/body/my-app/div[2]/db-app/cui-page-template/cui-content/db-build-query/cui-content/div/div/div/db-search-results-container/db-series-results/cui-card/cui-card-header/section/cui-group/button-drop-down-menu[2]/cui-button/button'
+IHS_GTAS_ALL_SERIES_BTN_ELEMENT = '/html/body/cui-popover-container-window[1]/div/cui-dropdown-menu/div/ul/span[1]/cui-dropdown-menu-parent/div/li'
+IHS_GTAS_EXPORT_EXCEL_BTN_ELEMENT = '/html/body/cui-popover-container-window[2]/div/cui-dropdown-menu/div/ul/span[1]/cui-dropdown-menu-item/li'
+IHS_GTAS_DOWNLOAD_LINK_ELEMENT = '/html/body/my-app/app-notifications-component/cui-growler/div/cui-growl/div/section/section[2]/div/a'
+IHS_GTAS_DOWNLOAD_LINK_ELEMENT_RE = '/html/body/my-app/app-notifications-component/cui-growler/div/cui-growl/div/section/section[1]/div/a'
+
+IHS_GATS_SELECTED_EXPORT_CSV_BTN_ELEMENT = '/html/body/cui-popover-container-window[2]/div/cui-dropdown-menu/div/ul/span[2]/cui-dropdown-menu-item/li/div/span/cui-group/span'
+
 
 
 ##. clarksons
