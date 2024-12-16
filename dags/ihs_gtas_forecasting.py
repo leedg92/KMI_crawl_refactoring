@@ -40,7 +40,7 @@ init_dag = DAG(
     dag_id = 'ihs_gtas_forecasting_collector',
     default_args = init_args,
     # schedule_interval = '@once'
-    schedule_interval = '0 1 * * *',
+    schedule_interval = '0 1 1 * *',
     catchup=False
 )
 task_start = DummyOperator(task_id='start', dag=init_dag)
@@ -50,10 +50,10 @@ task_end = DummyOperator(task_id='end', dag=init_dag)
 ######################
 ## Function 정의
 ######################
-def upsert_to_dataframe(result_dataframe, table_name):  
+def upsert_to_dataframe(result_dataframe, table_name, val_list):  
     conn = maria_kmi_dw_db_connection()    
     col_list = result_dataframe.columns.tolist()
-    row_list = result_dataframe.values.tolist()  
+    row_list = val_list  
     
     # INSERT SQL 쿼리 기본 부분
     columns = ', '.join([f"`{col}`" for col in col_list])
@@ -77,9 +77,13 @@ def upsert_to_dataframe(result_dataframe, table_name):
             print(f"insert data at {table_name} : success ★☆★☆")
             return True
         
-    except pymysql.Error as e:        
+    except pymysql.Error as e:
+        print(e)       
         conn.rollback()
         return False
+    
+    finally:
+        conn.close()
 
 def try_login(browser):
 
@@ -106,10 +110,6 @@ def try_login(browser):
         print(f'[Login] Success Login.')
         
     except Exception as e:
-        import traceback
-        tb = traceback.extract_tb(e.__traceback__)
-        line = tb[-1].lineno
-        print(f'[error][line : {line}] : {e}')
         print(f'[error][Crawling Fail: Login Filed]')
         browser.quit()
         sys.exit()
@@ -185,15 +185,38 @@ def get_ihs_commodity(concept_nm):
     conn = maria_kmi_dw_db_connection()
     
     try:
+        # MAX(UPDATE_DTM) 값을 조회
         query = f"""
-            select * from fct_ihs_gtas_monitoring 
-            where CONCEPT = '{concept_nm}'
-            and CHECKED = 'N' 
-            order by CONCEPT , COMMODITY
+            SELECT MAX(UPDATE_DTM) AS MAX_UPDATE_DTM
+            FROM fct_ihs_gtas_monitoring
         """
-        print(f"Executing query: {query}")        
-        codes_df = pd.read_sql(query, conn)        
-        print(f"Query result: {codes_df}")        
+        max_update_dtm_result = pd.read_sql(query, conn)
+        max_update_dtm = max_update_dtm_result['MAX_UPDATE_DTM'].iloc[0]
+        
+        if max_update_dtm:
+            max_update_dtm = pd.to_datetime(max_update_dtm)
+            months_diff = (datetime.datetime.now() - max_update_dtm).days // 30
+
+            # 3개월 이상 차이 나면 CHECKED 컬럼을 'Y'로 업데이트
+            if months_diff >= 3:
+                update_query = f"""
+                    UPDATE fct_ihs_gtas_monitoring
+                    SET CHECKED = 'N'
+                """
+                with conn.cursor() as cur:
+                    cur.execute(update_query)
+                    conn.commit()
+                print(f"CHECKED column updated to 'Y' for {concept_nm}.")
+
+        # 'CHECKED'가 'N'인 데이터 조회
+        query = f"""
+            SELECT * FROM fct_ihs_gtas_monitoring
+            WHERE CONCEPT = '{concept_nm}'
+            AND CHECKED = 'N'
+            ORDER BY CONCEPT, COMMODITY
+        """
+        codes_df = pd.read_sql(query, conn)
+        
         return codes_df.to_dict('records')
     
     except Exception as e:
@@ -305,7 +328,7 @@ def try_commodity_check_box_click(browser, commodity_nm):
         return False
 
 
-def try_view_result_click():
+def try_view_result_click(browser):
     print(f'[Search Data] Clicking View Results Btn ~~~')
     view_results_btn_element = WebDriverWait(browser, 10).until(EC.element_to_be_clickable((By.XPATH, IHS_GTAS_VIEW_RESULTS_BTN_ELEMENT)))
     browser.execute_script("arguments[0].click();", view_results_btn_element)  
@@ -400,7 +423,8 @@ def try_monitoring_check(concept_nm, commodities, frequency):
     conn = maria_kmi_dw_db_connection()
     
     try:
-        commodities_str = ", ".join([f"'{commodity.replace('\'', '\'\'')}'" for commodity in commodities])
+        # commodities_str = ", ".join([f"'{commodity.replace('\'', '\'\'')}'" for commodity in commodities])
+        commodities_str = ", ".join(["'{}'".format(commodity.replace("'", "''")) for commodity in commodities])
 
         # CHECKED 컬럼 값을 'Y'로 업데이트
         update_query = f"""
@@ -433,8 +457,6 @@ def preprocessing_csv_data_annual(df):
     df = df.replace({np.nan: None})
     df = df.dropna(subset=['IMPORT', 'EXPORT'])
     
-    print(df.head)
-    
     return df
 
 def try_insert_to_DB(result_df, def_table_name):
@@ -444,7 +466,7 @@ def try_insert_to_DB(result_df, def_table_name):
     
     ## DB insert
     print(result_df)    
-    upsert_to_dataframe(result_df, def_table_name, val_list)
+    upsert_to_dataframe(result_df, def_table_name, val_list)    
 
 def execute_crawling(browser, tool_query_nm, frequency, def_table_name):
     
@@ -470,7 +492,11 @@ def execute_crawling(browser, tool_query_nm, frequency, def_table_name):
             if not try_concept_check_box_click(browser, concept_nm):
                 print(f'Search Data Warning: Can not find Concept ({concept_nm}) !!!')
             
-            df_commodity = get_ihs_commodity(concept_nm)    
+            df_commodity = get_ihs_commodity(concept_nm)
+            
+            if not df_commodity:
+                print("이미 수집이 완료되었습니다.")
+                break
             df_commodity = pd.DataFrame(df_commodity)
             print(df_commodity)
             ihs_commodity_list = df_commodity['COMMODITY'].tolist()
@@ -479,7 +505,7 @@ def execute_crawling(browser, tool_query_nm, frequency, def_table_name):
                 # commodity 3개씩 가져오기
                 chunk = ihs_commodity_list[i:i+3]
                 for commodity_nm in chunk:
-                    print(commodity_nm)
+                    print(f'commodity_nm :: {commodity_nm}')
                     
                     # commodity 3개씩 체크
                     if not try_commodity_check_box_click(browser, commodity_nm):
@@ -488,7 +514,7 @@ def execute_crawling(browser, tool_query_nm, frequency, def_table_name):
                 time.sleep(2)
                     
                 # view Results 버튼 클릭
-                try_view_result_click()
+                try_view_result_click(browser)
                 
                 time.sleep(2)
                 
