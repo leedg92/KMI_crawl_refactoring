@@ -264,7 +264,7 @@ def try_concept_check_box_click(browser, concept_nm):
         # 스크롤을 맨 위로 올리기
         browser.execute_script("window.scrollTo(0, 0);")
         
-        time.sleep(2)        
+        time.sleep(2)   
         
         print(f'[Concept Check Box] Input Keyword (Concept) ~~~')
         search_concept_input_element = WebDriverWait(browser, 20).until(EC.presence_of_element_located((By.XPATH, IHS_GTAS_SEARCH_CONCEPT_INPUT_ELEMENT)))
@@ -294,11 +294,11 @@ def try_commodity_check_box_click(browser, commodity_nm):
     
     try: 
         print(f'[Commodity Check Box] Input Keyword (Commodity) ~~~')
-        search_concept_input_element = WebDriverWait(browser, 10).until(EC.presence_of_element_located((By.XPATH, IHS_GTAS_SEARCH_COMMODITY_INPUT_ELEMENT)))
-        search_concept_input_element.clear()
+        search_commodity_input_element = WebDriverWait(browser, 10).until(EC.presence_of_element_located((By.XPATH, IHS_GTAS_SEARCH_COMMODITY_INPUT_ELEMENT)))
+        search_commodity_input_element.clear()
 
         time.sleep(5)
-        search_concept_input_element.send_keys(commodity_nm)
+        search_commodity_input_element.send_keys(commodity_nm)
 
         print(f'[Commodity Check Box] Clicking Commodity Check Box ~~~')
         commodity_zone_elements = browser.find_elements(By.XPATH, IHS_GTAS_COMMODITY_ZONE_ELEMENTS)
@@ -489,6 +489,16 @@ def clear_check(browser):
     
     time.sleep(2)
 
+def clear_check_concept(browser):
+    search_concept_input_element = WebDriverWait(browser, 10).until(EC.presence_of_element_located((By.XPATH, IHS_GTAS_SEARCH_CONCEPT_INPUT_ELEMENT)))
+    search_concept_input_element.clear()
+    time.sleep(1)
+
+    search_concept_clear_all_element = WebDriverWait(browser, 10).until(EC.presence_of_element_located((By.XPATH, IHS_GTAS_SEARCH_CONCEPT_CLEAR_ALL_ELEMENT)))
+    search_concept_clear_all_element.click()
+    
+    time.sleep(2)
+
 def execute_crawling(browser, tool_query_nm, frequency, def_table_name):
     
     # URL Access
@@ -524,7 +534,7 @@ def execute_crawling(browser, tool_query_nm, frequency, def_table_name):
                     sys.exit()
                     break
                 else:
-                    clear_check(browser)
+                    clear_check_concept(browser)
                     continue
                 
             else:
