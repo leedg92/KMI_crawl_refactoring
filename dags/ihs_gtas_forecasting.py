@@ -529,7 +529,7 @@ def execute_crawling(browser, tool_query_nm, frequency, def_table_name):
                     print('CSV 파일을 찾지 못했습니다.')
                 
                 #####CSV READ######
-                df = pd.read_csv(full_file_name) 
+                df = pd.read_csv(full_file_name, encoding='euc-kr') 
                 
                 # 데이터 전처리
                 result_df = preprocessing_csv_data_annual(df)
