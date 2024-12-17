@@ -6,6 +6,7 @@ from python_library import *
 from bs4 import BeautifulSoup
 import numpy as np
 import pymysql
+import glob
 
 ######################
 ## 기록
@@ -17,7 +18,7 @@ import pymysql
 ## * Tool Queries 명 : SLX_GTAS_FORECASTING_Annual (연간)
 
 ## 수집 흐름
-# concept, commodity 3개씩
+# concept, commodity 2개씩
 # all csv 파일 읽어서 적재
 # 중간에 에러나면 DB파일이던 txt파일이던 떨궈서 체킹
 # DB 에 체킹하는 테이블 하나 만들어서 하나씩 체킹하면서 적재할 예정
@@ -181,7 +182,7 @@ def wait_for_csv_and_read(download_path, timeout=120):
     return None
 
 #. 수집할 ihs commodity 조회
-def get_ihs_commodity(concept_nm):
+def get_ihs_commodity(concept_nm, frequency):
     conn = maria_kmi_dw_db_connection()
     
     try:
@@ -189,6 +190,8 @@ def get_ihs_commodity(concept_nm):
         query = f"""
             SELECT MAX(UPDATE_DTM) AS MAX_UPDATE_DTM
             FROM fct_ihs_gtas_monitoring
+            WHERE CONCEPT = '{concept_nm}'
+            AND FREQUENCY = '{frequency}'            
         """
         max_update_dtm_result = pd.read_sql(query, conn)
         max_update_dtm = max_update_dtm_result['MAX_UPDATE_DTM'].iloc[0]
@@ -197,23 +200,25 @@ def get_ihs_commodity(concept_nm):
             max_update_dtm = pd.to_datetime(max_update_dtm)
             months_diff = (datetime.datetime.now() - max_update_dtm).days // 30
 
-            # 3개월 이상 차이 나면 CHECKED 컬럼을 'Y'로 업데이트
+            # 3개월 이상 차이 나면 CHECKED 컬럼을 'N'로 업데이트
             if months_diff >= 3:
                 update_query = f"""
                     UPDATE fct_ihs_gtas_monitoring
                     SET CHECKED = 'N'
+                    WHERE FREQUENCY = '{frequency}'
                 """
                 with conn.cursor() as cur:
                     cur.execute(update_query)
                     conn.commit()
-                print(f"CHECKED column updated to 'Y' for {concept_nm}.")
+                print(f"CHECKED column updated to 'N' for {concept_nm}.")
 
         # 'CHECKED'가 'N'인 데이터 조회
         query = f"""
             SELECT * FROM fct_ihs_gtas_monitoring
-            WHERE CONCEPT = '{concept_nm}'
-            AND CHECKED = 'N'
-            ORDER BY CONCEPT, COMMODITY
+            WHERE CHECKED = 'N'
+            AND CONCEPT = '{concept_nm}'
+            AND FREQUENCY = '{frequency}'
+            ORDER BY CONCEPT, COMMODITY, FREQUENCY
         """
         codes_df = pd.read_sql(query, conn)
         
@@ -287,7 +292,7 @@ def try_concept_check_box_click(browser, concept_nm):
 
 def try_commodity_check_box_click(browser, commodity_nm):
     
-    try:
+    try: 
         print(f'[Commodity Check Box] Input Keyword (Commodity) ~~~')
         search_concept_input_element = WebDriverWait(browser, 10).until(EC.presence_of_element_located((By.XPATH, IHS_GTAS_SEARCH_COMMODITY_INPUT_ELEMENT)))
         search_concept_input_element.clear()
@@ -352,7 +357,8 @@ def try_view_result_click(browser):
     print(f'[Search Data] Success Search Data.')
 
 def try_export_csv_file(browser):
-    try:        
+    try:
+        retry_count = 3  # 재시도 횟수        
         time.sleep(2)
         
         # 스크롤을 맨 위로 올리기
@@ -390,34 +396,36 @@ def try_export_csv_file(browser):
         xpaths = [IHS_GTAS_DOWNLOAD_LINK_ELEMENT, IHS_GTAS_DOWNLOAD_LINK_ELEMENT_RE]
         download_link_element = None
 
-        for xpath in xpaths:
-            try:
-                download_link_element = WebDriverWait(browser, 30).until(EC.visibility_of_element_located((By.XPATH, xpath)))
-                if download_link_element:
-                    browser.execute_script("arguments[0].click();", download_link_element)
-                    break  
-            except Exception as e:
-                print(f'[EXPORT CSV] XPath not found: {xpath}, error: {e}')
+        for attempt in range(retry_count):
+            for xpath in xpaths:
+                try:
+                    download_link_element = WebDriverWait(browser, 60).until(EC.visibility_of_element_located((By.XPATH, xpath)))
+                    if download_link_element:
+                        browser.execute_script("arguments[0].click();", download_link_element)
+                        break
+                except Exception as e:
+                    print(f'[EXPORT CSV] XPath not found')
+            if download_link_element:
+                break  # 성공 시 루프 종료
+        else:
+            print("Download link not found after retries.")
+            return []  # 실패 시 빈 리스트 반환
 
-        if not download_link_element:
-            raise Exception("Download link not found in both XPaths")
-        
-        
-        
-        # download 대기
+        # 다운로드된 파일 확인
         wait_for_csv_and_read(IHS_GTAS_DOWNLOAD_PATH)
         time.sleep(5)
         files_after = os.listdir(IHS_GTAS_DOWNLOAD_PATH)
         new_files = [f for f in files_after if f not in files_before]
-        
+
         return new_files
-    
+
     except Exception as e:
-        print(f"Error occurred: {e}. Retrying...")
+        print(f"Error occurred: {e}")
         if browser.service.is_connectable() and browser.session_id:
             print("현재 browser 상태: 브라우저가 켜져 있습니다.")
         else:
             print("현재 browser 상태: 브라우저가 꺼져 있습니다.")
+        return []
 
 def try_monitoring_check(concept_nm, commodities, frequency):
     conn = maria_kmi_dw_db_connection()
@@ -468,6 +476,19 @@ def try_insert_to_DB(result_df, def_table_name):
     print(result_df)    
     upsert_to_dataframe(result_df, def_table_name, val_list)    
 
+def clear_check(browser):
+    search_concept_input_element = WebDriverWait(browser, 10).until(EC.presence_of_element_located((By.XPATH, IHS_GTAS_SEARCH_COMMODITY_INPUT_ELEMENT)))
+    search_concept_input_element.clear()
+    time.sleep(1)
+    search_concept_input_element.send_keys(' ')
+    
+    time.sleep(1)
+
+    search_commodity_clear_all_element = WebDriverWait(browser, 10).until(EC.presence_of_element_located((By.XPATH, IHS_GTAS_SEARCH_COMMODITY_CLEAR_ALL_ELEMENT)))
+    search_commodity_clear_all_element.click()
+    
+    time.sleep(2)
+
 def execute_crawling(browser, tool_query_nm, frequency, def_table_name):
     
     # URL Access
@@ -488,74 +509,89 @@ def execute_crawling(browser, tool_query_nm, frequency, def_table_name):
         df = pd.DataFrame(df)
         ihs_concept_list = df['CATEGORY_NM'].tolist()
         
-        for concept_nm in ihs_concept_list:
+        for idx, concept_nm in enumerate(ihs_concept_list):
             if not try_concept_check_box_click(browser, concept_nm):
                 print(f'Search Data Warning: Can not find Concept ({concept_nm}) !!!')
-            
-            df_commodity = get_ihs_commodity(concept_nm)
+                continue  
+
+            df_commodity = get_ihs_commodity(concept_nm, frequency)
             
             if not df_commodity:
-                print("이미 수집이 완료되었습니다.")
-                break
-            df_commodity = pd.DataFrame(df_commodity)
-            print(df_commodity)
-            ihs_commodity_list = df_commodity['COMMODITY'].tolist()
-            
-            for i in range(0, len(ihs_commodity_list), 3):
-                # commodity 3개씩 가져오기
-                chunk = ihs_commodity_list[i:i+3]
-                for commodity_nm in chunk:
-                    print(f'commodity_nm :: {commodity_nm}')
-                    
-                    # commodity 3개씩 체크
-                    if not try_commodity_check_box_click(browser, commodity_nm):
-                        print(f'Search Data Warning: Can not find Concept/Commodity ({concept_nm}/{commodity_nm}) !!!')
-                        
-                time.sleep(2)
-                    
-                # view Results 버튼 클릭
-                try_view_result_click(browser)
-                
-                time.sleep(2)
-                
-                # Export > all > csv 다운로드
-                download_file_name = try_export_csv_file(browser)
-                full_file_name = IHS_GTAS_DOWNLOAD_PATH + download_file_name[0]
-                
-                # csv 파일 읽기
-                if full_file_name is not None:
-                    print('CSV 파일을 찾았습니다.')
+                # 마지막 concept_nm인 경우
+                if idx == len(ihs_concept_list) - 1:
+                    print('--' * 10, '수집이 완료되었습니다.', '--' * 10)
+                    browser.quit()
+                    sys.exit()
+                    break
                 else:
-                    print('CSV 파일을 찾지 못했습니다.')
+                    clear_check(browser)
+                    continue
                 
-                #####CSV READ######
-                df = pd.read_csv(full_file_name, encoding='euc-kr') 
+            else:
+                df_commodity = pd.DataFrame(df_commodity)
+                ihs_commodity_list = df_commodity['COMMODITY'].tolist()
                 
-                # 데이터 전처리
-                result_df = preprocessing_csv_data_annual(df)
-                
-                # 다운받은 파일 DB insert
-                try_insert_to_DB(result_df, def_table_name)
-                
-                # monitoring 에 Y 표시
-                commodity_lists = chunk
-                try_monitoring_check(concept_nm, commodity_lists, frequency)
-                
-                # 다운받은 csv 파일 삭제
-                os.remove(full_file_name)
+                for i in range(0, len(ihs_commodity_list), 2):
+                    # commodity 2개씩 가져오기
+                    chunk = ihs_commodity_list[i:i+2]
+                    for commodity_nm in chunk:
+                        print('-' * 30)
+                        print(f'Concetp Name :: {concept_nm}')
+                        print(f'Commodity Name :: {commodity_nm}')
+                        print('-' * 30)
+                        
+                        # commodity 2개씩 체크
+                        if not try_commodity_check_box_click(browser, commodity_nm):
+                            print(f'Search Data Warning: Can not find Concept/Commodity ({concept_nm}/{commodity_nm}) !!!')
+                            
+                    time.sleep(2)
+                        
+                    # view Results 버튼 클릭
+                    try_view_result_click(browser)
+                    
+                    time.sleep(2)
+                    
+                    # Export > all > csv 다운로드
+                    download_file_name = try_export_csv_file(browser)
+                    if not download_file_name:
+                        print(f'해당 commodity는 다운로드를 할 수 없습니다. {chunk}')
+                        screenshot_file = f"screenshot_{chunk}.png"
+                        browser.save_screenshot(screenshot_file)
+                        print(f"화면 캡처 저장됨: {screenshot_file}")
+                        for file in glob.glob(os.path.join(IHS_GTAS_DOWNLOAD_PATH, "*.csv")):
+                            os.remove(file)
+                        continue
+                    full_file_name = IHS_GTAS_DOWNLOAD_PATH + download_file_name[0]
+                    
+                    # csv 파일 읽기
+                    if full_file_name is not None:
+                        print('CSV 파일을 찾았습니다.')
+                    else:
+                        print('CSV 파일을 찾지 못했습니다.')
+                    
+                    #####CSV READ######
+                    df = pd.read_csv(full_file_name, encoding='euc-kr') 
+                    
+                    # 데이터 전처리
+                    result_df = preprocessing_csv_data_annual(df)
+                    
+                    # 다운받은 파일 DB insert
+                    try_insert_to_DB(result_df, def_table_name)
+                    
+                    # monitoring 에 Y 표시
+                    commodity_lists = chunk
+                    try_monitoring_check(concept_nm, commodity_lists, frequency)
+                    
+                    # 다운받은 csv 파일 삭제
+                    os.remove(full_file_name)
 
-                # commodity 체크 풀기
-                search_concept_input_element = WebDriverWait(browser, 10).until(EC.presence_of_element_located((By.XPATH, IHS_GTAS_SEARCH_COMMODITY_INPUT_ELEMENT)))
-                search_concept_input_element.clear()
-                time.sleep(1)
-                search_concept_input_element.send_keys(' ')
+                    # commodity 체크 풀기
+                    clear_check(browser)
                 
-                time.sleep(1)
-
-                search_commodity_clear_all_element = WebDriverWait(browser, 10).until(EC.presence_of_element_located((By.XPATH, IHS_GTAS_SEARCH_COMMODITY_CLEAR_ALL_ELEMENT)))
-                search_commodity_clear_all_element.click()
-                
-                time.sleep(2)
+        else:
+            # 루프가 정상적으로 완료되었을 때 실행
+            print('--' * 10, '모든 데이터 수집이 완료되었습니다.', '--' * 10)
+            
     
     except Exception as e:
         print(f'[error] crawring 오류 발생: {e}')
