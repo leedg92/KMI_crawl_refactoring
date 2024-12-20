@@ -477,10 +477,10 @@ def try_insert_to_DB(result_df, def_table_name):
     upsert_to_dataframe(result_df, def_table_name, val_list)    
 
 def clear_check(browser):
-    search_concept_input_element = WebDriverWait(browser, 10).until(EC.presence_of_element_located((By.XPATH, IHS_GTAS_SEARCH_COMMODITY_INPUT_ELEMENT)))
-    search_concept_input_element.clear()
+    search_commodity_input_element = WebDriverWait(browser, 10).until(EC.presence_of_element_located((By.XPATH, IHS_GTAS_SEARCH_COMMODITY_INPUT_ELEMENT)))
+    search_commodity_input_element.clear()
     time.sleep(1)
-    search_concept_input_element.send_keys(' ')
+    search_commodity_input_element.send_keys(' ')
     
     time.sleep(1)
 
@@ -490,6 +490,11 @@ def clear_check(browser):
     time.sleep(2)
 
 def clear_check_concept(browser):
+    
+    # 스크롤을 맨 위로 올리기
+    browser.execute_script("window.scrollTo(0, 0);")    
+    time.sleep(2)   
+    
     search_concept_input_element = WebDriverWait(browser, 10).until(EC.presence_of_element_located((By.XPATH, IHS_GTAS_SEARCH_CONCEPT_INPUT_ELEMENT)))
     search_concept_input_element.clear()
     time.sleep(1)
@@ -519,7 +524,12 @@ def execute_crawling(browser, tool_query_nm, frequency, def_table_name):
         df = pd.DataFrame(df)
         ihs_concept_list = df['CATEGORY_NM'].tolist()
         
-        for idx, concept_nm in enumerate(ihs_concept_list):
+        for idx, concept_nm in enumerate(ihs_concept_list):            
+            
+            if idx != 0:
+                clear_check_concept(browser)
+                time.sleep(5)                
+                
             if not try_concept_check_box_click(browser, concept_nm):
                 print(f'Search Data Warning: Can not find Concept ({concept_nm}) !!!')
                 continue  
@@ -532,11 +542,7 @@ def execute_crawling(browser, tool_query_nm, frequency, def_table_name):
                     print('--' * 10, '수집이 완료되었습니다.', '--' * 10)
                     browser.quit()
                     sys.exit()
-                    break
-                else:
-                    clear_check_concept(browser)
-                    continue
-                
+                    break                
             else:
                 df_commodity = pd.DataFrame(df_commodity)
                 ihs_commodity_list = df_commodity['COMMODITY'].tolist()
@@ -550,7 +556,6 @@ def execute_crawling(browser, tool_query_nm, frequency, def_table_name):
                         print(f'Commodity Name :: {commodity_nm}')
                         print('-' * 30)
                         
-                        # commodity 2개씩 체크
                         if not try_commodity_check_box_click(browser, commodity_nm):
                             print(f'Search Data Warning: Can not find Concept/Commodity ({concept_nm}/{commodity_nm}) !!!')
                             
@@ -579,8 +584,10 @@ def execute_crawling(browser, tool_query_nm, frequency, def_table_name):
                     else:
                         print('CSV 파일을 찾지 못했습니다.')
                     
+                    time.sleep(2)
+                    
                     #####CSV READ######
-                    df = pd.read_csv(full_file_name, encoding='euc-kr') 
+                    df = pd.read_csv(full_file_name, encoding='utf-8')                    
                     
                     # 데이터 전처리
                     result_df = preprocessing_csv_data_annual(df)
@@ -596,16 +603,22 @@ def execute_crawling(browser, tool_query_nm, frequency, def_table_name):
                     os.remove(full_file_name)
 
                     # commodity 체크 풀기
-                    clear_check(browser)
-                
-        else:
-            # 루프가 정상적으로 완료되었을 때 실행
-            print('--' * 10, '모든 데이터 수집이 완료되었습니다.', '--' * 10)
+                    clear_check(browser)                
+        
+        # 루프가 정상적으로 완료되었을 때 실행
+        print('--' * 10, '모든 데이터 수집이 완료되었습니다.', '--' * 10)
             
     
     except Exception as e:
         print(f'[error] crawring 오류 발생: {e}')
+        print('--' * 10, 'crawring restarting...', '--' * 10)
         browser.quit()
+        
+        for file in glob.glob(os.path.join(IHS_GTAS_DOWNLOAD_PATH, "*.csv")):
+            os.remove(file)
+            
+        browser = set_firefox_browser(IHS_GTAS_DOWNLOAD_PATH)        
+        execute_crawling(browser, tool_query_nm, frequency, def_table_name)
 
 
 def func1():
