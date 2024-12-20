@@ -635,6 +635,13 @@ def func1():
     
 def func2():
     print('--' * 10, '(start) ihs_gtas_forecasting_quarter', '--' * 10)
+    
+    tool_query_nm = 'SLX_GTAS_FORECASTING_Annual'
+    frequency = 'Quarter'
+    browser = set_firefox_browser(IHS_GTAS_DOWNLOAD_PATH)
+    def_table_name = 'fct_ihs_gtas_forecasting_quarter'
+    
+    execute_crawling(browser, tool_query_nm, frequency, def_table_name)
         
     print('--' * 10, '(end) ihs_gtas_forecasting_quarter', '--' * 10)
 
