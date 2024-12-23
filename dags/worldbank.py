@@ -1,6 +1,6 @@
 import sys, os, warnings
-sys.path.append('/home/diquest/kmi_airflow/utils')
-
+#sys.path.append('/home/diquest/kmi_airflow/utils')
+sys.path.append('/opt/airflow/dags/utils')
 from config import *
 from python_library import *
 
@@ -21,7 +21,8 @@ local_tz = pendulum.timezone("Asia/Seoul")
 
 init_args = {
     'owner' : OWNER_NAME,
-    'start_date' : datetime.datetime(2024, 11, 12, tzinfo=local_tz)
+    'start_date' : datetime.datetime(2024, 11, 12, tzinfo=local_tz),
+    'retries': 1
 }
 
 init_dag = DAG(
@@ -125,13 +126,13 @@ def func1():
 ## task 정의
 ######################
 
-task1 = PythonOperator(
-    task_id = 'task1',
+worldbank_data = PythonOperator(
+    task_id = 'worldbank_data',
     python_callable = func1,
     dag = init_dag
 )
 
-task_start >> task1 >> task_end
+task_start >> worldbank_data >> task_end
 
 
 
