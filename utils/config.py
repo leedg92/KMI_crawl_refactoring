@@ -46,9 +46,6 @@ INVESTING_URL = 'https://www.investing.com/indices/baltic-dry-historical-data'
 INVESTING_DOWNLOAD_PATH = '/opt/airflow/downloads/investing/'
 INVESTING_DESTINATION_PATH = '/opt/airflow/downloads/investing/done/'
 
-INVESTING_USER_ID = 'honggeun.kwak@diquest.com'
-INVESTING_USER_PW = '1q2w3e4r!@'
-
 INVESTING_COLS_MAPPING = {
                'Date': 'DATE',
                'Price': 'PRICE',

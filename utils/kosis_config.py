@@ -1,5 +1,5 @@
 ##. KOSIS
-KOSIS_API_KEY = "ZDUyOTMwN2MxMjkxMmM4ZTVlNGZmZjE1Yzc5ZjUyMmY="
+KOSIS_API_KEY = "N2MyMjMwMDY3ZmVkOTQyY2EwNGQ5NDIyNmJjMGViNjk="
 KOSIS_API_URL = "https://kosis.kr/openapi/Param/statisticsParameterData.do"
 
 ##. Query
