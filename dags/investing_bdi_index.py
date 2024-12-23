@@ -25,13 +25,14 @@ import pymysql
 ######################
 init_args = {
     'owner' : OWNER_NAME,
-    'start_date' : datetime.datetime(2024, 12, 3)
+    'start_date' : datetime.datetime(2024, 12, 3),
+    'retries': 1
 }
 init_dag = DAG(
     dag_id = 'investing_bdi_index_collector',
     default_args = init_args,
     # schedule_interval = '@once'
-    schedule_interval = '0 1 * * *',
+    schedule_interval = '0 3 * * *',
     catchup=False
 )
 task_start = DummyOperator(task_id='start', dag=init_dag)
