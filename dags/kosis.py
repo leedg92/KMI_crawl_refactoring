@@ -1,6 +1,6 @@
 import sys, os, warnings
-sys.path.append('/home/diquest/kmi_airflow/utils')
-
+#sys.path.append('/home/diquest/kmi_airflow/utils')
+sys.path.append('/opt/airflow/dags/utils')
 from config import *
 from python_library import *
 from kosis_config import *
@@ -24,7 +24,7 @@ from kosis_config import *
 # => 경제일반경기 > 기업경기조사 > 업종별 기업경기조사 > 업종별 기업경기실사지수
 
 ##. 2024-11-11
-# - 수집 기간 형식 변경 : 1960 ~ 1972 -> 최근 100년
+# - 수집 기간 형식 변경 : 1960 ~ 2072 -> 최근 100년
 # - 증분 조건 : DB에 있는 데이터의 집계일자와 수집할 데이터의 집계일자의 최대값이 같은면 Pass 아니면 적재
 
 ##. 2024-11-18
@@ -44,14 +44,15 @@ local_tz = pendulum.timezone("Asia/Seoul")
 
 init_args = {
     'owner' : OWNER_NAME,
-    'start_date' : datetime.datetime(2024, 11, 11, tzinfo=local_tz)
+    'start_date' : datetime.datetime(2024, 11, 11, tzinfo=local_tz),
+    'retries': 1
 }
 
 init_dag = DAG(
     dag_id = 'kosis_data_collector',
     default_args = init_args,
     # schedule_interval = '@once'
-    schedule_interval = '0 1 1 * *',
+    schedule_interval = '0 3 1 * *',
     catchup=False
 )
 
@@ -447,7 +448,7 @@ def func7():
                                        endPrdDe = 2016,
                                        orgId = 101,
                                        tblId = 'DT_1KB6001')
-        #. 데이터 수집 : 2006 ~ 2016
+        #. 데이터 수집 : 2016 ~ 2026
         response_df_3 = kosis_api_body(body_type = 2,
                                        itmId = 'T01+T02+T05+',
                                        objL1 = 'ALL',
@@ -455,7 +456,7 @@ def func7():
                                        prdSe = 'Y',
                                        newEstPrdCnt = None,
                                        startPrdDe = 2016,
-                                       endPrdDe = 2020,
+                                       endPrdDe = 2026,
                                        orgId = 101,
                                        tblId = 'DT_1KB9001')
 
