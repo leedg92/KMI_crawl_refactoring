@@ -28,13 +28,14 @@ import pymysql
 ######################
 init_args = {
     'owner' : OWNER_NAME,
-    'start_date' : datetime.datetime(2024, 11, 11)
+    'start_date' : datetime.datetime(2024, 11, 11),
+    'retries': 1
 }
 init_dag = DAG(
     dag_id = 'ihs_economy_data_collector',
     default_args = init_args,
     # schedule_interval = '@once'
-    schedule_interval = '0 1 * * *',
+    schedule_interval = '0 1 1 * *',
     catchup=False
 )
 task_start = DummyOperator(task_id='start', dag=init_dag)
