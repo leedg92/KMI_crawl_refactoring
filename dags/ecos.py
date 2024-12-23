@@ -62,15 +62,15 @@ KST = pendulum.timezone("Asia/Seoul")
 
 init_args = {
     'owner' : OWNER_NAME,
-#    'start_date' :  datetime(2024, 11, 18)
     'start_date': pendulum.datetime(2024, 11, 18, tz=KST),
+    'retries': 1,  # 실패 시 재시도 횟수
 }
 
 init_dag = DAG(
     dag_id = 'ecos_data_collector',
     default_args = init_args,
     # schedule_interval = '@once'
-    schedule_interval = '0 1 * * *',
+    schedule_interval = '0 1 1 * *',
     catchup=False
 )
 
