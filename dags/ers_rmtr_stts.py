@@ -26,7 +26,8 @@ import pymysql
 ######################
 init_args = {
     'owner' : OWNER_NAME,
-    'start_date' : datetime.datetime(2024, 11, 11)
+    'start_date' : datetime.datetime(2024, 11, 11),
+    'retries': 1
 }
 init_dag = DAG(
     dag_id = 'ers_rmtr_stts_collector',
