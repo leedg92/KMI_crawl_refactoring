@@ -413,7 +413,7 @@ def try_export_csv_file(browser):
 
         # 다운로드된 파일 확인
         wait_for_csv_and_read(IHS_GTAS_DOWNLOAD_PATH)
-        time.sleep(5)
+        time.sleep(10)
         files_after = os.listdir(IHS_GTAS_DOWNLOAD_PATH)
         new_files = [f for f in files_after if f not in files_before]
 
@@ -603,7 +603,11 @@ def execute_crawling(browser, tool_query_nm, frequency, def_table_name):
                     os.remove(full_file_name)
 
                     # commodity 체크 풀기
-                    clear_check(browser)                
+                    clear_check(browser)
+                    
+                    # 다운로드 파일 삭제
+                    for file in glob.glob(os.path.join(IHS_GTAS_DOWNLOAD_PATH, "*.csv")):
+                        os.remove(file)                
         
         # 루프가 정상적으로 완료되었을 때 실행
         print('--' * 10, '모든 데이터 수집이 완료되었습니다.', '--' * 10)
