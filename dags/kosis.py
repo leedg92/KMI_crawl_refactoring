@@ -4,6 +4,7 @@ sys.path.append('/opt/airflow/dags/utils')
 from config import *
 from python_library import *
 from kosis_config import *
+from api_account import *
 
 ######################
 ## 기록

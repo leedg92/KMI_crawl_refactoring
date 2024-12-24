@@ -23,19 +23,6 @@ MDB_DATABASE = 'ihs'
 # MDB_PASSWORD = 'ehdrms2@'
 # MDB_DATABASE = 'kmi_dw_db'
 
-
-##. KOSIS
-# KOSIS_API_KEY = "ZDUyOTMwN2MxMjkxMmM4ZTVlNGZmZjE1Yzc5ZjUyMmY="
-
-##. WORLDBANK
-
-
-##. ECOS
-# ECOS API KEY 유효기간 2023.01.11 ~ 2025.01.11
-# ECOS_API_KEY = "8KD0RJO6MEUW4E540QG8"
-# ECOS API KEY 유효기간 2024.12.23 ~ 2026.12.23
-ECOS_API_KEY = 'UFPP2AK7RG89GZWJ1MAV'
-
 ##. unctad_shipping_connectivity
 UNCTAD_URL = 'https://unctadstat-api.unctad.org/bulkdownload/US.PLSCI/US_PLSCI'
 UNCTAD_DOWNLOAD_PATH = '/opt/airflow/downloads/unctad/'
@@ -87,8 +74,6 @@ KNOC_DOWNLOAD_PATH = '/opt/airflow/downloads/knoc/'
 KNOC_DESTINATION_PATH = '/opt/airflow/downloads/knoc/done/'
 
 ##. ers_rmtr_stts
-ERS_USER_ID = 'kmilibrary'
-ERS_USER_PW = '!kmilib2024'
 ERS_URL = 'https://stat.kosa.or.kr/ers/rmtr/ErsRmtrStts'
 ERS_DOWNLOAD_PATH = '/opt/airflow/downloads/ers_rmtr_stts/'
 ERS_DESTINATION_PATH = '/opt/airflow/downloads/ers_rmtr_stts/done/'
@@ -136,8 +121,6 @@ ERS_COLS_MAPPING = {
 
 
 ##. tms_cds_stts
-TMS_USER_ID = 'kmilibrary'
-TMS_USER_PW = '!kmilib2024'
 TMS_URL = 'https://stat.kosa.or.kr/tms/cds/TmsCdsStts'
 TMS_DOWNLOAD_PATH = '/opt/airflow/downloads/tms_cds_stts/'
 TMS_DESTINATION_PATH = '/opt/airflow/downloads/tms_cds_stts/done/'
@@ -184,8 +167,6 @@ TMS_COLS_MAPPING = {
 IHS_URL = "https://connect.ihsmarkit.com/"
 
 ##. IHS_ECONOMY_login 관련
-IHS_USER_ID = "pdac@kmi.re.kr"
-IHS_USER_PW = "!Kmi7974659"
 IHS_LOGIN_BTN_ELEMENT = '/html/body/main/section[2]/div[2]/a/button'
 IHS_USER_ID_INPUT_ELEMENT = '/html/body/div[2]/div/div[2]/div[2]/div[1]/div/data/div[1]/div[3]/div/div[2]/div[1]/input'
 IHS_LOGIN_CONTINUE_BTN_ELEMENT = '/html/body/div[2]/div/div[2]/div[2]/div[1]/div/data/div[2]/div[3]/input'
@@ -197,8 +178,6 @@ IHS_NEW_DOWNLOAD_PATH = '/opt/airflow/downloads/ihs_economy_new/'
 IHS_NEW_DESTINATION_PATH = '/opt/airflow/downloads/ihs_economy_new/done/'
 IHS_GTAS_DOWNLOAD_PATH = '/opt/airflow/downloads/ihs_gtas/'
 IHS_GTAS_DESTINATION_PATH = '/opt/airflow/downloads/ihs_gtas/done/'
-# IHS_GTAS_DOWNLOAD_PATH = 'D:\\workspace\\kmi_crawling_src\\downloads\\ihs_gtas\\'
-# IHS_GTAS_DESTINATION_PATH = 'D:\\workspace\\kmi_crawling_src\\downloads\\ihs_gtas\\done\\'
 TOOL_QUERIES_TABLE_ELEMENT = '/html/body/my-app/div[2]/db-app/cui-page-template/cui-content/cms-app/cms-page/cms-saved-content/section/cms-table-container[1]/section/cui-card/div/cms-default-table/div/table'
 
 IHS_TOTAL_PAGE_COUNT_ELEMENT = '/html/body/my-app/div[2]/db-app/cui-page-template/cui-content/db-build-query/cui-content/div/div/div/db-search-results-container/db-series-results/cui-card/div/section/div/grid-proxy/div/div/dg-grid/ag-grid/span/ag-grid-angular/div/div[4]/span[2]/span/span[4]'
@@ -245,9 +224,6 @@ IHS_GATS_SELECTED_EXPORT_CSV_BTN_ELEMENT = '/html/body/cui-popover-container-win
 CLARKSONS_URL = 'https://sin.clarksons.net/'
 CLARKSONS_DOWNLOAD_PATH = '/opt/airflow/downloads/clarksons/'
 CLARKSONS_DESTINATION_PATH = '/opt/airflow/downloads/clarksons/done/'
-
-CLARKSONS_USER_ID = 'kmimaritime'
-CLARKSONS_USER_PW = '!Kmilib4388'
 
 CLARKSONS_LOGIN_BTN = '/html/body/div[1]/div[2]/div[4]/div/div/div/div[3]/a[1]'
 CLARKSONS_LOGIN_ID = '/html/body/div[15]/div/div/div[2]/form/div[1]/div/input'

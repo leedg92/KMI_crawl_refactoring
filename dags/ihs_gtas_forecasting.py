@@ -3,6 +3,7 @@ import sys, os, warnings
 sys.path.append('/opt/airflow/dags/utils')
 from config import *
 from python_library import *
+from api_account import *
 from bs4 import BeautifulSoup
 import numpy as np
 import pymysql
@@ -35,13 +36,14 @@ import glob
 ######################
 init_args = {
     'owner' : OWNER_NAME,
-    'start_date' : datetime.datetime(2024, 12, 9)
+    'start_date' : datetime.datetime(2024, 12, 9),
+    'retries': 1
 }
 init_dag = DAG(
     dag_id = 'ihs_gtas_forecasting_collector',
     default_args = init_args,
     # schedule_interval = '@once'
-    schedule_interval = '0 1 1 * *',
+    schedule_interval = '0 4 1 1,4,7,10 *',
     catchup=False
 )
 task_start = DummyOperator(task_id='start', dag=init_dag)
@@ -465,6 +467,10 @@ def preprocessing_csv_data_annual(df):
     df = df.replace({np.nan: None})
     df = df.dropna(subset=['IMPORT', 'EXPORT'])
     
+    columns_to_display = ['CONCEPT', 'COMMODITY', 'DATA_VALUE', 'YEAR']
+    print(df[columns_to_display].head())  
+    print(df[columns_to_display].tail()) 
+    
     return df
 
 def try_insert_to_DB(result_df, def_table_name):
@@ -472,8 +478,7 @@ def try_insert_to_DB(result_df, def_table_name):
     for index, result in result_df.iterrows():
         val_list.append(result.tolist())
     
-    ## DB insert
-    print(result_df)    
+    ## DB insert    
     upsert_to_dataframe(result_df, def_table_name, val_list)    
 
 def clear_check(browser):
