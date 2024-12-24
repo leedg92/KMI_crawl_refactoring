@@ -224,6 +224,10 @@ def get_ihs_commodity(concept_nm, frequency):
         """
         codes_df = pd.read_sql(query, conn)
         
+        if codes_df.empty:
+            print(f"No data found for concept '{concept_nm}' with frequency '{frequency}'.")
+            return []
+
         return codes_df.to_dict('records')
     
     except Exception as e:
@@ -473,6 +477,31 @@ def preprocessing_csv_data_annual(df):
     
     return df
 
+def preprocessing_csv_data_quarter(df):
+    df = df.copy()
+
+    df.rename(columns={'Import Country/Territory': 'IMPORT', 'Export Country/Territory': 'EXPORT', 'Value': 'DATA_VALUE'}, inplace=True)
+    drop_col_name = ['Start Date', 'End Date']
+    df.drop(columns=drop_col_name, axis=1, inplace=True)
+    df.columns = df.columns.str.upper()
+    datetime_col_name = 'PERIOD'
+    df['YEAR'] = pd.to_datetime(df[datetime_col_name]).dt.year
+    df['QUARTER'] = pd.cut(
+        pd.to_datetime(df[datetime_col_name]).dt.month,
+        bins=[0, 3, 6, 9, 12],  # 구간 경계값
+        labels=['1Q', '2Q', '3Q', '4Q'],  # 각 구간의 레이블
+        right=True  # 오른쪽 포함 여부, 기본값은 True
+    )
+    df.drop(columns=datetime_col_name, axis=1, inplace=True)    
+    df = df.dropna(subset=['IMPORT', 'EXPORT'])
+    df = df.replace({np.nan: None})
+    
+    columns_to_display = ['CONCEPT', 'COMMODITY', 'DATA_VALUE', 'YEAR']
+    print(df[columns_to_display].head())  
+    print(df[columns_to_display].tail()) 
+    
+    return df
+
 def try_insert_to_DB(result_df, def_table_name):
     val_list = []
     for index, result in result_df.iterrows():
@@ -595,7 +624,10 @@ def execute_crawling(browser, tool_query_nm, frequency, def_table_name):
                     df = pd.read_csv(full_file_name, encoding='utf-8')                    
                     
                     # 데이터 전처리
-                    result_df = preprocessing_csv_data_annual(df)
+                    if (frequency == 'Annual'):
+                        result_df = preprocessing_csv_data_annual(df)
+                    else:
+                        result_df = preprocessing_csv_data_quarter(df)
                     
                     # 다운받은 파일 DB insert
                     try_insert_to_DB(result_df, def_table_name)
@@ -645,8 +677,8 @@ def func1():
 def func2():
     print('--' * 10, '(start) ihs_gtas_forecasting_quarter', '--' * 10)
     
-    tool_query_nm = 'SLX_GTAS_FORECASTING_Annual'
-    frequency = 'Quarter'
+    tool_query_nm = 'SLX_GTAS_FORECASTING_Quarter'
+    frequency = 'Quarterly'
     browser = set_firefox_browser(IHS_GTAS_DOWNLOAD_PATH)
     def_table_name = 'fct_ihs_gtas_forecasting_quarter'
     
