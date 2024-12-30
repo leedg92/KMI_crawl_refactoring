@@ -483,8 +483,7 @@ def preprocessing_csv_data_quarter(df):
     df.rename(columns={'Import Country/Territory': 'IMPORT', 'Export Country/Territory': 'EXPORT', 'Value': 'DATA_VALUE'}, inplace=True)
     drop_col_name = ['Start Date', 'End Date']
     df.drop(columns=drop_col_name, axis=1, inplace=True)
-    df.columns = df.columns.str.upper()
-    datetime_col_name = 'PERIOD'
+    datetime_col_name = 'Period'
     df['YEAR'] = pd.to_datetime(df[datetime_col_name]).dt.year
     df['QUARTER'] = pd.cut(
         pd.to_datetime(df[datetime_col_name]).dt.month,
@@ -492,7 +491,8 @@ def preprocessing_csv_data_quarter(df):
         labels=['1Q', '2Q', '3Q', '4Q'],  # 각 구간의 레이블
         right=True  # 오른쪽 포함 여부, 기본값은 True
     )
-    df.drop(columns=datetime_col_name, axis=1, inplace=True)    
+    df.drop(columns=datetime_col_name, axis=1, inplace=True)
+    df.columns = df.columns.str.upper()
     df = df.dropna(subset=['IMPORT', 'EXPORT'])
     df = df.replace({np.nan: None})
     
