@@ -293,6 +293,17 @@ def insert_to_dataframe(df, period):
         cursor.close()
         conn.close()
 
+def month_time_to_month(df):
+    df['year'] = df['TIME'].str[:4]
+    df['month'] = df['TIME'].str[-2:]
+    
+    return df
+
+def quarter_time_to_quarter(df):
+    df['YEAR'] = df['TIME'].str[:4]
+    df['QUARTER'] = df['TIME'].str[-1:]
+    
+    return df
 
 
 ######################
@@ -304,6 +315,7 @@ def collect_ecos_interest_rate_data():
     if df is not None:
         print("\n=== INTEREST_RATE 월간 데이터 ===")
         print(df)
+        df = month_time_to_month(df)
         insert_to_dataframe(df, 'M')
     
     df_year = collect_ecos_data('INTEREST_RATE', 'Y')
@@ -318,6 +330,7 @@ def collect_ecos_stock_data():
     if df is not None:
         print("\n=== STOCK 월간 데이터 ===")
         print(df)
+        df = month_time_to_month(df)
         insert_to_dataframe(df, 'M')
     
     df_year = collect_ecos_data('STOCK', 'Y')
@@ -348,6 +361,7 @@ def collect_ecos_production_data():
     if df is not None:
         print("\n=== PRODUCTION 월간 데이터 ===")
         print(df)
+        df = month_time_to_month(df)
         insert_to_dataframe(df, 'M')
     
     df_year = collect_ecos_data('PRODUCTION', 'Y')
@@ -362,6 +376,7 @@ def collect_ecos_economy_data():
     if df is not None:
         print("\n=== ECONOMY 월간 데이터 ===")
         print(df)
+        df = month_time_to_month(df)
         insert_to_dataframe(df, 'M')
     
     df_year = collect_ecos_data('ECONOMY', 'Y')
@@ -376,6 +391,7 @@ def collect_ecos_employ_population_data():
     if df is not None:
         print("\n=== EMPLOY_POPULATION 월간 데이터 ===")
         print(df)
+        df = month_time_to_month(df)
         insert_to_dataframe(df, 'M')
     
     df_year = collect_ecos_data('EMPLOY_POPULATION', 'Y')
@@ -390,6 +406,7 @@ def collect_ecos_foreign_trade_data():
     if df is not None:
         print("\n=== FOREIGN_TRADE 월간 데이터 ===")
         print(df)
+        df = month_time_to_month(df)
         insert_to_dataframe(df, 'M')
     
     df_year = collect_ecos_data('FOREIGN_TRADE', 'Y')
@@ -404,6 +421,7 @@ def collect_ecos_price_data():
     if df is not None:
         print("\n=== PRICE 월간 데이터 ===")
         print(df)
+        df = month_time_to_month(df)
         insert_to_dataframe(df, 'M')
     
     df_year = collect_ecos_data('PRICE', 'Y')
@@ -426,12 +444,14 @@ def collect_ecos_scrap_metal_data():
     if df is not None:
         print("\n=== SCRAP_METAL 월간 데이터 ===")
         print(df)
+        df = month_time_to_month(df)
         insert_to_dataframe(df, 'M')
     
     df_quarter = collect_ecos_data('SCRAP_METAL', 'Q')
     if df_quarter is not None:
         print("\n=== SCRAP_METAL 분기 데이터 ===")
         print(df_quarter)
+        df_quarter = quarter_time_to_quarter(df_quarter)
         insert_to_dataframe(df_quarter, 'Q')
 
 #. ECOS 심리 데이터 수집
@@ -440,6 +460,7 @@ def collect_ecos_trial_data():
     if df is not None:
         print("\n=== TRIAL 데이터 ===")
         print(df)
+        df = month_time_to_month(df)
         insert_to_dataframe(df, 'M')
 
 ######################
