@@ -226,7 +226,7 @@ def collect_ecos_data(category, period):
                 for item in data:
                     item = {key: value if value is not None else "" for key, value in item.items()}
                     item['CATEGORY'] = category
-                    item['CREATE_DTM'] = current_time
+                    #item['CREATE_DTM'] = current_time
                     item['UPDATE_DTM'] = current_time
                     all_data.append(item)
     
