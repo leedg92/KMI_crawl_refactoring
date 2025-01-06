@@ -228,6 +228,8 @@ def collect_ecos_data(category, period):
                     item['CATEGORY'] = category
                     #item['CREATE_DTM'] = current_time
                     item['UPDATE_DTM'] = current_time
+                    if 'DATA_VALUE' in item and item['DATA_VALUE'] == '':
+                        item['DATA_VALUE'] = 0
                     all_data.append(item)
     
     if all_data:
