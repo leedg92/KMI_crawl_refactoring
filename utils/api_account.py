@@ -19,5 +19,5 @@ IHS_USER_PW = "!Kmi7974659"
 
 ##. clarksons
 CLARKSONS_USER_ID = 'kmimaritime'
-CLARKSONS_USER_PW = '!Kmilib4388'
-
+## 2025년도 pw 매년 갱신됨
+CLARKSONS_USER_PW = '!KMILIB2025'

@@ -3,6 +3,7 @@ import sys, os, warnings
 sys.path.append('/opt/airflow/dags/utils')
 from config import *
 from python_library import *
+from api_account import *
 from bs4 import BeautifulSoup
 import numpy as np
 import pymysql
@@ -139,7 +140,7 @@ def try_move_page(browser):
     try:
         time.sleep(5)
         # TimeSeries & Graphs
-        print(f'[Move Page] Moving \'TimeSeries & Graphs\' Page ~~~')
+        print(f'[Move Page] Moving \'TimeSeries & Graphs\' Page ~~~')        
         tg_menu_element = WebDriverWait(browser, 60).until(EC.visibility_of_element_located((By.XPATH, '/html/body/div[1]/div[3]/div/div/ul/li[6]/a')))
         tg_menu_element.click()
         print(f'[Move Page] Success Move \'TimeSeries & Graphs\' Page')
