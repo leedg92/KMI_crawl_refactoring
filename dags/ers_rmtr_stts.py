@@ -103,6 +103,10 @@ def wait_for_xls_and_read(download_path, timeout=120):
     return None
 
 def try_login(browser):
+    # popup close    
+    popup_btn_element = browser.find_element(By.XPATH, '/html/body/div/div/div[1]/div/div[3]/button')
+    popup_btn_element.click()  
+    
     # Login
     print(f'[Login] Trying to Login ~~~')
     login_btn_element = browser.find_element(By.XPATH, ERS_LOGIN_BTN_ELEMENT)
