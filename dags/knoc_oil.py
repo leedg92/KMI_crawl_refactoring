@@ -30,7 +30,7 @@ import pymysql
 ######################
 init_args = {
     'owner' : OWNER_NAME,
-    'start_date' : datetime.datetime(2024, 11, 11),
+    'start_date' : datetime.datetime(2025, 1, 20),
     'retries': 1
 }
 init_dag = DAG(
@@ -115,13 +115,26 @@ def knoc_file_download(category,depth1,depth2,start_year_element,start_month_ele
         browser.get(KNOC_URL)
         browser.implicitly_wait(10)
         
-        # Search
-        oil_supply_demand_element = browser.find_element(By.XPATH, '/html/body/div[3]/div/ul/li[5]/a/img')
+        windows = browser.window_handles
+ 
+        for index in range(len(windows)-1): #메인화면을 제외하면 모든 팝업창을 순회
+            browser.switch_to.window(windows[index+1]) 
+            try:
+                # 특정 팝업창에서 작업 수행
+                oil_supply_demand_element = browser.find_element(By.XPATH, '/html/body/div[2]/button[2]')
+                oil_supply_demand_element.click()
+            except:
+                #예외가 발생할 경우 팝업창 닫기
+                browser.close()
+        
+        # 메인화면으로 이동
+        browser.switch_to.window(windows[0])
+        
+        # Search (국내수급총괄)
+        oil_supply_demand_element = browser.find_element(By.XPATH, '/html/body/div[4]/div[2]/div[1]/ul/li[4]/a/img')
         oil_supply_demand_element.click()
         browser.implicitly_wait(10)
 
-        
-        browser.switch_to.frame('left')
         
         # depth1
         if (category != 1 and category !=2):
@@ -135,7 +148,6 @@ def knoc_file_download(category,depth1,depth2,start_year_element,start_month_ele
 
         # 날짜 설정 DOM 접근
         browser.switch_to.parent_frame()
-        browser.switch_to.frame('body')
 
         select_from_year_element = browser.find_element(By.XPATH, start_year_element)
         select_from_month_element = browser.find_element(By.XPATH, start_month_element)
@@ -150,14 +162,21 @@ def knoc_file_download(category,depth1,depth2,start_year_element,start_month_ele
         select_from_year = int(get_year()) - 1
         select_from_month = 1
         select_to_year = int(get_year())
-        select_to_month = int(get_month()) - 2
+        if int(get_month()) > 2:
+            select_to_month = int(get_month()) - 2
+        else:
+            select_to_month = int(get_month()) - 2 + 12
         
         # 날짜 지정(From, To)
         select_from_year_object.select_by_value(str(select_from_year))
         select_from_month_object.select_by_value(str(select_from_month).zfill(2))
-        select_to_year_object.select_by_value(str(select_to_year))
+        
+        try:
+            select_to_year_object.select_by_value(str(select_to_year))
+        except:
+            select_to_year_object.select_by_value(str(select_from_year))
+            
         select_to_month_object.select_by_value(str(select_to_month).zfill(2))        
-
         # 지정한 날짜 범위로 데이터 조회
         search_btn_element = browser.find_element(By.XPATH, search_btn)
         search_btn_element.click()
@@ -171,19 +190,20 @@ def knoc_file_download(category,depth1,depth2,start_year_element,start_month_ele
         if(category == 4 or category == 5):
             is_checked = True
             if(category == 4):
+                ## 제품종류 리스트
                 list_items = WebDriverWait(browser, 10).until(
-                    EC.presence_of_all_elements_located((By.XPATH, '/html/body/form[1]/div/div[2]/fieldset/table/tbody/tr[4]/td/div/ul/li'))
+                    EC.presence_of_all_elements_located((By.XPATH, '/html/body/div[4]/div[2]/div[2]/form[2]/div/ul/li[5]/div/div[2]/ul/li'))
                 )
             else:
                 list_items = WebDriverWait(browser, 10).until(
-                    EC.presence_of_all_elements_located((By.XPATH, '/html/body/div[1]/div[2]/fieldset/form/table/tbody/tr[4]/td/div/ul/li'))
+                    EC.presence_of_all_elements_located((By.XPATH, '/html/body/div[4]/div[2]/div[2]/form[2]/div/ul/li[5]/div/div[2]/ul/li'))
                 )
             for i in range(0, int(len(list_items)/5)+1):
                 # 선택해제
                 if(category == 4):
-                    selected_cancel_element = browser.find_element(By.XPATH, '/html/body/form[1]/div/div[2]/fieldset/table/tbody/tr[4]/td/ul/li[2]/a')
+                    selected_cancel_element = browser.find_element(By.XPATH, '/html/body/div[4]/div[2]/div[2]/form[2]/div/ul/li[5]/div/div[1]/input')
                 else:
-                    selected_cancel_element = browser.find_element(By.XPATH, '/html/body/div[1]/div[2]/fieldset/form/table/tbody/tr[4]/td/ul/li[2]/a')                
+                    selected_cancel_element = browser.find_element(By.XPATH, '/html/body/div[4]/div[2]/div[2]/form[2]/div/ul/li[5]/div/div[1]/input')              
                 selected_cancel_element.click()
                 
                 time.sleep(2)
@@ -211,8 +231,10 @@ def knoc_file_download(category,depth1,depth2,start_year_element,start_month_ele
                     time.sleep(3)
                 
                 # CSV 다운로드 버튼 클릭
-                csv_download_btn_element = browser.find_element(By.XPATH, csv_btn)
-                csv_download_btn_element.click()
+                csv_btn_element = WebDriverWait(browser, 10).until(
+                    EC.element_to_be_clickable((By.XPATH, csv_btn))
+                )
+                csv_btn_element.click()
 
                 # 파일이 정상적으로 모두 다운로드 될 때까지 대기                
                 wait_for_xls_and_read(KNOC_DOWNLOAD_PATH)
@@ -232,9 +254,12 @@ def knoc_file_download(category,depth1,depth2,start_year_element,start_month_ele
 
         else:
             # CSV 다운 버튼 DOM 접근하여 파일 다운로드
-            files_before = os.listdir(KNOC_DOWNLOAD_PATH)
-            csv_download_btn_element = browser.find_element(By.XPATH, csv_btn)
-            csv_download_btn_element.click()
+            files_before = os.listdir(KNOC_DOWNLOAD_PATH)            
+            csv_download_btn_element = WebDriverWait(browser, 10).until(
+                    EC.element_to_be_clickable((By.XPATH, csv_btn))
+                )
+            browser.execute_script("arguments[0].scrollIntoView();", csv_download_btn_element)
+            browser.execute_script("arguments[0].click();", csv_download_btn_element)
 
             # 파일이 정상적으로 모두 다운로드 될 때까지 대기
             wait_for_xls_and_read(KNOC_DOWNLOAD_PATH)
@@ -249,7 +274,7 @@ def knoc_file_download(category,depth1,depth2,start_year_element,start_month_ele
             if f not in files_before and f.endswith('.csv'):
                 new_files.append(f)
         print(f'Download Files Name : {new_files}')
-
+        browser.close()
         return new_files
         
         
@@ -345,14 +370,15 @@ def func1():
     print('--' * 10, '(start) knoc_oil_collector (oil_supply_summary)', '--' * 10)    
     
     category = 1
-    depth1 = '/html/body/div/ul/li[3]/a'
-    depth2 = '/html/body/div/ul/li[3]/ul/li[1]/a'
-    start_year_element = '/html/body/form[1]/div/div[2]/fieldset/table/tbody/tr[2]/td/div/div[1]/select'
-    start_month_element = '/html/body/form[1]/div/div[2]/fieldset/table/tbody/tr[2]/td/div/div[3]/select'
-    end_year_element = '/html/body/form[1]/div/div[2]/fieldset/table/tbody/tr[2]/td/div/div[4]/select'
-    end_month_element = '/html/body/form[1]/div/div[2]/fieldset/table/tbody/tr[2]/td/div/div[6]/select'
-    search_btn = '/html/body/form[1]/div/div[2]/fieldset/table/tbody/tr[2]/td/div/p/a'
-    csv_btn = '/html/body/form[1]/div/div[2]/fieldset/ul/li[1]/a'
+    ## 석유수급총괄 > 석유수급총괄
+    depth1 = '/html/body/div[4]/div[1]/div/ul/li[3]/a'
+    depth2 = '/html/body/div[4]/div[1]/div/ul/li[3]/div/ul/li[1]/a'
+    start_year_element = '/html/body/div[4]/div[2]/div[2]/form/div/ul/li[2]/div/div[1]/select'
+    start_month_element = '/html/body/div[4]/div[2]/div[2]/form/div/ul/li[2]/div/div[3]/select'
+    end_year_element = '/html/body/div[4]/div[2]/div[2]/form/div/ul/li[2]/div/div[5]/select'
+    end_month_element = '/html/body/div[4]/div[2]/div[2]/form/div/ul/li[2]/div/div[7]/select'
+    search_btn = '/html/body/div[4]/div[2]/div[2]/form/div/div/a'
+    csv_btn = '/html/body/div[4]/div[2]/div[2]/div[1]/a[1]'
     
     extract_process(category,depth1,depth2,start_year_element,start_month_element,end_year_element,end_month_element,search_btn,csv_btn)
     
@@ -363,14 +389,14 @@ def func2():
     print('--' * 10, '(start) knoc_oil_collector (petroleum_product_production)', '--' * 10)    
     
     category = 2
-    depth1 = '/html/body/div/ul/li[3]/a'
-    depth2 = '/html/body/div/ul/li[3]/ul/li[2]/a'
-    start_year_element = '/html/body/form[1]/div/div[2]/fieldset/table/tbody/tr[2]/td/div/div[1]/select'
-    start_month_element = '/html/body/form[1]/div/div[2]/fieldset/table/tbody/tr[2]/td/div/div[3]/select'
-    end_year_element = '/html/body/form[1]/div/div[2]/fieldset/table/tbody/tr[2]/td/div/div[4]/select'
-    end_month_element = '/html/body/form[1]/div/div[2]/fieldset/table/tbody/tr[2]/td/div/div[6]/select'
-    search_btn = '/html/body/form[1]/div/div[2]/fieldset/table/tbody/tr[3]/td/p/a'
-    csv_btn = '/html/body/form[1]/div/div[2]/fieldset/ul/li[1]/a'
+    depth1 = '/html/body/div[4]/div[1]/div/ul/li[3]/a'
+    depth2 = '/html/body/div[4]/div[1]/div/ul/li[3]/div/ul/li[2]/a'
+    start_year_element = '/html/body/div[4]/div[2]/div[2]/form/div/ul/li[2]/div/div[1]/select'
+    start_month_element = '/html/body/div[4]/div[2]/div[2]/form/div/ul/li[2]/div/div[3]/select'
+    end_year_element = '/html/body/div[4]/div[2]/div[2]/form/div/ul/li[2]/div/div[5]/select'
+    end_month_element = '/html/body/div[4]/div[2]/div[2]/form/div/ul/li[2]/div/div[7]/select'
+    search_btn = '/html/body/div[4]/div[2]/div[2]/form/div/div/a'
+    csv_btn = '/html/body/div[4]/div[2]/div[2]/div[1]/a[1]'
     
     extract_process(category,depth1,depth2,start_year_element,start_month_element,end_year_element,end_month_element,search_btn,csv_btn)
     
@@ -381,14 +407,14 @@ def func3():
     print('--' * 10, '(start) knoc_oil_collector (product_consumption_data)', '--' * 10)    
     
     category = 3
-    depth1 = '/html/body/div/ul/li[4]/a'
-    depth2 = '/html/body/div/ul/li[4]/ul/li[1]/a'
-    start_year_element = '/html/body/div[1]/div[2]/form/fieldset/table/tbody/tr[2]/td/div/div[1]/select'
-    start_month_element = '/html/body/div[1]/div[2]/form/fieldset/table/tbody/tr[2]/td/div/div[3]/select'
-    end_year_element = '/html/body/div[1]/div[2]/form/fieldset/table/tbody/tr[2]/td/div/div[4]/select'
-    end_month_element = '/html/body/div[1]/div[2]/form/fieldset/table/tbody/tr[2]/td/div/div[6]/select'
-    search_btn = '/html/body/div[1]/div[2]/form/fieldset/table/tbody/tr[3]/td/p/a'
-    csv_btn = '/html/body/div[1]/div[2]/form/fieldset/ul/li[1]/a'
+    depth1 = '/html/body/div[4]/div[1]/div/ul/li[4]/a'
+    depth2 = '/html/body/div[4]/div[1]/div/ul/li[4]/div/ul/li[1]/a'
+    start_year_element = '/html/body/div[4]/div[2]/div[2]/form[2]/div/ul/li[3]/div/div[1]/select'
+    start_month_element = '/html/body/div[4]/div[2]/div[2]/form[2]/div/ul/li[3]/div/div[3]/select'
+    end_year_element = '/html/body/div[4]/div[2]/div[2]/form[2]/div/ul/li[3]/div/div[5]/select'
+    end_month_element = '/html/body/div[4]/div[2]/div[2]/form[2]/div/ul/li[3]/div/div[7]/select'
+    search_btn = '/html/body/div[4]/div[2]/div[2]/form[2]/div/div/a'
+    csv_btn = '/html/body/div[4]/div[2]/div[2]/div[1]/a[1]'
         
     extract_process(category,depth1,depth2,start_year_element,start_month_element,end_year_element,end_month_element,search_btn,csv_btn)
     
@@ -399,14 +425,14 @@ def func4():
     print('--' * 10, '(start) knoc_oil_collector (oil_product_import)', '--' * 10)    
     
     category = 4
-    depth1 = '/html/body/div/ul/li[5]/a'
-    depth2 = '/html/body/div/ul/li[5]/ul/li[3]/a'
-    start_year_element = '/html/body/form[1]/div/div[2]/fieldset/table/tbody/tr[2]/td/div/div[1]/select'
-    start_month_element = '/html/body/form[1]/div/div[2]/fieldset/table/tbody/tr[2]/td/div/div[3]/select'
-    end_year_element = '/html/body/form[1]/div/div[2]/fieldset/table/tbody/tr[2]/td/div/div[4]/select'
-    end_month_element = '/html/body/form[1]/div/div[2]/fieldset/table/tbody/tr[2]/td/div/div[6]/select'
-    search_btn = '/html/body/form[1]/div/div[2]/fieldset/table/tbody/tr[4]/td/p/a'
-    csv_btn = '/html/body/form[1]/div/div[2]/fieldset/ul/li[1]/a'
+    depth1 = '/html/body/div[4]/div[1]/div/ul/li[5]/a'
+    depth2 = '/html/body/div[4]/div[1]/div/ul/li[5]/div/ul/li[2]/a'
+    start_year_element = '/html/body/div[4]/div[2]/div[2]/form[2]/div/ul/li[3]/div/div[1]/select'
+    start_month_element = '/html/body/div[4]/div[2]/div[2]/form[2]/div/ul/li[3]/div/div[3]/select'
+    end_year_element = '/html/body/div[4]/div[2]/div[2]/form[2]/div/ul/li[3]/div/div[5]/select'
+    end_month_element = '/html/body/div[4]/div[2]/div[2]/form[2]/div/ul/li[3]/div/div[7]/select'
+    search_btn = '/html/body/div[4]/div[2]/div[2]/form[2]/div/div/a'
+    csv_btn = '/html/body/div[4]/div[2]/div[2]/div[1]/a[1]'
     
     extract_process(category,depth1,depth2,start_year_element,start_month_element,end_year_element,end_month_element,search_btn,csv_btn)
     
@@ -417,14 +443,14 @@ def func5():
     print('--' * 10, '(start) knoc_oil_collector (oil_product_export)', '--' * 10)    
     
     category = 5
-    depth1 = '/html/body/div/ul/li[5]/a'
-    depth2 = '/html/body/div/ul/li[5]/ul/li[6]/a'
-    start_year_element = '/html/body/div[1]/div[2]/fieldset/form/table/tbody/tr[2]/td/div/div[1]/select'
-    start_month_element = '/html/body/div[1]/div[2]/fieldset/form/table/tbody/tr[2]/td/div/div[3]/select'
-    end_year_element = '/html/body/div[1]/div[2]/fieldset/form/table/tbody/tr[2]/td/div/div[4]/select'
-    end_month_element = '/html/body/div[1]/div[2]/fieldset/form/table/tbody/tr[2]/td/div/div[6]/select'
-    search_btn = '/html/body/div[1]/div[2]/fieldset/form/table/tbody/tr[4]/td/p/a'
-    csv_btn = '/html/body/div[1]/div[2]/fieldset/ul/li[1]/a'    
+    depth1 = '/html/body/div[4]/div[1]/div/ul/li[5]/a'
+    depth2 = '/html/body/div[4]/div[1]/div/ul/li[5]/div/ul/li[3]/a'
+    start_year_element = '/html/body/div[4]/div[2]/div[2]/form[2]/div/ul/li[3]/div/div[1]/select'
+    start_month_element = '/html/body/div[4]/div[2]/div[2]/form[2]/div/ul/li[3]/div/div[3]/select'
+    end_year_element = '/html/body/div[4]/div[2]/div[2]/form[2]/div/ul/li[3]/div/div[5]/select'
+    end_month_element = '/html/body/div[4]/div[2]/div[2]/form[2]/div/ul/li[3]/div/div[7]/select'
+    search_btn = '/html/body/div[4]/div[2]/div[2]/form[2]/div/div/a'
+    csv_btn = '/html/body/div[4]/div[2]/div[2]/div[1]/a[1]'    
     
     extract_process(category,depth1,depth2,start_year_element,start_month_element,end_year_element,end_month_element,search_btn,csv_btn)
     
