@@ -184,8 +184,9 @@ def preprocessing_data(origin_df):
     
     result_df = result_df.replace({'-': None})    
     result_df['BDI'] = result_df['BDI'].replace(',', '')
-    result_df['SCFI_EUROPE'] = result_df['SCFI_EUROPE'].astype(str).str.replace(',,', ',')
-    result_df['SCFI_EUROPE'] = result_df['SCFI_EUROPE'].replace(',', '')
+    result_df['SCFI_EUROPE'] = result_df['SCFI_EUROPE'].astype(str)  # 문자열로 변환
+    result_df['SCFI_EUROPE'] = result_df['SCFI_EUROPE'].str.replace(',,', ',')  # ,, -> ,
+    result_df['SCFI_EUROPE'] = result_df['SCFI_EUROPE'].str.replace(',', '')  # , 제거
     result_df['SCFI_EUROPE'] = pd.to_numeric(result_df['SCFI_EUROPE'], errors='coerce')  # 숫자로 변환
     result_df = result_df.replace({np.nan: None})
 
